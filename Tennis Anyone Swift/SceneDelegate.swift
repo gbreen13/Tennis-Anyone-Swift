@@ -20,12 +20,49 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView()
+  
+        let decoder = JSONDecoder()
+        var schedule: Schedule?
+        do {
+            schedule = try (decoder.decode(Schedule.self, from: jsonSchedule) )
+        }
+        catch {
+            print(error)
+        }
+        
+        schedule!.BuildSchedule()
+        
+/*
+        do {
+            print(schedule!);
+            print("###")
+            schedule!.BuildSchedule()
+            print(schedule!);
+            print("###")
+            let jsonEncoder = JSONEncoder()
+            var jsonData = Data()
+            jsonData = try jsonEncoder.encode(schedule)  // now reencode the data
+            let jsonString = String(data: jsonData, encoding: .utf8)!
+            print(jsonString)
+            schedule = try decoder.decode(Schedule.self, from: jsonString.data(using: .utf8)!)
+            print(schedule!);
+            print("###")
+            
+        } catch {
+            if error is Schedule.ScheduleError {
+                print(error)
+                exit(SIGABRT)
+            }
+            else {
+                print(error.localizedDescription)
+            }
+        }
+*/
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: contentView)
+            window.rootViewController = UIHostingController(rootView: ContentView().environmentObject(schedule!))
             self.window = window
             window.makeKeyAndVisible()
         }

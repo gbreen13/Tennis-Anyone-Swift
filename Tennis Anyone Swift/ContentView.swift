@@ -1,21 +1,137 @@
 //
 //  ContentView.swift
-//  Tennis Anyone Swift
+//  iDine
 //
-//  Created by George Breen on 10/15/19.
+//  Created by George Breen on 10/9/19.
 //  Copyright © 2019 George Breen. All rights reserved.
 //
 
+import Combine
 import SwiftUI
 
-struct ContentView: View {
-    var body: some View {
-        Text("Hello World")
+enum ScheduleFormError: Error {
+    case EndDateTooEarly
+    case NoWeeksToSchedule
+}
+
+extension ScheduleFormError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .EndDateTooEarly:
+            return NSLocalizedString("End date must be after start date", comment: "")
+        case .NoWeeksToSchedule:
+            return NSLocalizedString("Start and end dates must be at least one week apart", comment:"")
+
+        }
     }
+}
+
+struct ContentView: View {
+//    let menu = Bundle.main.decode([MenuSection].self, from: "menu.json")
+    @EnvironmentObject var schedule: Schedule
+
+    @State var isDoubles = true
+    @State var locationSelection = 1
+    @State private var showingAlert = false
+    @State private var errorString = ""
+
+
+    var body: some View {
+
+        NavigationView {
+            
+            Form {
+  
+                Section(header: Text("Time and Place")) {
+
+                    Toggle(isOn: $isDoubles) {
+                        if(isDoubles) {
+                            Text("Singles").foregroundColor(Color.gray)
+                            Text("/")
+                            Text("Doubles").bold()
+                        }else {
+                            Text("Singles").bold()
+                            Text("/")
+                            Text("Doubles").foregroundColor(Color.gray)
+                        }
+                    }
+                    DatePicker(
+                        selection: $schedule.startDate,
+                       // in: dateClosedRange,
+                        displayedComponents: .date,
+                        label: { Text("Start Date") }
+                    )
+                    DatePicker(
+                        selection: $schedule.endDate,
+                       // in: dateClosedRange,
+                        displayedComponents: [.date],
+                        label: { Text("End Date") }
+                    )
+                    Picker(selection: $locationSelection, label: Text("Where")) {
+                        Text("Radnor").tag(1)
+                        Text("TW").tag(2)
+                    }
+                }
+/*
+                 List {
+                    ForEach(menu) { section in
+                        Section(header: Text(section.name)) {
+                            ForEach(section.items) { item in
+                                ItemRow(item: item)
+                            }
+                        }
+                    }
+
+                }
+*/
+            }
+            .navigationBarTitle("Schedule")
+            .navigationBarItems(trailing:
+                Button(action: {
+                    do  {
+                            try self.validateForm()
+                    } catch  {
+                            self.showingAlert = true
+                         self.errorString = error.localizedDescription
+                    }
+
+                    if(self.showingAlert == false) {
+                        print("saved")
+                    }
+                    }) {
+                        Text("Save")
+                    }
+                    .alert(isPresented: $showingAlert) {
+                        Alert(title: Text("Error"), message: Text(self.errorString), dismissButton: .default(Text("OK")))
+                    }
+
+            )
+            .listStyle(GroupedListStyle())
+        }
+    }
+    func validateForm() throws {
+
+        if (self.schedule.endDate < self.schedule.startDate) {
+            throw(ScheduleFormError.EndDateTooEarly)
+        }
+        let diffInDays = Calendar.current.dateComponents([.day], from: self.schedule.startDate, to: self.schedule.endDate).day!
+        
+        if (diffInDays < 7) {
+            throw(ScheduleFormError.NoWeeksToSchedule)
+        }
+    }
+
+    var dateClosedRange: ClosedRange<Date> {
+        let min = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date())!
+        let max = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: Date())!
+        return min...max
+    }
+
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().environmentObject(Schedule())
     }
 }
+
