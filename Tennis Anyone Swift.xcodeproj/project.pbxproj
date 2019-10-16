@@ -18,6 +18,7 @@
 		260BE8C7235764AA00A7A306 /* player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BE8C2235764AA00A7A306 /* player.swift */; };
 		260BE8C8235764AA00A7A306 /* jsonSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BE8C3235764AA00A7A306 /* jsonSchedule.swift */; };
 		260BE8C9235764AA00A7A306 /* playWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BE8C4235764AA00A7A306 /* playWeek.swift */; };
+		260BE8CB2357ABA500A7A306 /* PlayerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BE8CA2357ABA500A7A306 /* PlayerRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		260BE8C2235764AA00A7A306 /* player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = player.swift; sourceTree = "<group>"; };
 		260BE8C3235764AA00A7A306 /* jsonSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = jsonSchedule.swift; sourceTree = "<group>"; };
 		260BE8C4235764AA00A7A306 /* playWeek.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = playWeek.swift; sourceTree = "<group>"; };
+		260BE8CA2357ABA500A7A306 /* PlayerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				260BE8AC2356469F00A7A306 /* AppDelegate.swift */,
 				260BE8AE2356469F00A7A306 /* SceneDelegate.swift */,
 				260BE8B02356469F00A7A306 /* ContentView.swift */,
+				260BE8CA2357ABA500A7A306 /* PlayerRow.swift */,
 				260BE8C1235764AA00A7A306 /* constants.swift */,
 				260BE8C3235764AA00A7A306 /* jsonSchedule.swift */,
 				260BE8C2235764AA00A7A306 /* player.swift */,
@@ -163,6 +166,7 @@
 			files = (
 				260BE8AD2356469F00A7A306 /* AppDelegate.swift in Sources */,
 				260BE8AF2356469F00A7A306 /* SceneDelegate.swift in Sources */,
+				260BE8CB2357ABA500A7A306 /* PlayerRow.swift in Sources */,
 				260BE8C5235764AA00A7A306 /* schedule.swift in Sources */,
 				260BE8C9235764AA00A7A306 /* playWeek.swift in Sources */,
 				260BE8C6235764AA00A7A306 /* constants.swift in Sources */,

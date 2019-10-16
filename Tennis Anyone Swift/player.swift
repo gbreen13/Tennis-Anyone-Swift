@@ -9,39 +9,41 @@
 
 import Foundation
 
-class Player: CustomStringConvertible, Codable, Equatable {
+class Player: CustomStringConvertible, Codable, Equatable, Identifiable {
     
     enum CodingKeys: CodingKey {
-        case blockedDays, percentPlaying, name, numWeeks, scheduledWeeks, phone, email
+        case id, blockedDays, percentPlaying, name, numWeeks, scheduledWeeks, phone, email
     }
     
+    var id: UUID
     var blockedDays:[Date]?
     var percentPlaying: Double?
     var email: String?
     var phone: String?
     var name: String?
-    var numWeeks: Int?
+    var numWeeks: Int? = 0
     var scheduledWeeks: Int = 0
-    /*
-     **  Worth holding onto.  Shows initialization sequence for struct with default values if they aren't passed.
      
-     init(percentPlaying: Double? = nil,
+    init(id: UUID? = UUID(),
      name: String? = nil,
-     numWeeks: Int? = nil,
-     scheduledWeeks: Int? = nil,
-     blockedDays: [Date]? = nil) {
-     
-     self.name = name
-     self.percentPlaying = percentPlaying
-     self.numWeeks = numWeeks
-     self.scheduledWeeks = scheduledWeeks
-     if blockedDays != nil {
-     self.blockedDays = blockedDays
+     percentPlaying: Double? = 100.0,
+     blockedDays: [Date]? = nil,
+     email: String? = "",
+        phone: String? = "") {
+        self.id = id!
+         self.name = name
+         self.percentPlaying = percentPlaying
+         if blockedDays != nil {
+            self.blockedDays = blockedDays
+         }
+        self.email = email
+        self.phone = phone
+
      }
-     }
-     */
+    
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decodeIfPresent(UUID.self, forKey: .id) ?? UUID()
         self.name = try container.decodeIfPresent(String.self, forKey: .name) ?? "missing"
         self.percentPlaying = try container.decodeIfPresent(Double.self, forKey: .percentPlaying) ?? 0.0
         self.numWeeks = try container.decodeIfPresent(Int.self, forKey: .numWeeks) ?? 0
@@ -95,4 +97,7 @@ class Player: CustomStringConvertible, Codable, Equatable {
         return s
     }
     
+#if DEBUG
+    static let example = Player(id: UUID(), name: "Bobby Frey", percentPlaying: 100.0, blockedDays: [], phone: "215-555-1212")
+#endif
 }

@@ -72,6 +72,13 @@ struct ContentView: View {
                         Text("TW").tag(2)
                     }
                 }
+                Section(header: Text("Players")){
+                    List {
+                        ForEach(schedule.players!) { player in
+                            PlayerRow(player: player)
+                        }
+                    }
+                }
 /*
                  List {
                     ForEach(menu) { section in

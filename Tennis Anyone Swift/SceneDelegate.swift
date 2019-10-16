@@ -25,19 +25,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         var schedule: Schedule?
         do {
             schedule = try (decoder.decode(Schedule.self, from: jsonSchedule) )
-        }
-        catch {
-            print(error)
-        }
-        
-        schedule!.BuildSchedule()
-        
-/*
-        do {
-            print(schedule!);
-            print("###")
             schedule!.BuildSchedule()
-            print(schedule!);
+            print(schedule as Any);
             print("###")
             let jsonEncoder = JSONEncoder()
             var jsonData = Data()
@@ -45,19 +34,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let jsonString = String(data: jsonData, encoding: .utf8)!
             print(jsonString)
             schedule = try decoder.decode(Schedule.self, from: jsonString.data(using: .utf8)!)
-            print(schedule!);
-            print("###")
+            print(schedule as Any);
             
-        } catch {
-            if error is Schedule.ScheduleError {
-                print(error)
-                exit(SIGABRT)
-            }
-            else {
-                print(error.localizedDescription)
-            }
         }
-*/
+        catch {
+            print(error)
+        }
+        
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
