@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+
 struct PlayerRow : View {
     var player: Player
 
@@ -25,8 +26,29 @@ struct PlayerRow : View {
     }
 }
 
-struct ItemRow_Previews: PreviewProvider {
+
+struct PlayerList : View {
+    @EnvironmentObject var schedule: Schedule
+
+    var body: some View {
+
+        List {
+            ForEach(schedule.players) { player in
+                PlayerRow(player: player)
+            }.onDelete(perform: delete)
+        }
+    }
+    func delete(at offsets: IndexSet) {
+        schedule.players.remove(atOffsets: offsets)
+    }
+}
+
+struct PlayerList_Previews: PreviewProvider {
+    @EnvironmentObject var schedule: Schedule
     static var previews: some View {
-        PlayerRow(player: Player.example)
+
+        List {
+            PlayerRow(player: Player.example)
+        }
     }
 }

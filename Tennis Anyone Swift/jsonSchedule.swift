@@ -9,6 +9,20 @@
 
 let jsonSchedule = """
 {
+  "venues": [
+    {
+        "name": "Radnor Racquet Club",
+        "email": "radnor.com",
+        "phone": "1-800-radnorr"
+    },
+    {
+        "name": "Thomas WIlliams"
+    },
+    {
+        "name": "Brigantine Courts"
+    }
+  ],
+
   "players": [
     {
       "name": "Hedley LaMar",

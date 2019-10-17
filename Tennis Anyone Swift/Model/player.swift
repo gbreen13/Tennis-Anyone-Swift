@@ -9,18 +9,18 @@
 
 import Foundation
 
-class Player: CustomStringConvertible, Codable, Equatable, Identifiable {
+class Player: CustomStringConvertible, Codable, Equatable, Identifiable, ObservableObject {
     
     enum CodingKeys: CodingKey {
         case id, blockedDays, percentPlaying, name, numWeeks, scheduledWeeks, phone, email
     }
     
     var id: UUID
-    var blockedDays:[Date]?
+    @Published var blockedDays:[Date]?
     var percentPlaying: Double?
-    var email: String?
-    var phone: String?
-    var name: String?
+    @Published var email: String?
+    @Published var phone: String?
+    @Published var name: String?
     var numWeeks: Int? = 0
     var scheduledWeeks: Int = 0
      
@@ -62,12 +62,13 @@ class Player: CustomStringConvertible, Codable, Equatable, Identifiable {
     
     static func == (pl1: Player, pl2: Player) -> Bool {
         return
-            pl1.name == pl2.name
+            pl1.id == pl2.id
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
+        try container.encode(id, forKey: .id)
         try container.encode(percentPlaying, forKey: .percentPlaying)
         try container.encode(numWeeks, forKey: .numWeeks)
         try container.encode(scheduledWeeks, forKey: .scheduledWeeks)

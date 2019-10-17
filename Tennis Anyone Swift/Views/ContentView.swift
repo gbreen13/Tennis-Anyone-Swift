@@ -31,7 +31,6 @@ struct ContentView: View {
     @EnvironmentObject var schedule: Schedule
 
     @State var isDoubles = true
-    @State var locationSelection = 1
     @State private var showingAlert = false
     @State private var errorString = ""
 
@@ -67,30 +66,23 @@ struct ContentView: View {
                         displayedComponents: [.date],
                         label: { Text("End Date") }
                     )
-                    Picker(selection: $locationSelection, label: Text("Where")) {
-                        Text("Radnor").tag(1)
-                        Text("TW").tag(2)
+                        
+                    Picker(selection: $schedule.currentVenue, label: Text("Where")) {
+                        ForEach(schedule.venues) { venue in
+                            Text(venue.name).tag(venue.id)
+                        }
                     }
+ //                   .pickerStyle(WheelPickerStyle())
+                    .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                    
                 }
                 Section(header: Text("Players")){
-                    List {
-                        ForEach(schedule.players!) { player in
-                            PlayerRow(player: player)
-                        }
-                    }
+                    PlayerList()
                 }
-/*
-                 List {
-                    ForEach(menu) { section in
-                        Section(header: Text(section.name)) {
-                            ForEach(section.items) { item in
-                                ItemRow(item: item)
-                            }
-                        }
-                    }
+                Section(header: Text("Venues")){
+                    VenueList()
+                }
 
-                }
-*/
             }
             .navigationBarTitle("Schedule")
             .navigationBarItems(trailing:
@@ -141,4 +133,3 @@ struct ContentView_Previews: PreviewProvider {
         ContentView().environmentObject(Schedule())
     }
 }
-

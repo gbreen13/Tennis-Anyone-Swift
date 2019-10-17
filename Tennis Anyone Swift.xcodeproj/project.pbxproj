@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26020B132358C464005246B4 /* venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26020B122358C464005246B4 /* venue.swift */; };
+		26020B152358DCA8005246B4 /* VenueList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26020B142358DCA8005246B4 /* VenueList.swift */; };
+		26020B172358E074005246B4 /* VenueDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26020B162358E074005246B4 /* VenueDetail.swift */; };
 		260BE8AD2356469F00A7A306 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BE8AC2356469F00A7A306 /* AppDelegate.swift */; };
 		260BE8AF2356469F00A7A306 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BE8AE2356469F00A7A306 /* SceneDelegate.swift */; };
 		260BE8B12356469F00A7A306 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BE8B02356469F00A7A306 /* ContentView.swift */; };
@@ -22,6 +25,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		26020B122358C464005246B4 /* venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = venue.swift; sourceTree = "<group>"; };
+		26020B142358DCA8005246B4 /* VenueList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueList.swift; sourceTree = "<group>"; };
+		26020B162358E074005246B4 /* VenueDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueDetail.swift; sourceTree = "<group>"; };
 		260BE8A92356469F00A7A306 /* Tennis Anyone Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tennis Anyone Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		260BE8AC2356469F00A7A306 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		260BE8AE2356469F00A7A306 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +55,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		26020B102358C365005246B4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				260BE8B02356469F00A7A306 /* ContentView.swift */,
+				260BE8CA2357ABA500A7A306 /* PlayerRow.swift */,
+				26020B142358DCA8005246B4 /* VenueList.swift */,
+				26020B162358E074005246B4 /* VenueDetail.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		26020B112358C397005246B4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				260BE8C2235764AA00A7A306 /* player.swift */,
+				26020B122358C464005246B4 /* venue.swift */,
+				260BE8C4235764AA00A7A306 /* playWeek.swift */,
+				260BE8C0235764AA00A7A306 /* schedule.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		260BE8A02356469F00A7A306 = {
 			isa = PBXGroup;
 			children = (
@@ -70,15 +98,12 @@
 			children = (
 				260BE8AC2356469F00A7A306 /* AppDelegate.swift */,
 				260BE8AE2356469F00A7A306 /* SceneDelegate.swift */,
-				260BE8B02356469F00A7A306 /* ContentView.swift */,
-				260BE8CA2357ABA500A7A306 /* PlayerRow.swift */,
+				26020B102358C365005246B4 /* Views */,
+				26020B112358C397005246B4 /* Model */,
 				260BE8C1235764AA00A7A306 /* constants.swift */,
 				260BE8C3235764AA00A7A306 /* jsonSchedule.swift */,
-				260BE8C2235764AA00A7A306 /* player.swift */,
-				260BE8C4235764AA00A7A306 /* playWeek.swift */,
-				260BE8C0235764AA00A7A306 /* schedule.swift */,
-				260BE8B2235646AA00A7A306 /* Assets.xcassets */,
 				260BE8B7235646AA00A7A306 /* LaunchScreen.storyboard */,
+				260BE8B2235646AA00A7A306 /* Assets.xcassets */,
 				260BE8BA235646AA00A7A306 /* Info.plist */,
 				260BE8B4235646AA00A7A306 /* Preview Content */,
 			);
@@ -165,13 +190,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				260BE8AD2356469F00A7A306 /* AppDelegate.swift in Sources */,
+				26020B132358C464005246B4 /* venue.swift in Sources */,
 				260BE8AF2356469F00A7A306 /* SceneDelegate.swift in Sources */,
+				26020B152358DCA8005246B4 /* VenueList.swift in Sources */,
 				260BE8CB2357ABA500A7A306 /* PlayerRow.swift in Sources */,
 				260BE8C5235764AA00A7A306 /* schedule.swift in Sources */,
 				260BE8C9235764AA00A7A306 /* playWeek.swift in Sources */,
 				260BE8C6235764AA00A7A306 /* constants.swift in Sources */,
 				260BE8C8235764AA00A7A306 /* jsonSchedule.swift in Sources */,
 				260BE8C7235764AA00A7A306 /* player.swift in Sources */,
+				26020B172358E074005246B4 /* VenueDetail.swift in Sources */,
 				260BE8B12356469F00A7A306 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

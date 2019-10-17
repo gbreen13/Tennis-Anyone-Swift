@@ -15,31 +15,29 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
     var courtMinutes: Int? = 90      // how long is court time each week
     var playWeeks: [PlayWeek]? = [PlayWeek]()
     var blockedDays: [Date]? = [Date]()    // weeks courts are closed (e.g. Thanksgiving)
-    var players:[Player]? = [Player]()      // all of the members
+    @Published var players:[Player] = [Player]()      // all of the members
     var isBuilt: Bool? = false   // is it built?
+    @Published var venues:[Venue] = [Venue]()    // possible locations
+    @Published var currentVenue = UUID()
     
     enum CodingKeys: CodingKey {
-        case startDate, endDate, courtMinutes, playWeeks, blockedDays, isBuilt, players
+        case startDate, endDate, courtMinutes, playWeeks, blockedDays, isBuilt, players, venues, currentVenue
     }
     
 //  MARK: String
     
     var description: String {
         var s: String = ""
-        if players != nil {
-            for player in players!  {
-                s += "\(String(describing: player))\n"
+        for player in players  {
+            s += "\(String(describing: player))\n"
+        }
+        s += "\n"
+        for i in 0 ... 3 {
+            s += "  "
+            for player in players  {
+                s += String(Array(player.name!)[i]) + " "
             }
             s += "\n"
-        }
-        for i in 0 ... 3 {
-            if players != nil {
-                s += "  "
-                for player in players!  {
-                    s += String(Array(player.name!)[i]) + " "
-                }
-                s += "\n"
-            }
         }
 
         if playWeeks != nil {
@@ -49,7 +47,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
                 } else {
                     s += "  "
                 }
-                for player in players! {
+                for player in players {
                     if pw.isScheduled(p: player) {
                         s += "O"
                     } else if pw.couldSchedule(p: player) {
@@ -73,7 +71,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
     }
     
     func FindPlayer(name: String) ->Player? {
-        for p in self.players! {
+        for p in self.players {
             if p.name == name {
                 return p;
             }
@@ -112,6 +110,8 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         self.courtMinutes = try (container.decodeIfPresent(Int.self, forKey: .courtMinutes) ?? Constants.defaultCourtMinutes)
         self.playWeeks = try (container.decodeIfPresent([PlayWeek].self, forKey: .playWeeks) ?? nil)
         self.players = try (container.decodeIfPresent([Player].self, forKey: .players) ?? nil)!
+        self.venues = try (container.decodeIfPresent([Venue].self, forKey: .venues) ?? nil)!
+        self.currentVenue = try (container.decodeIfPresent(UUID.self, forKey: .currentVenue) ?? self.venues[0].id)!
         self.isBuilt = try (container.decodeIfPresent(Bool.self, forKey: .isBuilt) ?? false)
         let allDates: [String]? = try container.decodeIfPresent([String].self, forKey: .blockedDays) ?? nil
         self.blockedDays = [Date]()
@@ -135,8 +135,8 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         }
 
         
-        if  self.players!.count < Constants.minimumNumberOfPlayers {
-            throw ScheduleError.startDateAfterEndDate("Need " + String(Constants.minimumNumberOfPlayers) + " players and there are only " + String(self.players!.count))
+        if  self.players.count < Constants.minimumNumberOfPlayers {
+            throw ScheduleError.startDateAfterEndDate("Need " + String(Constants.minimumNumberOfPlayers) + " players and there are only " + String(self.players.count))
         }
 //  figure out how many weeks each person gets to play this season.  This is a function of how many players there are (e.g. if four players,
 //  everyone plays every week.  If 6 players, everyone plays 4 out of 6 weeks.  We also factor in the playing percentage weight.
@@ -144,11 +144,11 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
 //  play half as many weeks as a 1.0 weighted player.  The individual's cost will be calculated based on the total number of weeks each person plays
 //
         var totalweight = 0.0
-        for p in self.players! {
+        for p in self.players {
             totalweight += p.percentPlaying!
         }
         let unweightedWeeksPlying: Double = Double(Constants.minimumNumberOfPlayers * self.playWeeks!.count)
-        for p in self.players! {
+        for p in self.players {
             let weightedBias:Double = (p.percentPlaying! * unweightedWeeksPlying) / totalweight
             p.numWeeks = Int(weightedBias.rounded())
         }
@@ -160,23 +160,23 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         let playingslots = Constants.minimumNumberOfPlayers * self.playWeeks!.count
         var calculatedSlots = 0
         
-        for p in self.players! {
+        for p in self.players {
             calculatedSlots += p.numWeeks!
         }
         if playingslots != calculatedSlots {
             print("Actual Slots = \(playingslots) but calculated slots = \(calculatedSlots)")
-            var index =  Int.random(in: 0 ..< self.players!.count)
+            var index =  Int.random(in: 0 ..< self.players.count)
             while calculatedSlots < playingslots {
-                let p = self.players![index]
+                let p = self.players[index]
                 p.numWeeks! += 1
                 calculatedSlots += 1
-                index = (index + 1) % self.players!.count
+                index = (index + 1) % self.players.count
             }
             while calculatedSlots > playingslots {
-                let p = self.players![index]
+                let p = self.players[index]
                 p.numWeeks! -= 1
                 calculatedSlots -= 1
-                index = (index + 1) % self.players!.count
+                index = (index + 1) % self.players.count
             }
         }
         for pw in self.playWeeks! {
@@ -274,7 +274,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         
         if isBuilt! {return}
         
-        for p in self.players! {
+        for p in self.players {
             for _ in 0 ..< p.numWeeks! {
                 for _ in 0 ... Constants.maxTries {
                     let pw = self.findSlot(p: p)
@@ -289,8 +289,8 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         for _ in 0 ..< Constants.scrambleCount {
             let srcweek = self.playWeeks![Int.random(in: 0 ..< self.playWeeks!.count)]
             let dstweek = self.playWeeks![Int.random(in: 0 ..< self.playWeeks!.count)]
-            let srcplayer = self.players![Int.random(in: 0 ..< self.players!.count)]
-            let dstplayer = self.players![Int.random(in: 0 ..< self.players!.count)]
+            let srcplayer = self.players[Int.random(in: 0 ..< self.players.count)]
+            let dstplayer = self.players[Int.random(in: 0 ..< self.players.count)]
             
             if dstweek.isNotScheduled(p: srcplayer) &&
                 dstweek.canSchedule(p: srcplayer) &&
@@ -319,6 +319,8 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         try container.encode(isBuilt, forKey: .isBuilt)
         try container.encode(playWeeks, forKey: .playWeeks)
         try container.encode(players, forKey: .players)
+        try container.encode(venues, forKey: .venues)
+        try container.encode(currentVenue, forKey: .currentVenue)
         if blockedDays != nil && blockedDays!.count > 0 {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MM/dd/yy"
