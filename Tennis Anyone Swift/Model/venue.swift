@@ -15,9 +15,9 @@ class Venue: CustomStringConvertible, Codable, Equatable, Identifiable, Observab
     }
 
     var id = UUID()
-    @Published var email = ""
+    @Published var email: String = ""
     @Published var phone = ""
-    @Published var name = ""
+    @Published var name: String = ""
 
         
     init(id: UUID? = UUID(),
