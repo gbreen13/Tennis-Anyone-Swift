@@ -23,6 +23,7 @@ class ContactStore: ObservableObject {
                                CNContactMiddleNameKey as CNKeyDescriptor,
                                CNContactFamilyNameKey as CNKeyDescriptor,
                                CNContactImageDataAvailableKey as CNKeyDescriptor,
+                               CNContactThumbnailImageDataKey as CNKeyDescriptor,
                                CNContactImageDataKey as CNKeyDescriptor]
             os_log("Fetching contacts: now")
             let containerId = store.defaultContainerIdentifier()
@@ -41,9 +42,28 @@ extension CNContact: Identifiable {
     var name: String {
         return [givenName, middleName, familyName].filter{ $0.count > 0}.joined(separator: " ")
     }
+    var image: UIImage? {
+        if (thumbnailImageData != nil) {
+            print("image \(String(describing: UIImage(data: imageData!)))")
+            return (UIImage(data:thumbnailImageData!))
+        } else {
+            print("No image available")
+            return nil
+        }
+    }
 }
 
-
+struct ContactLineView: View {
+    var contact: CNContact
+    var body: some View {
+        return HStack {
+            if(contact.image != nil){
+                Image(uiImage: contact.image!)
+            }
+        Text(contact.name)
+        }
+    }
+}
 
 struct ContactsView: View {
     @EnvironmentObject var store: ContactStore
@@ -53,7 +73,7 @@ struct ContactsView: View {
             Text("Contacts")
             if store.error == nil {
                 List(store.contacts) { (contact: CNContact) in
-                    return Text(contact.name)
+                    return ContactLineView(contact: contact)
                 }.onAppear{
                     DispatchQueue.main.async {
                         self.store.fetch()
@@ -99,5 +119,12 @@ struct VenueDetail: View {
                 }
         )        .navigationBarTitle(Text("Venues"))
 
+    }
+}
+struct VenueDetail_Previews: PreviewProvider {
+    @EnvironmentObject var schedule: Schedule
+    static var previews: some View {
+
+            VenueDetail(venue: Venue.example)
     }
 }
