@@ -58,7 +58,7 @@ struct ContactLineView: View {
     var body: some View {
         return HStack {
             if(contact.image != nil){
-                Image(uiImage: contact.image!)
+                Image(uiImage: contact.image!).resizable().frame(width: 32.0, height: 32.0)
             }
         Text(contact.name)
         }

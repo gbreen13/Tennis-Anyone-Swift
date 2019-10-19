@@ -82,7 +82,6 @@ struct ContentView: View {
                 Section(header: Text("Venues")){
                     VenueList()
                 }
-
             }
             .navigationBarTitle("Schedule")
             .navigationBarItems(trailing:
