@@ -33,6 +33,7 @@ struct ContentView: View {
     @State var isDoubles = true
     @State private var showingAlert = false
     @State private var errorString = ""
+    
 
 
     var body: some View {
@@ -64,7 +65,7 @@ struct ContentView: View {
                         selection: $schedule.endDate,
                        // in: dateClosedRange,
                         displayedComponents: [.date],
-                        label: { Text("End Date") }
+                        label: { Text("End Date").foregroundColor(schedule.validDates() ? .black: .red) }
                     )
                         
                     Picker(selection: $schedule.currentVenue, label: Text("Where") .foregroundColor((schedule.venues.firstIndex(where: { $0.id == schedule.currentVenue }) != nil) ? .black: .red)) {
@@ -75,7 +76,7 @@ struct ContentView: View {
                     }
                     
                 }
-                Section(header: Text("Players")){
+                Section(header: Text("Players").foregroundColor(schedule.validNumberOfPlayers() ? .gray : .red)){
                     PlayerList()
                 }
                 Section(header: Text("Venues")){

@@ -88,6 +88,17 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         
     }
     
+    func validNumberOfPlayers()->Bool {
+        return (self.players.count >= Constants.minimumNumberOfPlayers)
+    }
+    
+    func validDates()->Bool {
+        return(self.endDate >= self.startDate)
+    }
+    func validSchedule()->Bool {
+        return self.validDates() && self.validNumberOfPlayers()
+        
+    }
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         var when: String? = try (container.decodeIfPresent(String.self, forKey: .startDate) ?? nil)
