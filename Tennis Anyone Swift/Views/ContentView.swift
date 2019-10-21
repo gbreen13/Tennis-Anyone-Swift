@@ -67,13 +67,12 @@ struct ContentView: View {
                         label: { Text("End Date") }
                     )
                         
-                    Picker(selection: $schedule.currentVenue, label: Text("Where")) {
-                        ForEach(schedule.venues) { venue in
+                    Picker(selection: $schedule.currentVenue, label: Text("Where") .foregroundColor((schedule.venues.firstIndex(where: { $0.id == schedule.currentVenue }) != nil) ? .black: .red)) {
+
+                        ForEach(schedule.venues, id: \.id) { venue in
                             Text(venue.name).tag(venue.id)
                         }
                     }
- //                   .pickerStyle(WheelPickerStyle())
-                    .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     
                 }
                 Section(header: Text("Players")){

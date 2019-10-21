@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "1540B189-E726-4230-9467-5759DEAA8416"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "145E8470-61B8-412C-BCC1-C58FECAB9E58"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tennis Anyone Swift/player.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "init(id:name:percentPlaying:blockedDays:email:phone:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B525E369-283B-42A2-A2CC-0A3B735B7C24"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tennis Anyone Swift/SceneDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "scene(_:willConnectTo:options:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "463A5627-B3E3-4CBB-B62D-B2C7C360F64B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tennis Anyone Swift/Views/VenueDetail.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "72B24F0A-B910-451E-BC24-8896B78C8B1B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tennis Anyone Swift/Views/VenueDetail.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "fetch()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5A6300BE-B3B7-45A7-8849-FBDCD5100CE3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tennis Anyone Swift/Views/VenueDetail.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "ContactStore"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "5A6300BE-B3B7-45A7-8849-FBDCD5100CE3 - 126401231885131"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tennis_Anyone_Swift.ContactStore.error.getter : Swift.Optional&lt;Swift.Error&gt;"
+                  moduleName = "Tennis Anyone Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgebreen/Documents/Rabbit%20Hill%20Solutions/Projects/Tennis%20Anyone%20Swift/Tennis%20Anyone%20Swift/Views/VenueDetail.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "104">
+               </Location>
+               <Location
+                  uuid = "5A6300BE-B3B7-45A7-8849-FBDCD5100CE3 - 864eee8c0c8e553d"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tennis_Anyone_Swift.ContactStore.error.setter : Swift.Optional&lt;Swift.Error&gt;"
+                  moduleName = "Tennis Anyone Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgebreen/Documents/Rabbit%20Hill%20Solutions/Projects/Tennis%20Anyone%20Swift/Tennis%20Anyone%20Swift/Views/VenueDetail.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "130">
+               </Location>
+               <Location
+                  uuid = "5A6300BE-B3B7-45A7-8849-FBDCD5100CE3 - adce1009301c232"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tennis_Anyone_Swift.ContactStore.error.modify : Swift.Optional&lt;Swift.Error&gt;"
+                  moduleName = "Tennis Anyone Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgebreen/Documents/Rabbit%20Hill%20Solutions/Projects/Tennis%20Anyone%20Swift/Tennis%20Anyone%20Swift/Views/VenueDetail.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "26">
+               </Location>
+               <Location
+                  uuid = "5A6300BE-B3B7-45A7-8849-FBDCD5100CE3 - a97fc1f6d992592f"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tennis_Anyone_Swift.ContactStore.error.modify : Swift.Optional&lt;Swift.Error&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Tennis Anyone Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgebreen/Documents/Rabbit%20Hill%20Solutions/Projects/Tennis%20Anyone%20Swift/Tennis%20Anyone%20Swift/Views/VenueDetail.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "27">
+               </Location>
+               <Location
+                  uuid = "5A6300BE-B3B7-45A7-8849-FBDCD5100CE3 - ddae147c24a82127"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tennis_Anyone_Swift.ContactStore.$error.getter : Combine.Published&lt;Swift.Optional&lt;Swift.Error&gt;&gt;.Publisher"
+                  moduleName = "Tennis Anyone Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgebreen/Documents/Rabbit%20Hill%20Solutions/Projects/Tennis%20Anyone%20Swift/Tennis%20Anyone%20Swift/Views/VenueDetail.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "115">
+               </Location>
+               <Location
+                  uuid = "5A6300BE-B3B7-45A7-8849-FBDCD5100CE3 - 39319dca89e08f71"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tennis_Anyone_Swift.ContactStore.init() -&gt; Tennis_Anyone_Swift.ContactStore"
+                  moduleName = "Tennis Anyone Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgebreen/Documents/Rabbit%20Hill%20Solutions/Projects/Tennis%20Anyone%20Swift/Tennis%20Anyone%20Swift/Views/VenueDetail.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "377">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "94EB8F94-DD1F-4ACC-AB77-A770CC5A5780"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tennis Anyone Swift/Views/VenueList.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EDB64D76-85A8-46F9-A942-9C68E0B71C18"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tennis Anyone Swift/Views/VenueList.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "VenueRow"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "EDB64D76-85A8-46F9-A942-9C68E0B71C18 - ac091201a9eb418"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tennis_Anyone_Swift.VenueRow.schedule.getter : Tennis_Anyone_Swift.Schedule"
+                  moduleName = "Tennis Anyone Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgebreen/Documents/Rabbit%20Hill%20Solutions/Projects/Tennis%20Anyone%20Swift/Tennis%20Anyone%20Swift/Views/VenueList.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "105">
+               </Location>
+               <Location
+                  uuid = "EDB64D76-85A8-46F9-A942-9C68E0B71C18 - 8b93e3f5a12d91f8"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tennis_Anyone_Swift.VenueRow.$schedule.getter : SwiftUI.EnvironmentObject&lt;Tennis_Anyone_Swift.Schedule&gt;.Wrapper"
+                  moduleName = "Tennis Anyone Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgebreen/Documents/Rabbit%20Hill%20Solutions/Projects/Tennis%20Anyone%20Swift/Tennis%20Anyone%20Swift/Views/VenueList.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "105">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5DCE59B4-1C51-4CAF-BE4D-FC994791A8D4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tennis Anyone Swift/Views/VenueList.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "VenueRow"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "5DCE59B4-1C51-4CAF-BE4D-FC994791A8D4 - 3fc911af3896d23a"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tennis_Anyone_Swift.VenueRow.venueIndex.getter : Swift.Int"
+                  moduleName = "Tennis Anyone Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgebreen/Documents/Rabbit%20Hill%20Solutions/Projects/Tennis%20Anyone%20Swift/Tennis%20Anyone%20Swift/Views/VenueList.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "148">
+               </Location>
+               <Location
+                  uuid = "5DCE59B4-1C51-4CAF-BE4D-FC994791A8D4 - ffa41d17e7203c80"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Tennis_Anyone_Swift.Venue) -&gt; Swift.Bool in Tennis_Anyone_Swift.VenueRow.venueIndex.getter : Swift.Int"
+                  moduleName = "Tennis Anyone Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgebreen/Documents/Rabbit%20Hill%20Solutions/Projects/Tennis%20Anyone%20Swift/Tennis%20Anyone%20Swift/Views/VenueList.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "132">
+               </Location>
+               <Location
+                  uuid = "5DCE59B4-1C51-4CAF-BE4D-FC994791A8D4 - e0a706ef3f1b1600"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(extension in Tennis_Anyone_Swift_PreviewReplacement_VenueList_6):Tennis_Anyone_Swift.VenueRow.(__preview__venueIndex in _AE229765AF6475858B6227303BEA2DE6).getter : Swift.Int"
+                  moduleName = "VenueList.6.preview-thunk.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgebreen/Documents/Rabbit%20Hill%20Solutions/Projects/Tennis%20Anyone%20Swift/Tennis%20Anyone%20Swift/Views/VenueList.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "82">
+               </Location>
+               <Location
+                  uuid = "5DCE59B4-1C51-4CAF-BE4D-FC994791A8D4 - 3121d3fdebeec11a"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Tennis_Anyone_Swift.Venue) -&gt; Swift.Bool in (extension in Tennis_Anyone_Swift_PreviewReplacement_VenueList_6):Tennis_Anyone_Swift.VenueRow.(__preview__venueIndex in _AE229765AF6475858B6227303BEA2DE6).getter : Swift.Int"
+                  moduleName = "VenueList.6.preview-thunk.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgebreen/Documents/Rabbit%20Hill%20Solutions/Projects/Tennis%20Anyone%20Swift/Tennis%20Anyone%20Swift/Views/VenueList.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "132">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3DDBFA33-3BA2-4CE3-8F9B-9EB97F1AC152"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tennis Anyone Swift/Views/VenueList.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "3DDBFA33-3BA2-4CE3-8F9B-9EB97F1AC152 - 34d3089be2edb310"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tennis_Anyone_Swift.VenueRow.body.getter : some"
+                  moduleName = "Tennis Anyone Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgebreen/Documents/Rabbit%20Hill%20Solutions/Projects/Tennis%20Anyone%20Swift/Tennis%20Anyone%20Swift/Views/VenueList.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "3DDBFA33-3BA2-4CE3-8F9B-9EB97F1AC152 - 3a80b351dca9713f"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.multilineTextAlignment(SwiftUI.TextAlignment) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.multilineTextAlignment(SwiftUI.TextAlignment) -&gt; some&gt;&gt;.0)&gt;&gt; in Tennis_Anyone_Swift.VenueRow.body.getter : some"
+                  moduleName = "Tennis Anyone Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgebreen/Documents/Rabbit%20Hill%20Solutions/Projects/Tennis%20Anyone%20Swift/Tennis%20Anyone%20Swift/Views/VenueList.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

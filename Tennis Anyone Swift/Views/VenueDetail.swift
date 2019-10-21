@@ -124,7 +124,6 @@ struct VenueDetail: View {
 struct VenueDetail_Previews: PreviewProvider {
     @EnvironmentObject var schedule: Schedule
     static var previews: some View {
-
-            VenueDetail(venue: Venue.example)
+        VenueDetail(venue: Venue.example)
     }
 }

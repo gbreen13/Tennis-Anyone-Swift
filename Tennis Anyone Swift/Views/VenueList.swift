@@ -9,18 +9,23 @@
 import SwiftUI
 struct VenueRow : View {
     var venue: Venue
+    
     @EnvironmentObject var schedule: Schedule
+    /*
     var venueIndex: Int {
         schedule.venues.firstIndex(where: { $0.id == venue.id })!
     }
-
+ */
     var body: some View {
+        
         HStack {
 //            Image(item.thumbnailImage)   .clipShape(Circle())
+
+ 
             VStack(alignment: .leading) {
-                Text(schedule.venues[venueIndex].name)
+                Text(venue.name)
                     .multilineTextAlignment(.leading)
-                Text(schedule.venues[venueIndex].phone)
+                Text(venue.phone)
                     .multilineTextAlignment(.leading)
             }
             
@@ -31,8 +36,16 @@ struct VenueRow : View {
 
 struct VenueList : View {
     @EnvironmentObject var schedule: Schedule
+    @State private var showDeleteActionSheet = false
 
     var body: some View {
+        List {
+            ForEach(schedule.venues, id: \.id) { venue in
+                NavigationLink(destination: VenueDetail(venue: venue)) {
+                    VenueRow(venue: venue)
+                }
+            }.onDelete(perform: delete)
+        }
  /*
         VStack {
             Button(action: {

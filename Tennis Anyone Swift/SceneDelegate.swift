@@ -25,6 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         var schedule: Schedule?
         do {
             schedule = try (decoder.decode(Schedule.self, from: jsonSchedule) )
+            /*
             schedule!.BuildSchedule()
             print(schedule as Any);
             print("###")
@@ -35,7 +36,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             print(jsonString)
             schedule = try decoder.decode(Schedule.self, from: jsonString.data(using: .utf8)!)
             print(schedule as Any);
-            
+            */
         }
         catch {
             print(error)

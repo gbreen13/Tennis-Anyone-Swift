@@ -81,8 +81,13 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
  // MARK: Init
     
     required init() {
+#if DEBUG
+        self.venues.append(Venue.example)
+        self.players.append(Player.example)
+#endif
         
     }
+    
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         var when: String? = try (container.decodeIfPresent(String.self, forKey: .startDate) ?? nil)

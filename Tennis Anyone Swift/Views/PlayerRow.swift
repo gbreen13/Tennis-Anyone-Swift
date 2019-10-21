@@ -33,7 +33,7 @@ struct PlayerList : View {
     var body: some View {
 
         List {
-            ForEach(schedule.players) { player in
+            ForEach(schedule.players ,id:\.id) { player in
                 PlayerRow(player: player)
             }.onDelete(perform: delete)
         }
