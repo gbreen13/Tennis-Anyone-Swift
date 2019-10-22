@@ -14,14 +14,15 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
     @Published var endDate: Date = Date()          // date of last week inclusive
     var courtMinutes: Int? = 90      // how long is court time each week
     var playWeeks: [PlayWeek]? = [PlayWeek]()
-    var blockedDays: [Date]? = [Date]()    // weeks courts are closed (e.g. Thanksgiving)
+    @Published var blockedDays: [Date] = [Date]()    // weeks courts are closed (e.g. Thanksgiving)
     @Published var players:[Player] = [Player]()      // all of the members
     var isBuilt: Bool? = false   // is it built?
     @Published var venues:[Venue] = [Venue]()    // possible locations
     @Published var currentVenue = UUID()
+    @Published var isDoubles = true
     
     enum CodingKeys: CodingKey {
-        case startDate, endDate, courtMinutes, playWeeks, blockedDays, isBuilt, players, venues, currentVenue
+        case startDate, endDate, courtMinutes, playWeeks, blockedDays, isBuilt, players, venues, currentVenue, isDoubles
     }
     
 //  MARK: String
@@ -84,12 +85,13 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
 #if DEBUG
         self.venues.append(Venue.example)
         self.players.append(Player.example)
+        self.isDoubles = true
 #endif
         
     }
     
     func validNumberOfPlayers()->Bool {
-        return (self.players.count >= Constants.minimumNumberOfPlayers)
+        return (self.players.count >= (self.isDoubles ? 4 : 2))
     }
     
     func validDates()->Bool {
@@ -99,6 +101,22 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         return self.validDates() && self.validNumberOfPlayers()
         
     }
+    func returnNumberOfPlayweeks()->Int {
+        var numweeks = 0
+        if(self.validDates() == false) {
+            return numweeks
+        }
+        var thisWeek: Date = self.startDate
+        while thisWeek < self.endDate {
+            if self.blockedDays.contains(thisWeek) == false {      // as long as the facility is open
+                numweeks += 1
+            }
+            thisWeek = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: thisWeek)!
+        }
+        return numweeks
+
+    }
+    
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         var when: String? = try (container.decodeIfPresent(String.self, forKey: .startDate) ?? nil)
@@ -129,6 +147,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         self.venues = try (container.decodeIfPresent([Venue].self, forKey: .venues) ?? nil)!
         self.currentVenue = try (container.decodeIfPresent(UUID.self, forKey: .currentVenue) ?? self.venues[0].id)!
         self.isBuilt = try (container.decodeIfPresent(Bool.self, forKey: .isBuilt) ?? false)
+        self.isDoubles = try (container.decodeIfPresent(Bool.self, forKey: .isDoubles) ?? true)
         let allDates: [String]? = try container.decodeIfPresent([String].self, forKey: .blockedDays) ?? nil
         self.blockedDays = [Date]()
         if allDates != nil { // convert array of date strings to array of dates using formatter
@@ -143,7 +162,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
             self.playWeeks = [PlayWeek]()
             var thisWeek: Date = self.startDate
             while thisWeek < self.endDate {
-                if self.blockedDays!.contains(thisWeek) == false {      // as long as the facility is open
+                if self.blockedDays.contains(thisWeek) == false {      // as long as the facility is open
                     self.playWeeks!.append(PlayWeek(date:thisWeek))
                 }
                 thisWeek = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: thisWeek)!
@@ -333,14 +352,15 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         try container.encode(dateFormatter.string(from: self.endDate), forKey: .endDate)
         try container.encode(courtMinutes, forKey: .courtMinutes)
         try container.encode(isBuilt, forKey: .isBuilt)
+        try container.encode(isDoubles, forKey: .isDoubles)
         try container.encode(playWeeks, forKey: .playWeeks)
         try container.encode(players, forKey: .players)
         try container.encode(venues, forKey: .venues)
         try container.encode(currentVenue, forKey: .currentVenue)
-        if blockedDays != nil && blockedDays!.count > 0 {
+        if blockedDays.count > 0 {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MM/dd/yy"
-            let addDateStr = self.blockedDays!.map{ dateFormatter.string(from: $0) }
+            let addDateStr = self.blockedDays.map{ dateFormatter.string(from: $0) }
             try container.encode(addDateStr, forKey: .blockedDays)
         }
     }

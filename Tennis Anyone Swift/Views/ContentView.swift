@@ -46,13 +46,11 @@ struct ContentView: View {
 
                     Toggle(isOn: $isDoubles) {
                         if(isDoubles) {
-                            Text("Singles").foregroundColor(Color.gray)
-                            Text("/")
+                            Text("Singles/").foregroundColor(Color.gray)
                             Text("Doubles").bold()
                         }else {
                             Text("Singles").bold()
-                            Text("/")
-                            Text("Doubles").foregroundColor(Color.gray)
+                            Text("/Doubles").foregroundColor(Color.gray)
                         }
                     }
                     DatePicker(
@@ -63,19 +61,32 @@ struct ContentView: View {
                     )
                     DatePicker(
                         selection: $schedule.endDate,
-                       // in: dateClosedRange,
-                        displayedComponents: [.date],
+//                        in: schedule.starDate...,
+                        displayedComponents: .date,
                         label: { Text("End Date").foregroundColor(schedule.validDates() ? .black: .red) }
                     )
-                        
-                    Picker(selection: $schedule.currentVenue, label: Text("Where") .foregroundColor((schedule.venues.firstIndex(where: { $0.id == schedule.currentVenue }) != nil) ? .black: .red)) {
+                    
+                   Text("# Playable Weeks:\(schedule.returnNumberOfPlayweeks())")
 
-                        ForEach(schedule.venues, id: \.id) { venue in
+                    Picker(selection: $schedule.currentVenue, label: Text("Where") .foregroundColor((schedule.venues.firstIndex(where: { $0.id == self.schedule.currentVenue }) != nil) ? .black: .red)) {
+
+                        ForEach(self.schedule.venues, id: \.id) { venue in
                             Text(venue.name).tag(venue.id)
                         }
                     }
-                    
+ 
                 }
+
+                Section(header:
+                    HStack {
+                        Text("Blocked Weeks")
+                         Text("Add").foregroundColor(.blue)
+                        
+                    }
+                ) {
+                    BlockedList()
+                }
+ 
                 Section(header: Text("Players").foregroundColor(schedule.validNumberOfPlayers() ? .gray : .red)){
                     PlayerList()
                 }

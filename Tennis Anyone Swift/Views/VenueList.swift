@@ -46,23 +46,10 @@ struct VenueList : View {
                 }
             }.onDelete(perform: delete)
         }
- /*
-        VStack {
-            Button(action: {
-                print("Add")
-            }, label: {
-                Text("Add")
-            })
-   */         List {
-                ForEach(schedule.venues) { venue in
-                    NavigationLink(destination: VenueDetail(venue: venue)) {
-                        VenueRow(venue: venue)
-                    }
-                }.onDelete(perform: delete)
-     /*       }
-       */ }
+        
     }
-    func delete(at offsets: IndexSet) {
+    
+      func delete(at offsets: IndexSet) {
         schedule.venues.remove(atOffsets: offsets)
     }
 }

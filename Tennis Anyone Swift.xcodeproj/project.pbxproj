@@ -22,6 +22,7 @@
 		260BE8C8235764AA00A7A306 /* jsonSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BE8C3235764AA00A7A306 /* jsonSchedule.swift */; };
 		260BE8C9235764AA00A7A306 /* playWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BE8C4235764AA00A7A306 /* playWeek.swift */; };
 		260BE8CB2357ABA500A7A306 /* PlayerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BE8CA2357ABA500A7A306 /* PlayerRow.swift */; };
+		263F3CC2235E478400F028A4 /* BlockedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263F3CC1235E478400F028A4 /* BlockedList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		260BE8C3235764AA00A7A306 /* jsonSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = jsonSchedule.swift; sourceTree = "<group>"; };
 		260BE8C4235764AA00A7A306 /* playWeek.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = playWeek.swift; sourceTree = "<group>"; };
 		260BE8CA2357ABA500A7A306 /* PlayerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRow.swift; sourceTree = "<group>"; };
+		263F3CC1235E478400F028A4 /* BlockedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				260BE8B02356469F00A7A306 /* ContentView.swift */,
 				260BE8CA2357ABA500A7A306 /* PlayerRow.swift */,
+				263F3CC1235E478400F028A4 /* BlockedList.swift */,
 				26020B142358DCA8005246B4 /* VenueList.swift */,
 				26020B162358E074005246B4 /* VenueDetail.swift */,
 			);
@@ -190,6 +193,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				260BE8AD2356469F00A7A306 /* AppDelegate.swift in Sources */,
+				263F3CC2235E478400F028A4 /* BlockedList.swift in Sources */,
 				26020B132358C464005246B4 /* venue.swift in Sources */,
 				260BE8AF2356469F00A7A306 /* SceneDelegate.swift in Sources */,
 				26020B152358DCA8005246B4 /* VenueList.swift in Sources */,
