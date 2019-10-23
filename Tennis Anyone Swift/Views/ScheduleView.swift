@@ -26,7 +26,7 @@ extension ScheduleFormError: LocalizedError {
     }
 }
 
-struct ContentView: View {
+struct ScheduleView: View {
 //    let menu = Bundle.main.decode([MenuSection].self, from: "menu.json")
     @EnvironmentObject var schedule: Schedule
 
@@ -86,13 +86,10 @@ struct ContentView: View {
                 ) {
                     BlockedList()
                 }
- 
-                Section(header: Text("Players").foregroundColor(schedule.validNumberOfPlayers() ? .gray : .red)){
-                    PlayerList()
+                Section(header: Text("Scheduled Players")){
+                    MultipleSelectionList()
                 }
-                Section(header: Text("Venues")){
-                    VenueList()
-                }
+
             }
             .navigationBarTitle("Schedule")
             .navigationBarItems(trailing:
@@ -138,8 +135,8 @@ struct ContentView: View {
 
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct ScheduleView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environmentObject(Schedule())
+        ScheduleView().environmentObject(Schedule())
     }
 }

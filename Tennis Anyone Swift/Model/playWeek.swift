@@ -18,51 +18,51 @@ class PlayWeek: CustomStringConvertible, Codable {
         case invalidDate
     }
     var scheduledPlayersNames: [String]?  // who's playing this week
-	var scheduledPlayers: [Player]?			// the player class that matches the names.
+	var scheduledPlayers: [ScheduledPlayer]?			// the player class that matches the names.
     var date: Date
     
     init(date: Date) {
         self.date = date
-        self.scheduledPlayers = [Player]()
+        self.scheduledPlayers = [ScheduledPlayer]()
 		self.scheduledPlayersNames = [String]()
     }
     
-    func schedulePlayer(p: Player) {
-        if self.scheduledPlayers!.contains(p) {
+    func schedulePlayer(s: ScheduledPlayer) {
+        if self.scheduledPlayers!.contains(s) {
             return// already there
         }
-        self.scheduledPlayers!.append(p)
-        p.scheduledWeeks += 1
+        self.scheduledPlayers!.append(s)
+        s.scheduledWeeks += 1
         
     }
 	
-	func unSchedulePlayer(p: Player) {
-		if let index = self.scheduledPlayers!.firstIndex(of: p) {
+	func unSchedulePlayer(s: ScheduledPlayer) {
+		if let index = self.scheduledPlayers!.firstIndex(of: s) {
 			self.scheduledPlayers!.remove(at: index)
-			p.scheduledWeeks -= 1
+			s.scheduledWeeks -= 1
 		}
 		
 	}
 	
-	func isScheduled(p: Player) ->Bool {
-		return(self.scheduledPlayers!.contains(p))
+	func isScheduled(s: ScheduledPlayer) ->Bool {
+		return(self.scheduledPlayers!.contains(s))
 	}
 	
-	func isNotScheduled(p: Player) ->Bool {
-		return(self.isScheduled(p: p) == false)
+	func isNotScheduled(s: ScheduledPlayer) ->Bool {
+		return(self.isScheduled(s: s) == false)
 	}
 //
 //	couldSchedule checks to see if the playweek is blocked by the player regardless of whether the playweek is full.
 //
-	func couldSchedule(p: Player) ->Bool {
-		return self.isNotScheduled(p: p) && p.blockedDays!.contains(self.date) == false
+	func couldSchedule(s: ScheduledPlayer) ->Bool {
+		return self.isNotScheduled(s: s) && s.blockedDays.contains(self.date) == false
 	}
 //
 //	canSchedule says the week is not blocked and there is room to schedule
 //
-	func canSchedule(p: Player) ->Bool {
+	func canSchedule(s: ScheduledPlayer) ->Bool {
 // test for blocked days
-		return (self.scheduledPlayers!.count < Constants.minimumNumberOfPlayers && self.couldSchedule(p:p))
+		return (self.scheduledPlayers!.count < Constants.minimumNumberOfPlayers && self.couldSchedule(s:s))
 	}
 	
     var description: String {
@@ -71,7 +71,7 @@ class PlayWeek: CustomStringConvertible, Codable {
         var s: String = dateFormatter.string(from: self.date) + "\t"
         s += "(\(scheduledPlayers!.count))"
         if(scheduledPlayers != nil && scheduledPlayers!.count > 0){
-			for sp in scheduledPlayers! { s = s + "\(sp.name!), "}
+			for sp in scheduledPlayers! { s = s + "\(sp.name), "}
         } else {
             s += "no players scheduled"
         }
@@ -92,7 +92,7 @@ class PlayWeek: CustomStringConvertible, Codable {
             throw PlayWeekError.invalidDate
         }
         if self.scheduledPlayersNames == nil { self.scheduledPlayersNames = [String]()}
-		self.scheduledPlayers = [Player]()	// create empty array.  after the schedule has been completely read in, we will go back
+		self.scheduledPlayers = [ScheduledPlayer]()	// create empty array.  after the schedule has been completely read in, we will go back
 											// and cfill this in the with Player class that matches the name
     }
     

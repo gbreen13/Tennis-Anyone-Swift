@@ -12,7 +12,7 @@
 		26020B172358E074005246B4 /* VenueDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26020B162358E074005246B4 /* VenueDetail.swift */; };
 		260BE8AD2356469F00A7A306 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BE8AC2356469F00A7A306 /* AppDelegate.swift */; };
 		260BE8AF2356469F00A7A306 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BE8AE2356469F00A7A306 /* SceneDelegate.swift */; };
-		260BE8B12356469F00A7A306 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BE8B02356469F00A7A306 /* ContentView.swift */; };
+		260BE8B12356469F00A7A306 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BE8B02356469F00A7A306 /* ScheduleView.swift */; };
 		260BE8B3235646AA00A7A306 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 260BE8B2235646AA00A7A306 /* Assets.xcassets */; };
 		260BE8B6235646AA00A7A306 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 260BE8B5235646AA00A7A306 /* Preview Assets.xcassets */; };
 		260BE8B9235646AA00A7A306 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 260BE8B7235646AA00A7A306 /* LaunchScreen.storyboard */; };
@@ -22,6 +22,10 @@
 		260BE8C8235764AA00A7A306 /* jsonSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BE8C3235764AA00A7A306 /* jsonSchedule.swift */; };
 		260BE8C9235764AA00A7A306 /* playWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BE8C4235764AA00A7A306 /* playWeek.swift */; };
 		260BE8CB2357ABA500A7A306 /* PlayerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BE8CA2357ABA500A7A306 /* PlayerRow.swift */; };
+		261A97D32360B8240077EE11 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261A97D22360B8240077EE11 /* ContactsView.swift */; };
+		261A97D52360C4160077EE11 /* ScheduledPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261A97D42360C4160077EE11 /* ScheduledPlayer.swift */; };
+		261A97D72360F34D0077EE11 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261A97D62360F34D0077EE11 /* HomeScreen.swift */; };
+		261A97D92360F7A40077EE11 /* ScheduledPlayersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261A97D82360F7A40077EE11 /* ScheduledPlayersView.swift */; };
 		263F3CC2235E478400F028A4 /* BlockedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263F3CC1235E478400F028A4 /* BlockedList.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +36,7 @@
 		260BE8A92356469F00A7A306 /* Tennis Anyone Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tennis Anyone Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		260BE8AC2356469F00A7A306 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		260BE8AE2356469F00A7A306 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		260BE8B02356469F00A7A306 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		260BE8B02356469F00A7A306 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		260BE8B2235646AA00A7A306 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		260BE8B5235646AA00A7A306 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		260BE8B8235646AA00A7A306 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -43,6 +47,10 @@
 		260BE8C3235764AA00A7A306 /* jsonSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = jsonSchedule.swift; sourceTree = "<group>"; };
 		260BE8C4235764AA00A7A306 /* playWeek.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = playWeek.swift; sourceTree = "<group>"; };
 		260BE8CA2357ABA500A7A306 /* PlayerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRow.swift; sourceTree = "<group>"; };
+		261A97D22360B8240077EE11 /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
+		261A97D42360C4160077EE11 /* ScheduledPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledPlayer.swift; sourceTree = "<group>"; };
+		261A97D62360F34D0077EE11 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		261A97D82360F7A40077EE11 /* ScheduledPlayersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledPlayersView.swift; sourceTree = "<group>"; };
 		263F3CC1235E478400F028A4 /* BlockedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,11 +68,14 @@
 		26020B102358C365005246B4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				260BE8B02356469F00A7A306 /* ContentView.swift */,
+				260BE8B02356469F00A7A306 /* ScheduleView.swift */,
+				261A97D82360F7A40077EE11 /* ScheduledPlayersView.swift */,
 				260BE8CA2357ABA500A7A306 /* PlayerRow.swift */,
 				263F3CC1235E478400F028A4 /* BlockedList.swift */,
+				261A97D22360B8240077EE11 /* ContactsView.swift */,
 				26020B142358DCA8005246B4 /* VenueList.swift */,
 				26020B162358E074005246B4 /* VenueDetail.swift */,
+				261A97D62360F34D0077EE11 /* HomeScreen.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -73,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				260BE8C2235764AA00A7A306 /* player.swift */,
+				261A97D42360C4160077EE11 /* ScheduledPlayer.swift */,
 				26020B122358C464005246B4 /* venue.swift */,
 				260BE8C4235764AA00A7A306 /* playWeek.swift */,
 				260BE8C0235764AA00A7A306 /* schedule.swift */,
@@ -196,6 +208,7 @@
 				263F3CC2235E478400F028A4 /* BlockedList.swift in Sources */,
 				26020B132358C464005246B4 /* venue.swift in Sources */,
 				260BE8AF2356469F00A7A306 /* SceneDelegate.swift in Sources */,
+				261A97D72360F34D0077EE11 /* HomeScreen.swift in Sources */,
 				26020B152358DCA8005246B4 /* VenueList.swift in Sources */,
 				260BE8CB2357ABA500A7A306 /* PlayerRow.swift in Sources */,
 				260BE8C5235764AA00A7A306 /* schedule.swift in Sources */,
@@ -204,7 +217,10 @@
 				260BE8C8235764AA00A7A306 /* jsonSchedule.swift in Sources */,
 				260BE8C7235764AA00A7A306 /* player.swift in Sources */,
 				26020B172358E074005246B4 /* VenueDetail.swift in Sources */,
-				260BE8B12356469F00A7A306 /* ContentView.swift in Sources */,
+				261A97D52360C4160077EE11 /* ScheduledPlayer.swift in Sources */,
+				261A97D92360F7A40077EE11 /* ScheduledPlayersView.swift in Sources */,
+				260BE8B12356469F00A7A306 /* ScheduleView.swift in Sources */,
+				261A97D32360B8240077EE11 /* ContactsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

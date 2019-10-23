@@ -25,8 +25,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         var schedule: Schedule?
         do {
             schedule = try (decoder.decode(Schedule.self, from: jsonSchedule) )
-            /*
-            schedule!.BuildSchedule()
+           for player in schedule!.players {       // force all scheduled players to be players
+                schedule!.scheduledPlayers.append(ScheduledPlayer(player:player))
+            }
+            print(schedule as Any);
+/*          try schedule!.BuildSchedule()
             print(schedule as Any);
             print("###")
             let jsonEncoder = JSONEncoder()
@@ -36,7 +39,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             print(jsonString)
             schedule = try decoder.decode(Schedule.self, from: jsonString.data(using: .utf8)!)
             print(schedule as Any);
-            */
+ */
+
         }
         catch {
             print(error)
@@ -46,7 +50,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: ContentView().environmentObject(schedule!))
+            window.rootViewController = UIHostingController(rootView: HomeScreen().environmentObject(schedule!))
             self.window = window
             window.makeKeyAndVisible()
         }

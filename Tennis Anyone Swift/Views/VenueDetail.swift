@@ -65,7 +65,7 @@ struct ContactLineView: View {
     }
 }
 
-struct ContactsView: View {
+struct VenueContactsView: View {
     @EnvironmentObject var store: ContactStore
 
     var body: some View {
@@ -88,7 +88,7 @@ struct ContactsView: View {
 
 struct ContactsViewOrError: View {
     var body: some View {
-        ContactsView().environmentObject(ContactStore())
+        VenueContactsView().environmentObject(ContactStore())
     }
 }
 
