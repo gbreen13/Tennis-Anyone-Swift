@@ -25,9 +25,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         var schedule: Schedule?
         do {
             schedule = try (decoder.decode(Schedule.self, from: jsonSchedule) )
-           for player in schedule!.players {       // force all scheduled players to be players
-                schedule!.scheduledPlayers.append(ScheduledPlayer(player:player))
-            }
             print(schedule as Any);
 /*          try schedule!.BuildSchedule()
             print(schedule as Any);

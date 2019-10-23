@@ -61,7 +61,7 @@ struct ScheduleView: View {
                     )
                     DatePicker(
                         selection: $schedule.endDate,
-//                        in: schedule.starDate...,
+//                        in: self.schedule.starDate ... ,
                         displayedComponents: .date,
                         label: { Text("End Date").foregroundColor(schedule.validDates() ? .black: .red) }
                     )
@@ -94,6 +94,9 @@ struct ScheduleView: View {
             .navigationBarTitle("Schedule")
             .navigationBarItems(trailing:
                 Button(action: {
+#if DEBUG
+                    print(self.schedule)
+#endif
                     do  {
                             try self.validateForm()
                     } catch  {

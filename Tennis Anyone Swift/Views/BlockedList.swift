@@ -16,7 +16,9 @@ struct BlockedList : View {
 var body: some View {
         List {
             ForEach(schedule.blockedDays, id: \.self) { blockedDay in
-                DatePicker(selection: self.$blockedDay, in: self.schedule.startDate ... self.schedule.endDate, displayedComponents: .date) {
+                DatePicker(selection: self.$blockedDay,
+                           //in: self.schedule.startDate ... self.schedule.endDate,
+                displayedComponents: .date) {
                     Text("Venue Blocked/Closed")
                 }
             }

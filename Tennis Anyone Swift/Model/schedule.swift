@@ -30,14 +30,14 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
     
     var description: String {
         var s: String = ""
-        for player in players  {
+        for player in scheduledPlayers  {
             s += "\(String(describing: player))\n"
         }
         s += "\n"
         for i in 0 ... 3 {
             s += "  "
-            for player in players  {
-                s += String(Array(player.name!)[i]) + " "
+            for player in scheduledPlayers  {
+                s += String(Array(player.name)[i]) + " "
             }
             s += "\n"
         }
