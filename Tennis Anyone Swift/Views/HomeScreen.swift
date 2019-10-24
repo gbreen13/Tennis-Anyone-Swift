@@ -9,11 +9,12 @@
 import SwiftUI
 
 struct HomeScreen: View {
+    @EnvironmentObject var schedule: Schedule
     var body: some View {
         // 1
         TabView {
             // 2
-            ContactsView()
+          ContactsView()
                 // 3
                 .tabItem {
                     VStack {
@@ -22,8 +23,8 @@ struct HomeScreen: View {
                     }
             // 4
             }.tag(1)
-            
-            // 5
+  
+           // 5
             ScheduleView()
                 .tabItem {
                     VStack {
@@ -31,6 +32,13 @@ struct HomeScreen: View {
                         Text("Schedule")
                     }
             }.tag(2)
-        }
+         }
+
+    }
+}
+
+struct HomeScreen_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeScreen().environmentObject(Schedule())
     }
 }

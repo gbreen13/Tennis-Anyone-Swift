@@ -14,9 +14,9 @@ struct MultipleSelectionList: View {
     @State var selections: [ScheduledPlayer] = []
 
     var body: some View {
-        List {
-            ForEach(schedule.players, id:\.id) { player in
-                MultipleSelectionRow(title: player.name!,
+      List {
+            ForEach(schedule.players, id:\.name) { player in
+                MultipleSelectionRow(title: player.name!, thumbNail: player.profilePicture!,
                                      isSelected: self.schedule.scheduledPlayers.contains(where:  {$0.playerId == player.id}),
                      action: {
                         if self.schedule.scheduledPlayers.contains(where: {$0.playerId == player.id}) {
@@ -28,18 +28,20 @@ struct MultipleSelectionList: View {
                 }
                 )
             }
-        }
-    }
+       }
+   }
 }
 
 struct MultipleSelectionRow: View {
     var title: String
+    var thumbNail: UIImage
     var isSelected: Bool
     var action: () -> Void
 
     var body: some View {
         Button(action: self.action) {
             HStack {
+               Image(uiImage: thumbNail)
                 Text(self.title)
                 if self.isSelected {
                     Spacer()

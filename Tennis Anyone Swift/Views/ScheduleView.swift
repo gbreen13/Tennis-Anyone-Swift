@@ -41,7 +41,7 @@ struct ScheduleView: View {
         NavigationView {
             
             Form {
-  
+
                 Section(header: Text("Time and Place")) {
 
                     Toggle(isOn: $isDoubles) {
@@ -86,9 +86,11 @@ struct ScheduleView: View {
                 ) {
                     BlockedList()
                 }
+
                 Section(header: Text("Scheduled Players")){
                     MultipleSelectionList()
                 }
+
 
             }
             .navigationBarTitle("Schedule")
@@ -96,6 +98,8 @@ struct ScheduleView: View {
                 Button(action: {
 #if DEBUG
                     print(self.schedule)
+                    print(self.schedule.players)
+                    print(self.schedule.scheduledPlayers)
 #endif
                     do  {
                             try self.validateForm()

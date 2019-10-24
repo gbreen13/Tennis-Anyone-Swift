@@ -23,6 +23,7 @@ struct ContactsView: View {
         NavigationView {
             
             Form {
+               
                  Section(header: Text("Players").foregroundColor(schedule.validNumberOfPlayers() ? .gray : .red)){
                     PlayerList()
                 }
@@ -31,6 +32,20 @@ struct ContactsView: View {
                 }
             }
             .navigationBarTitle("Contacts")
+            .navigationBarItems(trailing:
+                Button(action: {
+#if DEBUG
+                    print(self.schedule)
+                    print(self.schedule.players)
+                    print(self.schedule.scheduledPlayers)
+#endif
+
+                    }
+
+            ) {
+                                   Text("Save")
+                               }
+                    )
             .listStyle(GroupedListStyle())
         }
 
@@ -38,6 +53,6 @@ struct ContactsView: View {
 }
 struct ContactsView_Previews: PreviewProvider {
     static var previews: some View {
-        ScheduleView().environmentObject(Schedule())
+        ContactsView().environmentObject(Schedule())
     }
 }

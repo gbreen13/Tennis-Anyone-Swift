@@ -14,7 +14,10 @@ struct PlayerRow : View {
 
     var body: some View {
         HStack {
-//            Image(item.thumbnailImage)   .clipShape(Circle())
+//            Image(uiImage: player.profilePicture!).clipShape(Circle())
+            
+            Image(uiImage: player.profilePicture!)
+            
             VStack(alignment: .leading) {
                 Text(player.name!)
                     .multilineTextAlignment(.leading)
@@ -32,8 +35,8 @@ struct PlayerList : View {
 
     var body: some View {
 
-        List {
-            ForEach(schedule.players ,id:\.id) { player in
+        List {      //id:\.id causes a fuckup for some reason
+            ForEach(schedule.players ,id:\.name) { player in
                 PlayerRow(player: player)
             }.onDelete(perform: delete)
         }

@@ -15,8 +15,8 @@ class ScheduledPlayer: CustomStringConvertible, Codable, Equatable, Identifiable
     }
     
 
-    @Published var id: UUID  = UUID()       // id of this record
-    @Published var playerId: UUID = UUID()  // id of the player contac information
+    var id: UUID  = UUID()       // id of this record
+    var playerId: UUID = UUID()  // id of the player contac information
 
     var blockedDays:[Date]
     var percentPlaying: Double

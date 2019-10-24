@@ -129,44 +129,60 @@ let jsonSchedule = """
           "email": "unknown",
           "id": "BEB6E19F-F88A-4149-990C-4A464E9D075A",
           "phone": "unknown",
-          "name": "Hedley LaMar"
+          "name": "Hedley LaMar",
+          "firstName": "Hedley",
+          "lastName" : "Le Mar"
       }, {
           "email": "",
           "id": "00794D70-E5C6-4455-92E4-26FDBCA9024B",
           "phone": "",
-          "name": "Waco Kid"
-      }, {
+          "name": "Waco Kid",
+          "firstName": "Waco",
+          "lastName" : "Kid"
+}, {
           "email": "",
           "id": "B843C4DB-4FB8-4B28-BBD3-E3E20317992F",
           "phone": "",
-          "name": "Bart"
+          "name": "Bart",
+          "firstName": "Black",
+          "lastName" : "Bart"
       }, {
           "email": "",
           "id": "D04019F4-0CFC-430B-BDA5-77F40D72B64D",
           "phone": "",
-          "name": "Mongo"
-      }, {
+          "name": "Mongo",
+          "firstName": "Mongo",
+          "lastName" : ""
+}, {
           "email": "",
           "id": "D467F3EF-8C74-4F93-977C-6EA8219F2259",
           "phone": "",
-          "name": "Howard Johnson"
-      }, {
+          "name": "Howard Johnson",
+          "firstName": "Howard",
+          "lastName" : "Johnson"
+}, {
           "email": "",
           "id": "E4651BD9-69A5-498B-BC2E-A0C61B587D77",
           "phone": "",
-          "name": "Lilli Von Shtupp"
-      }, {
+          "name": "Lilli Von Shtupp",
+          "firstName": "Lilli",
+          "lastName" : "Von Shtupp"
+}, {
           "email": "",
           "id": "EBAA0B3E-5317-48D8-859C-88DF45BE9B83",
           "phone": "",
-          "name": "Gabby"
+          "name": "Gabby",
+          "firstName": "Gabby",
+          "lastName" : "Grumbles"
       }, {
           "email": "",
           "id": "D0BC9AAB-85B9-4624-ACF8-208609DB7D3D",
           "phone": "",
-          "name": "The Gov"
+          "name": "The Gov",
+          "firstName": "The Gov",
+          "lastName" : "Brooks"
       }],
-      "isBuilt": true,
+     "isBuilt": true,
       "blockedDays": ["12/27/18"],
       "isDoubles": true,
       "scheduledPlayers": [{
@@ -175,6 +191,7 @@ let jsonSchedule = """
           "percentPlaying": 100,
           "name": "Hedley LaMar",
           "numWeeks": 16,
+          "blockedDays": [ "10/25/18" ,"01/17/19", "01/24/19", "02/21/19", "03/28/19" ] ,
           "scheduledWeeks": 16
       }, {
           "id": "2D81327F-A805-49D7-BA89-B3D56B632BF8",
@@ -182,6 +199,7 @@ let jsonSchedule = """
           "percentPlaying": 100,
           "name": "Waco Kid",
           "numWeeks": 16,
+          "blockedDays": [ "10/25/18" ,"02/21/19", "03/28/19" ] ,
           "scheduledWeeks": 16
       }, {
           "id": "DB6899D7-B52D-41B3-AA9A-C88A44A08BE6",
@@ -189,6 +207,7 @@ let jsonSchedule = """
           "percentPlaying": 100,
           "name": "Bart",
           "numWeeks": 16,
+          "blockedDays": [ "10/25/18" ,"01/17/19", "01/24/19"] ,
           "scheduledWeeks": 16
       }, {
           "id": "DC254F4B-55F1-45EE-A453-D5E15FFB1F96",
@@ -196,6 +215,7 @@ let jsonSchedule = """
           "percentPlaying": 100,
           "name": "Mongo",
           "numWeeks": 16,
+          "blockedDays": [ "01/17/19", "01/24/19"] ,
           "scheduledWeeks": 16
       }, {
           "id": "2B379C78-1D38-471C-8172-ED4BBC395F4C",

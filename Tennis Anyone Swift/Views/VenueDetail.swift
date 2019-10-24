@@ -11,86 +11,6 @@ import Contacts
 import SwiftUI
 import os
 
-class ContactStore: ObservableObject {
-    @Published var contacts: [CNContact] = []
-    @Published var error: Error? = nil
-
-    func fetch() {
-        os_log("Fetching contacts")
-        do {
-            let store = CNContactStore()
-            let keysToFetch = [CNContactGivenNameKey as CNKeyDescriptor,
-                               CNContactMiddleNameKey as CNKeyDescriptor,
-                               CNContactFamilyNameKey as CNKeyDescriptor,
-                               CNContactImageDataAvailableKey as CNKeyDescriptor,
-                               CNContactThumbnailImageDataKey as CNKeyDescriptor,
-                               CNContactImageDataKey as CNKeyDescriptor]
-            os_log("Fetching contacts: now")
-            let containerId = store.defaultContainerIdentifier()
-            let predicate = CNContact.predicateForContactsInContainer(withIdentifier: containerId)
-            let contacts = try store.unifiedContacts(matching: predicate, keysToFetch: keysToFetch)
-            os_log("Fetching contacts: succesfull with count = %d", contacts.count)
-            self.contacts = contacts
-        } catch {
-            os_log("Fetching contacts: failed with %@", error.localizedDescription)
-            self.error = error
-        }
-    }
-}
-
-extension CNContact: Identifiable {
-    var name: String {
-        return [givenName, middleName, familyName].filter{ $0.count > 0}.joined(separator: " ")
-    }
-    var image: UIImage? {
-        if (thumbnailImageData != nil) {
-            print("image \(String(describing: UIImage(data: imageData!)))")
-            return (UIImage(data:thumbnailImageData!))
-        } else {
-            print("No image available")
-            return nil
-        }
-    }
-}
-
-struct ContactLineView: View {
-    var contact: CNContact
-    var body: some View {
-        return HStack {
-            if(contact.image != nil){
-                Image(uiImage: contact.image!).resizable().frame(width: 32.0, height: 32.0)
-            }
-        Text(contact.name)
-        }
-    }
-}
-
-struct VenueContactsView: View {
-    @EnvironmentObject var store: ContactStore
-
-    var body: some View {
-        VStack{
-            Text("Contacts")
-            if store.error == nil {
-                List(store.contacts) { (contact: CNContact) in
-                    return ContactLineView(contact: contact)
-                }.onAppear{
-                    DispatchQueue.main.async {
-                        self.store.fetch()
-                    }
-                }
-            } else {
-                Text("error: \(store.error!.localizedDescription)")
-            }
-        }
-    }
-}
-
-struct ContactsViewOrError: View {
-    var body: some View {
-        VenueContactsView().environmentObject(ContactStore())
-    }
-}
 
 struct VenueDetail: View {
 //    let menu = Bundle.main.decode([MenuSection].self, from: "menu.json")
@@ -114,7 +34,7 @@ struct VenueDetail: View {
             }
         }
         .navigationBarItems(trailing:
-                NavigationLink(destination: ContactsView().environmentObject(ContactStore())) {
+            NavigationLink(destination: EmbeddedContactPicker()) {
                     Text("Contacts")
                 }
         )        .navigationBarTitle(Text("Venues"))

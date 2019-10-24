@@ -20,7 +20,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
     @Published var venues:[Venue] = [Venue]()    // possible locations
     @Published var currentVenue = UUID()
     @Published var isDoubles = true
-    @Published var scheduledPlayers: [ScheduledPlayer] = [ScheduledPlayer]()  // which players are scheduled for this contract time
+    var scheduledPlayers: [ScheduledPlayer] = [ScheduledPlayer]()  // which players are scheduled for this contract time
     
     enum CodingKeys: CodingKey {
         case startDate, endDate, courtMinutes, playWeeks, blockedDays, isBuilt, players, venues, currentVenue, isDoubles, scheduledPlayers
@@ -157,19 +157,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
             dateFormatter.dateFormat = "MM/dd/yy"
             self.blockedDays = allDates!.compactMap { dateFormatter.date(from: $0) }
         }
-        //
-        //  Validate PlayWeeks.  If there is nothing in the Playweek, create the array
-        //
-        if self.playWeeks == nil {
-            self.playWeeks = [PlayWeek]()
-            var thisWeek: Date = self.startDate
-            while thisWeek < self.endDate {
-                if self.blockedDays.contains(thisWeek) == false {      // as long as the facility is open
-                    self.playWeeks!.append(PlayWeek(date:thisWeek))
-                }
-                thisWeek = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: thisWeek)!
-            }
-        }
+
 
 
     }
@@ -261,13 +249,30 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
     // MARK: BuildSchedule
     
     func BuildSchedule() throws {
-        
+ 
+#if DEBUG
+        isBuilt = false;
+        self.playWeeks = nil
+#endif
         if isBuilt! {return}
         
         if  self.scheduledPlayers.count < Constants.minimumNumberOfPlayers {
             throw ScheduleError.startDateAfterEndDate("Need " + String(Constants.minimumNumberOfPlayers) + " players and there are only " + String(self.scheduledPlayers.count))
         }
                 
+
+       //
+       if self.playWeeks == nil {
+           self.playWeeks = [PlayWeek]()
+           var thisWeek: Date = self.startDate
+           while thisWeek < self.endDate {
+               if self.blockedDays.contains(thisWeek) == false {      // as long as the facility is open
+                   self.playWeeks!.append(PlayWeek(date:thisWeek))
+               }
+               thisWeek = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: thisWeek)!
+           }
+       }
+//
 //  figure out how many weeks each person gets to play this season.  This is a function of how many players there are (e.g. if four players,
 //  everyone plays every week.  If 6 players, everyone plays 4 out of 6 weeks.  We also factor in the playing percentage weight.
 //  a value of 1.0 means this is a full time player - this affects the player's cost and the nujmber of weeks they get to play.  a .5 means they
@@ -309,7 +314,8 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
                 index = (index + 1) % self.scheduledPlayers.count
             }
         }
-        /*!!!*/
+                //
+        //  Validate PlayWeeks.  If there is nothing in the Playweek, create the array
         for pw in self.playWeeks! {
             pw.scheduledPlayers = pw.scheduledPlayersNames!.map{ self.FindPlayer(name:$0)! }
         }
