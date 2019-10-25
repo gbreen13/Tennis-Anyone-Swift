@@ -12,6 +12,7 @@ struct HomeScreen: View {
     @EnvironmentObject var schedule: Schedule
     var body: some View {
         // 1
+
         TabView {
             // 2
           ContactsView()

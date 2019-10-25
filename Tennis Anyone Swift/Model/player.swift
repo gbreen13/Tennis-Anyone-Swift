@@ -99,7 +99,7 @@ print(self)
         return newImage
     }
 #if DEBUG
-    static  let example = Player(id: UUID(), name: "Bobby Frey", email: "test@jnk.com", phone: "215-555-1212", firstName: "Bobby", lastName: "Frey", profilePicture: UIImage(named:"DefaultProfilePic"))
+    static  let example = Player(id: UUID(), name: "Bobby Frey", email: "test@jnk.com", phone: "215-555-1212", firstName: "Bobby", lastName: "Frey", profilePicture: UIImage(named:"PlaceholderProfilePic"))
 #endif
 }
 

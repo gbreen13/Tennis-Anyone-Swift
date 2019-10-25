@@ -25,7 +25,7 @@ struct ContactsView: View {
             Form {
                
                  Section(header: Text("Players").foregroundColor(schedule.validNumberOfPlayers() ? .gray : .red)){
-                    PlayerList()
+                   PlayerList()
                 }
                 Section(header: Text("Venues")){
                     VenueList()

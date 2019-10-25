@@ -88,7 +88,7 @@ struct ScheduleView: View {
                 }
 
                 Section(header: Text("Scheduled Players")){
-                    MultipleSelectionList()
+                    ScheduledPlayersView()
                 }
 
 
@@ -96,11 +96,7 @@ struct ScheduleView: View {
             .navigationBarTitle("Schedule")
             .navigationBarItems(trailing:
                 Button(action: {
-#if DEBUG
-                    print(self.schedule)
-                    print(self.schedule.players)
-                    print(self.schedule.scheduledPlayers)
-#endif
+
                     do  {
                             try self.validateForm()
                     } catch  {

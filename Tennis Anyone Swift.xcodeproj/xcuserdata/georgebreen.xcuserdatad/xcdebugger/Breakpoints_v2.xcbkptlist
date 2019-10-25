@@ -7,23 +7,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "916B97B0-CEF4-4578-8021-A2C7A7CB6847"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tennis Anyone Swift/Model/schedule.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "description"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F636A323-A2BD-4581-A7F1-242164E960A8"
+            uuid = "6429BD0C-C318-4D8A-BB70-0F2AA9C0D27B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -34,6 +18,70 @@
             endingLineNumber = "87"
             landmarkName = "init()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8459A2AE-D7C6-4282-BF81-6149881A46BE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tennis Anyone Swift/SceneDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "scene(_:willConnectTo:options:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8D6DD539-6F6D-4183-A0F1-37EC47F5331F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tennis Anyone Swift/Views/ContactsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "8D6DD539-6F6D-4183-A0F1-37EC47F5331F - 2b4738d59ce4294f"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Section&lt;SwiftUI.Text, Tennis_Anyone_Swift.PlayerList, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;SwiftUI.Text, Tennis_Anyone_Swift.VenueList, SwiftUI.EmptyView&gt;)&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.listStyle&lt;A where A1: SwiftUI.ListStyle&gt;(A1) -&gt; some&gt;&gt;.0 in Tennis_Anyone_Swift.ContactsView.body.getter : some"
+                  moduleName = "Tennis Anyone Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgebreen/Documents/Rabbit%20Hill%20Solutions/Projects/Tennis%20Anyone%20Swift/Tennis%20Anyone%20Swift/Views/ContactsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "169">
+               </Location>
+               <Location
+                  uuid = "8D6DD539-6F6D-4183-A0F1-37EC47F5331F - acf42cfad04348e5"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; Tennis_Anyone_Swift.PlayerList in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Section&lt;SwiftUI.Text, Tennis_Anyone_Swift.PlayerList, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;SwiftUI.Text, Tennis_Anyone_Swift.VenueList, SwiftUI.EmptyView&gt;)&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.listStyle&lt;A where A1: SwiftUI.ListStyle&gt;(A1) -&gt; some&gt;&gt;.0 in Tennis_Anyone_Swift.ContactsView.body.getter : some"
+                  moduleName = "Tennis Anyone Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgebreen/Documents/Rabbit%20Hill%20Solutions/Projects/Tennis%20Anyone%20Swift/Tennis%20Anyone%20Swift/Views/ContactsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

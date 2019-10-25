@@ -20,7 +20,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
     @Published var venues:[Venue] = [Venue]()    // possible locations
     @Published var currentVenue = UUID()
     @Published var isDoubles = true
-    var scheduledPlayers: [ScheduledPlayer] = [ScheduledPlayer]()  // which players are scheduled for this contract time
+    @Published var scheduledPlayers: [ScheduledPlayer] = [ScheduledPlayer]()  // which players are scheduled for this contract time
     
     enum CodingKeys: CodingKey {
         case startDate, endDate, courtMinutes, playWeeks, blockedDays, isBuilt, players, venues, currentVenue, isDoubles, scheduledPlayers
@@ -87,6 +87,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         self.venues.append(Venue.example)
         self.players.append(Player.example)
         self.isDoubles = true
+        self.scheduledPlayers.append(ScheduledPlayer(player: self.players[0], id: UUID(), blockedDays: [Date](), percentPlaying: 100.0))
 #endif
         
     }

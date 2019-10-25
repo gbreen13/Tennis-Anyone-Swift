@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct MultipleSelectionList: View {
+struct ScheduledPlayersDetailedView: View {
 
     @EnvironmentObject var schedule: Schedule
     @State var selections: [ScheduledPlayer] = []
@@ -16,7 +16,7 @@ struct MultipleSelectionList: View {
     var body: some View {
       List {
             ForEach(schedule.players, id:\.name) { player in
-                MultipleSelectionRow(title: player.name!, thumbNail: player.profilePicture!,
+                MultipleSelectionRow(title: player.name!, thumbNail: player.profilePicture,
                                      isSelected: self.schedule.scheduledPlayers.contains(where:  {$0.playerId == player.id}),
                      action: {
                         if self.schedule.scheduledPlayers.contains(where: {$0.playerId == player.id}) {
@@ -34,14 +34,14 @@ struct MultipleSelectionList: View {
 
 struct MultipleSelectionRow: View {
     var title: String
-    var thumbNail: UIImage
+    var thumbNail: UIImage?
     var isSelected: Bool
     var action: () -> Void
 
     var body: some View {
         Button(action: self.action) {
             HStack {
-               Image(uiImage: thumbNail)
+                Image(uiImage: thumbNail!).renderingMode(.original)
                 Text(self.title)
                 if self.isSelected {
                     Spacer()
@@ -49,5 +49,11 @@ struct MultipleSelectionRow: View {
                 }
             }
         }
+    }
+}
+
+struct ScheduledPlayersDetailedView_Previews: PreviewProvider {
+    static var previews: some View {
+        ScheduledPlayersDetailedView().environmentObject(Schedule())
     }
 }
