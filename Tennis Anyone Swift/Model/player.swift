@@ -26,8 +26,42 @@ class Player: CustomStringConvertible, Codable, Equatable, Identifiable, Observa
     var profilePicture: UIImage?
     var storedContact: CNMutableContact?
     var phoneNumberField: (CNLabeledValue<CNPhoneNumber>)?
+    static var colorIndex = 0
+    
+    func createProfilePicture() -> UIImage?    {
+        let lblNameInitialize = UILabel()
+        let alphabetColors = [UIColor.blue, UIColor.brown, UIColor.cyan, UIColor.darkGray, UIColor.green, UIColor.magenta, UIColor.purple, UIColor.orange, UIColor.red]
 
-     
+
+        lblNameInitialize.frame.size = CGSize(width: Constants.defaultIconSize, height: Constants.defaultIconSize)
+        lblNameInitialize.textColor = UIColor.white
+        var s = ""
+        if self.firstName.first != nil {
+            s = String(self.firstName.first!)
+        }
+        if self.lastName.first != nil {
+                s += String(self.lastName.first!)
+        }
+
+        if s == "" { s = "?"}
+        lblNameInitialize.text = s
+        lblNameInitialize.textAlignment = NSTextAlignment.center
+        lblNameInitialize.backgroundColor = alphabetColors[Player.self.colorIndex]
+        Player.self.colorIndex = (Player.self.colorIndex+1) % alphabetColors.count
+        lblNameInitialize.layer.cornerRadius = 50.0
+
+        UIGraphicsBeginImageContext(lblNameInitialize.frame.size)
+        lblNameInitialize.layer.render(in: UIGraphicsGetCurrentContext()!)
+        var img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        if img == nil {
+            img = UIImage(named: "PlaceholderProfilePic")
+         }
+        img = imageWithImage(image:img!, scaledToSize: CGSize(width:Constants.defaultIconSize,height:Constants.defaultIconSize))
+        return img!
+     }
+    
     init(id: UUID? = UUID(),
      name: String? = nil,
      email: String? = "",
@@ -37,15 +71,16 @@ class Player: CustomStringConvertible, Codable, Equatable, Identifiable, Observa
         profilePicture: UIImage? = UIImage(named: "PlaceholderProfilePic")
     ) {
         self.id = id!
-         self.name = name
+        self.name = name
         self.email = email!
         self.phone = phone!
         self.firstName = firstName!
         self.lastName = lastName!
-        self.profilePicture = profilePicture!
-        self.profilePicture = imageWithImage(image:self.profilePicture!, scaledToSize: CGSize(width:32,height:32))
-
+        self.profilePicture = createProfilePicture()
      }
+    
+    
+
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -60,7 +95,7 @@ class Player: CustomStringConvertible, Codable, Equatable, Identifiable, Observa
             let decodedData : Data = Data(base64Encoded: imageStr!, options: .ignoreUnknownCharacters)!
             self.profilePicture = UIImage(data: decodedData)
         } else {
-            self.profilePicture = UIImage(named: "PlaceholderProfilePic")
+            self.profilePicture = createProfilePicture()
         }
         self.profilePicture = imageWithImage(image:self.profilePicture!, scaledToSize: CGSize(width:40,height:40))
 print(self)

@@ -17,14 +17,14 @@ class PlayWeek: CustomStringConvertible, Codable {
     enum PlayWeekError: Error {
         case invalidDate
     }
-    var scheduledPlayersNames: [String]?  // who's playing this week
+    var scheduledPlayersNames: [UUID]?  // who's playing this week
 	var scheduledPlayers: [ScheduledPlayer]?			// the player class that matches the names.
     var date: Date
     
     init(date: Date) {
         self.date = date
         self.scheduledPlayers = [ScheduledPlayer]()
-		self.scheduledPlayersNames = [String]()
+		self.scheduledPlayersNames = [UUID]()
     }
     
     func schedulePlayer(s: ScheduledPlayer) {
@@ -82,7 +82,7 @@ class PlayWeek: CustomStringConvertible, Codable {
 
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.scheduledPlayersNames = try (container.decodeIfPresent([String].self, forKey: .scheduledPlayers) ?? nil)!
+        self.scheduledPlayersNames = try (container.decodeIfPresent([UUID].self, forKey: .scheduledPlayers) ?? nil)!
         let when: String? = try (container.decodeIfPresent(String.self, forKey: .date) ?? nil)
         if when != nil {
             let dateFormatter = DateFormatter()
@@ -91,7 +91,7 @@ class PlayWeek: CustomStringConvertible, Codable {
         } else {
             throw PlayWeekError.invalidDate
         }
-        if self.scheduledPlayersNames == nil { self.scheduledPlayersNames = [String]()}
+        if self.scheduledPlayersNames == nil { self.scheduledPlayersNames = [UUID]()}
 		self.scheduledPlayers = [ScheduledPlayer]()	// create empty array.  after the schedule has been completely read in, we will go back
 											// and cfill this in the with Player class that matches the name
     }
@@ -101,7 +101,6 @@ class PlayWeek: CustomStringConvertible, Codable {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yy"
         try container.encode(dateFormatter.string(from: self.date), forKey: .date)
-		let scheduledPlayersNames = self.scheduledPlayers!.map{ $0.name }
 		try container.encode(scheduledPlayersNames, forKey: .scheduledPlayers)
     }
 	

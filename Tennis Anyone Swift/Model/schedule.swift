@@ -72,9 +72,9 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         case startDateAfterEndDate(String)
     }
     
-    func FindPlayer(name: String) ->ScheduledPlayer? {
+    func FindPlayer(uuid:UUID) ->ScheduledPlayer? {
         for s in self.scheduledPlayers {
-            if s.name == name {
+            if s.id == uuid {
                 return s;
             }
         }
@@ -152,6 +152,11 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         self.isBuilt = try (container.decodeIfPresent(Bool.self, forKey: .isBuilt) ?? false)
         self.isDoubles = try (container.decodeIfPresent(Bool.self, forKey: .isDoubles) ?? true)
         let allDates: [String]? = try container.decodeIfPresent([String].self, forKey: .blockedDays) ?? nil
+        if(self.playWeeks != nil) {
+            for pw in self.playWeeks! {
+                pw.scheduledPlayers = pw.scheduledPlayersNames!.map{ self.FindPlayer(uuid:$0)! }
+            }
+        }
         self.blockedDays = [Date]()
         if allDates != nil { // convert array of date strings to array of dates using formatter
             let dateFormatter = DateFormatter()
@@ -318,7 +323,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
                 //
         //  Validate PlayWeeks.  If there is nothing in the Playweek, create the array
         for pw in self.playWeeks! {
-            pw.scheduledPlayers = pw.scheduledPlayersNames!.map{ self.FindPlayer(name:$0)! }
+            pw.scheduledPlayers = pw.scheduledPlayersNames!.map{ self.FindPlayer(uuid:$0)! }
         }
         
         for s in self.scheduledPlayers {
@@ -365,6 +370,11 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         try container.encode(courtMinutes, forKey: .courtMinutes)
         try container.encode(isBuilt, forKey: .isBuilt)
         try container.encode(isDoubles, forKey: .isDoubles)
+        if playWeeks != nil {
+            for pw in playWeeks! {
+                pw.scheduledPlayersNames = pw.scheduledPlayers!.map{ $0.id}
+            }
+        }
         try container.encode(playWeeks, forKey: .playWeeks)
         try container.encode(players, forKey: .players)
         try container.encode(scheduledPlayers, forKey: .scheduledPlayers)

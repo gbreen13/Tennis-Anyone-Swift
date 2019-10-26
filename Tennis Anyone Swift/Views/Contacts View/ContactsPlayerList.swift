@@ -16,7 +16,7 @@ struct PlayerRow : View {
         HStack {
 //            Image(uiImage: player.profilePicture!).clipShape(Circle())
             
-            Image(uiImage: player.profilePicture!)
+            Image(uiImage: player.profilePicture!).clipShape(Circle())
             
             VStack(alignment: .leading) {
                 Text(player.name!)

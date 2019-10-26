@@ -25,104 +25,7 @@ let jsonSchedule = """
           "phone": "",
           "name": "Brigantine Courts"
       }],
-      "playWeeks": [{
-          "date": "09/13/18",
-          "scheduledPlayers": ["Hedley LaMar", "Bart", "Mongo", "Howard Johnson"]
-      }, {
-          "date": "09/20/18",
-          "scheduledPlayers": ["Bart", "Mongo", "Howard Johnson", "Lilli Von Shtupp"]
-      }, {
-          "date": "09/27/18",
-          "scheduledPlayers": ["Bart", "Mongo", "Lilli Von Shtupp", "The Gov"]
-      }, {
-          "date": "10/04/18",
-          "scheduledPlayers": ["Hedley LaMar", "Waco Kid", "Bart", "Mongo"]
-      }, {
-          "date": "10/11/18",
-          "scheduledPlayers": ["Hedley LaMar", "Bart", "Mongo", "Howard Johnson"]
-      }, {
-          "date": "10/18/18",
-          "scheduledPlayers": ["Lilli Von Shtupp", "Gabby", "The Gov", "Waco Kid"]
-      }, {
-          "date": "10/25/18",
-          "scheduledPlayers": ["Waco Kid", "Bart", "Lilli Von Shtupp", "Gabby"]
-      }, {
-          "date": "11/01/18",
-          "scheduledPlayers": ["Hedley LaMar", "Bart", "Howard Johnson", "Lilli Von Shtupp"]
-      }, {
-          "date": "11/08/18",
-          "scheduledPlayers": ["Hedley LaMar", "Waco Kid", "Mongo", "Howard Johnson"]
-      }, {
-          "date": "11/15/18",
-          "scheduledPlayers": ["Mongo", "Howard Johnson", "Lilli Von Shtupp", "The Gov"]
-      }, {
-          "date": "11/22/18",
-          "scheduledPlayers": ["Hedley LaMar", "Waco Kid", "Mongo", "Howard Johnson"]
-      }, {
-          "date": "11/29/18",
-          "scheduledPlayers": ["Hedley LaMar", "Howard Johnson", "Gabby", "The Gov"]
-      }, {
-          "date": "12/06/18",
-          "scheduledPlayers": ["Hedley LaMar", "Bart", "Howard Johnson", "Gabby"]
-      }, {
-          "date": "12/13/18",
-          "scheduledPlayers": ["Bart", "Howard Johnson", "Lilli Von Shtupp", "Gabby"]
-      }, {
-          "date": "12/20/18",
-          "scheduledPlayers": ["Waco Kid", "Bart", "Gabby", "The Gov"]
-      }, {
-          "date": "01/03/19",
-          "scheduledPlayers": ["Hedley LaMar", "Waco Kid", "Gabby", "The Gov"]
-      }, {
-          "date": "01/10/19",
-          "scheduledPlayers": ["Bart", "Lilli Von Shtupp", "The Gov", "Hedley LaMar"]
-      }, {
-          "date": "01/17/19",
-          "scheduledPlayers": ["Hedley LaMar", "Lilli Von Shtupp", "Gabby", "The Gov"]
-      }, {
-          "date": "01/24/19",
-          "scheduledPlayers": ["Waco Kid", "Howard Johnson", "Lilli Von Shtupp", "Gabby"]
-      }, {
-          "date": "01/31/19",
-          "scheduledPlayers": ["Waco Kid", "Mongo", "Howard Johnson", "Lilli Von Shtupp"]
-      }, {
-          "date": "02/07/19",
-          "scheduledPlayers": ["Waco Kid", "Mongo", "Lilli Von Shtupp", "Gabby"]
-      }, {
-          "date": "02/14/19",
-          "scheduledPlayers": ["Bart", "Howard Johnson", "The Gov", "Hedley LaMar"]
-      }, {
-          "date": "02/21/19",
-          "scheduledPlayers": ["Lilli Von Shtupp", "The Gov", "Hedley LaMar", "Waco Kid"]
-      }, {
-          "date": "02/28/19",
-          "scheduledPlayers": ["Bart", "Lilli Von Shtupp", "Gabby", "The Gov"]
-      }, {
-          "date": "03/07/19",
-          "scheduledPlayers": ["Bart", "Mongo", "Howard Johnson", "The Gov"]
-      }, {
-          "date": "03/14/19",
-          "scheduledPlayers": ["Waco Kid", "Howard Johnson", "Lilli Von Shtupp", "The Gov"]
-      }, {
-          "date": "03/21/19",
-          "scheduledPlayers": ["Waco Kid", "Mongo", "Gabby", "The Gov"]
-      }, {
-          "date": "03/28/19",
-          "scheduledPlayers": ["Bart", "Gabby", "The Gov", "Hedley LaMar"]
-      }, {
-          "date": "04/04/19",
-          "scheduledPlayers": ["Hedley LaMar", "Mongo", "Gabby", "The Gov"]
-      }, {
-          "date": "04/11/19",
-          "scheduledPlayers": ["Waco Kid", "Mongo", "Howard Johnson", "Gabby"]
-      }, {
-          "date": "04/18/19",
-          "scheduledPlayers": ["Hedley LaMar", "Waco Kid", "Mongo", "Lilli Von Shtupp"]
-      }, {
-          "date": "04/25/19",
-          "scheduledPlayers": ["Waco Kid", "Bart", "Mongo", "Gabby"]
-      }],
-      "endDate": "05/02/19",
+   "endDate": "05/02/19",
       "startDate": "09/13/18",
       "currentVenue": "D68FE878-67FD-43DB-89D4-B614BBF2B116",
       "players": [{
@@ -182,6 +85,103 @@ let jsonSchedule = """
           "firstName": "The Gov",
           "lastName" : "Brooks"
       }],
+    "playWeeks": [{
+        "date": "09/13/18",
+        "scheduledPlayers": ["9E00A810-3D03-4F24-8F8E-6E436B462D48", "DB6899D7-B52D-41B3-AA9A-C88A44A08BE6", "DC254F4B-55F1-45EE-A453-D5E15FFB1F96", "2B379C78-1D38-471C-8172-ED4BBC395F4C"]
+    }, {
+        "date": "09/20/18",
+        "scheduledPlayers": ["2D81327F-A805-49D7-BA89-B3D56B632BF8", "DB6899D7-B52D-41B3-AA9A-C88A44A08BE6", "10892BA1-60A9-4B6C-B2C9-3AE7EF7CFE21", "0F12E53E-4801-4829-B00B-5D2121B18239"]
+    }, {
+        "date": "09/27/18",
+        "scheduledPlayers": ["DB6899D7-B52D-41B3-AA9A-C88A44A08BE6", "DC254F4B-55F1-45EE-A453-D5E15FFB1F96", "2B379C78-1D38-471C-8172-ED4BBC395F4C", "2590F4D8-A518-408B-B222-C0CF90701544"]
+    }, {
+        "date": "10/04/18",
+        "scheduledPlayers": ["2D81327F-A805-49D7-BA89-B3D56B632BF8", "DB6899D7-B52D-41B3-AA9A-C88A44A08BE6", "10892BA1-60A9-4B6C-B2C9-3AE7EF7CFE21", "0F12E53E-4801-4829-B00B-5D2121B18239"]
+    }, {
+        "date": "10/11/18",
+        "scheduledPlayers": ["DC254F4B-55F1-45EE-A453-D5E15FFB1F96", "2B379C78-1D38-471C-8172-ED4BBC395F4C", "10892BA1-60A9-4B6C-B2C9-3AE7EF7CFE21", "0F12E53E-4801-4829-B00B-5D2121B18239"]
+    }, {
+        "date": "10/18/18",
+        "scheduledPlayers": ["9E00A810-3D03-4F24-8F8E-6E436B462D48", "DB6899D7-B52D-41B3-AA9A-C88A44A08BE6", "DC254F4B-55F1-45EE-A453-D5E15FFB1F96", "10892BA1-60A9-4B6C-B2C9-3AE7EF7CFE21"]
+    }, {
+        "date": "10/25/18",
+        "scheduledPlayers": ["DC254F4B-55F1-45EE-A453-D5E15FFB1F96", "2B379C78-1D38-471C-8172-ED4BBC395F4C", "10892BA1-60A9-4B6C-B2C9-3AE7EF7CFE21", "0F12E53E-4801-4829-B00B-5D2121B18239"]
+    }, {
+        "date": "11/01/18",
+        "scheduledPlayers": ["9E00A810-3D03-4F24-8F8E-6E436B462D48", "DB6899D7-B52D-41B3-AA9A-C88A44A08BE6", "DC254F4B-55F1-45EE-A453-D5E15FFB1F96", "2590F4D8-A518-408B-B222-C0CF90701544"]
+    }, {
+        "date": "11/08/18",
+        "scheduledPlayers": ["DB6899D7-B52D-41B3-AA9A-C88A44A08BE6", "2B379C78-1D38-471C-8172-ED4BBC395F4C", "10892BA1-60A9-4B6C-B2C9-3AE7EF7CFE21", "2590F4D8-A518-408B-B222-C0CF90701544"]
+    }, {
+        "date": "11/15/18",
+        "scheduledPlayers": ["DB6899D7-B52D-41B3-AA9A-C88A44A08BE6", "DC254F4B-55F1-45EE-A453-D5E15FFB1F96", "2B379C78-1D38-471C-8172-ED4BBC395F4C", "2590F4D8-A518-408B-B222-C0CF90701544"]
+    }, {
+        "date": "11/22/18",
+        "scheduledPlayers": ["2D81327F-A805-49D7-BA89-B3D56B632BF8", "DB6899D7-B52D-41B3-AA9A-C88A44A08BE6", "DC254F4B-55F1-45EE-A453-D5E15FFB1F96", "2B379C78-1D38-471C-8172-ED4BBC395F4C"]
+    }, {
+        "date": "11/29/18",
+        "scheduledPlayers": ["9E00A810-3D03-4F24-8F8E-6E436B462D48", "DB6899D7-B52D-41B3-AA9A-C88A44A08BE6", "DC254F4B-55F1-45EE-A453-D5E15FFB1F96", "2B379C78-1D38-471C-8172-ED4BBC395F4C"]
+    }, {
+        "date": "12/06/18",
+        "scheduledPlayers": ["9E00A810-3D03-4F24-8F8E-6E436B462D48", "2B379C78-1D38-471C-8172-ED4BBC395F4C", "10892BA1-60A9-4B6C-B2C9-3AE7EF7CFE21", "0F12E53E-4801-4829-B00B-5D2121B18239"]
+    }, {
+        "date": "12/13/18",
+        "scheduledPlayers": ["9E00A810-3D03-4F24-8F8E-6E436B462D48", "2D81327F-A805-49D7-BA89-B3D56B632BF8", "10892BA1-60A9-4B6C-B2C9-3AE7EF7CFE21", "0F12E53E-4801-4829-B00B-5D2121B18239"]
+    }, {
+        "date": "12/20/18",
+        "scheduledPlayers": ["9E00A810-3D03-4F24-8F8E-6E436B462D48", "2D81327F-A805-49D7-BA89-B3D56B632BF8", "2B379C78-1D38-471C-8172-ED4BBC395F4C", "10892BA1-60A9-4B6C-B2C9-3AE7EF7CFE21"]
+    }, {
+        "date": "01/03/19",
+        "scheduledPlayers": ["9E00A810-3D03-4F24-8F8E-6E436B462D48", "2D81327F-A805-49D7-BA89-B3D56B632BF8", "10892BA1-60A9-4B6C-B2C9-3AE7EF7CFE21", "0F12E53E-4801-4829-B00B-5D2121B18239"]
+    }, {
+        "date": "01/10/19",
+        "scheduledPlayers": ["2D81327F-A805-49D7-BA89-B3D56B632BF8", "2B379C78-1D38-471C-8172-ED4BBC395F4C", "10892BA1-60A9-4B6C-B2C9-3AE7EF7CFE21", "2590F4D8-A518-408B-B222-C0CF90701544"]
+    }, {
+        "date": "01/17/19",
+        "scheduledPlayers": ["2D81327F-A805-49D7-BA89-B3D56B632BF8", "2B379C78-1D38-471C-8172-ED4BBC395F4C", "0F12E53E-4801-4829-B00B-5D2121B18239", "2590F4D8-A518-408B-B222-C0CF90701544"]
+    }, {
+        "date": "01/24/19",
+        "scheduledPlayers": ["0F12E53E-4801-4829-B00B-5D2121B18239", "2590F4D8-A518-408B-B222-C0CF90701544", "2D81327F-A805-49D7-BA89-B3D56B632BF8", "10892BA1-60A9-4B6C-B2C9-3AE7EF7CFE21"]
+    }, {
+        "date": "01/31/19",
+        "scheduledPlayers": ["9E00A810-3D03-4F24-8F8E-6E436B462D48", "2D81327F-A805-49D7-BA89-B3D56B632BF8", "10892BA1-60A9-4B6C-B2C9-3AE7EF7CFE21", "0F12E53E-4801-4829-B00B-5D2121B18239"]
+    }, {
+        "date": "02/07/19",
+        "scheduledPlayers": ["9E00A810-3D03-4F24-8F8E-6E436B462D48", "DC254F4B-55F1-45EE-A453-D5E15FFB1F96", "0F12E53E-4801-4829-B00B-5D2121B18239", "2590F4D8-A518-408B-B222-C0CF90701544"]
+    }, {
+        "date": "02/14/19",
+        "scheduledPlayers": ["9E00A810-3D03-4F24-8F8E-6E436B462D48", "DB6899D7-B52D-41B3-AA9A-C88A44A08BE6", "DC254F4B-55F1-45EE-A453-D5E15FFB1F96", "2590F4D8-A518-408B-B222-C0CF90701544"]
+    }, {
+        "date": "02/21/19",
+        "scheduledPlayers": ["DB6899D7-B52D-41B3-AA9A-C88A44A08BE6", "2B379C78-1D38-471C-8172-ED4BBC395F4C", "10892BA1-60A9-4B6C-B2C9-3AE7EF7CFE21", "0F12E53E-4801-4829-B00B-5D2121B18239"]
+    }, {
+        "date": "02/28/19",
+        "scheduledPlayers": ["9E00A810-3D03-4F24-8F8E-6E436B462D48", "DB6899D7-B52D-41B3-AA9A-C88A44A08BE6", "DC254F4B-55F1-45EE-A453-D5E15FFB1F96", "2B379C78-1D38-471C-8172-ED4BBC395F4C"]
+    }, {
+        "date": "03/07/19",
+        "scheduledPlayers": ["9E00A810-3D03-4F24-8F8E-6E436B462D48", "2D81327F-A805-49D7-BA89-B3D56B632BF8", "10892BA1-60A9-4B6C-B2C9-3AE7EF7CFE21", "0F12E53E-4801-4829-B00B-5D2121B18239"]
+    }, {
+        "date": "03/14/19",
+        "scheduledPlayers": ["2D81327F-A805-49D7-BA89-B3D56B632BF8", "DC254F4B-55F1-45EE-A453-D5E15FFB1F96", "0F12E53E-4801-4829-B00B-5D2121B18239", "2590F4D8-A518-408B-B222-C0CF90701544"]
+    }, {
+        "date": "03/21/19",
+        "scheduledPlayers": ["2B379C78-1D38-471C-8172-ED4BBC395F4C", "2590F4D8-A518-408B-B222-C0CF90701544", "9E00A810-3D03-4F24-8F8E-6E436B462D48", "2D81327F-A805-49D7-BA89-B3D56B632BF8"]
+    }, {
+        "date": "03/28/19",
+        "scheduledPlayers": ["DB6899D7-B52D-41B3-AA9A-C88A44A08BE6", "DC254F4B-55F1-45EE-A453-D5E15FFB1F96", "2590F4D8-A518-408B-B222-C0CF90701544", "2B379C78-1D38-471C-8172-ED4BBC395F4C"]
+    }, {
+        "date": "04/04/19",
+        "scheduledPlayers": ["2D81327F-A805-49D7-BA89-B3D56B632BF8", "DB6899D7-B52D-41B3-AA9A-C88A44A08BE6", "DC254F4B-55F1-45EE-A453-D5E15FFB1F96", "2590F4D8-A518-408B-B222-C0CF90701544"]
+    }, {
+        "date": "04/11/19",
+        "scheduledPlayers": ["9E00A810-3D03-4F24-8F8E-6E436B462D48", "10892BA1-60A9-4B6C-B2C9-3AE7EF7CFE21", "2590F4D8-A518-408B-B222-C0CF90701544", "2D81327F-A805-49D7-BA89-B3D56B632BF8"]
+    }, {
+        "date": "04/18/19",
+        "scheduledPlayers": ["2D81327F-A805-49D7-BA89-B3D56B632BF8", "DC254F4B-55F1-45EE-A453-D5E15FFB1F96", "0F12E53E-4801-4829-B00B-5D2121B18239", "2590F4D8-A518-408B-B222-C0CF90701544"]
+    }, {
+        "date": "04/2/19",
+        "scheduledPlayers": ["DB6899D7-B52D-41B3-AA9A-C88A44A08BE6", "0F12E53E-4801-4829-B00B-5D2121B18239", "2590F4D8-A518-408B-B222-C0CF90701544", "9E00A810-3D03-4F24-8F8E-6E436B462D48"]
+    }],
      "isBuilt": true,
       "blockedDays": ["12/27/18"],
       "isDoubles": true,

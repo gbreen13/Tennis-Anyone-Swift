@@ -13,20 +13,22 @@ struct ScheduledPlayersView: View {
 
     @EnvironmentObject var schedule: Schedule
     var body: some View {
-        HStack {
-            NavigationLink(destination: ScheduledPlayersDetailedView()) {
 
-            ForEach(schedule.scheduledPlayers) { sp in
+            NavigationLink(destination: ScheduledPlayersDetailedView()) {
+                ScrollView {
+                    HStack(alignment: .top) {
+                        ForEach(0..<2) {_ in
+                            ForEach(self.schedule.scheduledPlayers) { sp in
                 VStack {
-                    Image(uiImage: self.schedule.players.first(where: {$0.id == sp.playerId})!.profilePicture!).renderingMode(.original)
+                    Image(uiImage: self.schedule.players.first(where: {$0.id == sp.playerId})!.profilePicture!).renderingMode(.original).clipShape(Circle())
                     Text(sp.name)
+                       .font(Font.custom("Tahoma", size: 10))
                 }
+
             }
- //           Spacer()
-//            {
-//
-//                Image(systemName: "chevron.right")
-//            }
+                        }
+               
+                }
             }
         }
     }

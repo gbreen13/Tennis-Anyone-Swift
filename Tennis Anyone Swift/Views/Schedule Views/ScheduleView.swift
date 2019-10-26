@@ -98,6 +98,17 @@ struct ScheduleView: View {
                 Button(action: {
 
                     do  {
+#if DEBUG
+                            let jsonEncoder = JSONEncoder()
+                            let decoder = JSONDecoder()
+
+                            var jsonData = Data()
+                            jsonData = try jsonEncoder.encode(self.schedule)  // now reencode the data
+                            let jsonString = String(data: jsonData, encoding: .utf8)!
+                            print(jsonString)
+                            let scheduleTest = try decoder.decode(Schedule.self, from: jsonString.data(using: .utf8)!)
+                            print(scheduleTest as Any);
+#endif
                             try self.validateForm()
                     } catch  {
                             self.showingAlert = true
