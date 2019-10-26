@@ -1,24 +1,35 @@
 //
-//  ScheduledPlayersView.swift
+//  WeeklyScheduleView.swift
 //  Tennis Anyone Swift
 //
-//  Created by George Breen on 10/25/19.
+//  Created by George Breen on 10/26/19.
 //  Copyright © 2019 George Breen. All rights reserved.
 //
 
 import Foundation
 import SwiftUI
 
-struct ScheduledPlayersView: View {
 
+
+struct WeeklyScheduleView: View {
+//    let menu = Bundle.main.decode([MenuSection].self, from: "menu.json")
     @EnvironmentObject var schedule: Schedule
+
+    static let taskDateFormat: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yy"
+        return formatter
+    }()
+
     var body: some View {
 
-            NavigationLink(destination: ScheduledPlayersDetailedView()) {
-                ScrollView {
+        List {
+            ForEach(schedule.playWeeks!, id:\.date) { pw in
+                HStack {
+                    Text("\(pw.date, formatter: Self.taskDateFormat)")
                     HStack(alignment: .top) {
                        
-                    ForEach(self.schedule.scheduledPlayers) { sp in
+                    ForEach(pw.scheduledPlayers!) { sp in
                         VStack {
                             Image(uiImage: self.schedule.players.first(where: {$0.id == sp.playerId})!.profilePicture!).renderingMode(.original).clipShape(Circle())
                             Text(sp.name)
@@ -28,13 +39,14 @@ struct ScheduledPlayersView: View {
                             .padding(.trailing, -05)
                      }
                     }
+                }
             }
         }
     }
 }
 
-struct ScheduledPlayersView_Previews: PreviewProvider {
+struct WeeklyScheduleView_Previews: PreviewProvider {
     static var previews: some View {
-        ScheduledPlayersView().environmentObject(Schedule())
+    WeeklyScheduleView().environmentObject(Schedule())
     }
 }

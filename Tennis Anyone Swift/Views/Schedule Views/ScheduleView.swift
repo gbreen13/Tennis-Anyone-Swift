@@ -39,10 +39,10 @@ struct ScheduleView: View {
     var body: some View {
 
         NavigationView {
-            
+
             Form {
 
-                Section(header: Text("Time and Place")) {
+                Section(header: Text("TIME AND PLACE")) {
 
                     Toggle(isOn: $isDoubles) {
                         if(isDoubles) {
@@ -75,14 +75,17 @@ struct ScheduleView: View {
                         }
                     }
  
-                }
+                }.padding(.horizontal)
+ //               .background(Color.red.opacity(0.2))
+ //                   .colorMultiply(Color.green)
 
                 Section(header:
                     HStack {
-                        Text("Blocked Weeks")
+                        Text("Closed Days")
+                        Spacer()
                          Text("Add").foregroundColor(.blue)
                         
-                    }
+                    } .frame(height:20)
                 ) {
                     BlockedList()
                 }
@@ -90,8 +93,9 @@ struct ScheduleView: View {
                 Section(header: Text("Scheduled Players")){
                     ScheduledPlayersView()
                 }
-
-
+                Section(header: Text("Weekly Schedule")){
+                    WeeklyScheduleView()
+                }
             }
             .navigationBarTitle("Schedule")
             .navigationBarItems(trailing:
