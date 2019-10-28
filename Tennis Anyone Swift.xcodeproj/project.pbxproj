@@ -30,6 +30,7 @@
 		26C1FA3D2361DEF400408999 /* EmbeddedContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C1FA3C2361DEF400408999 /* EmbeddedContactPicker.swift */; };
 		26C1FA3F2363927400408999 /* ScheduledPlayersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C1FA3E2363927400408999 /* ScheduledPlayersView.swift */; };
 		26F0F05A2364E3EF00020EE9 /* WeeklyScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F0F0592364E3EF00020EE9 /* WeeklyScheduleView.swift */; };
+		26F0F05C236601DB00020EE9 /* ScheduleFirstSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F0F05B236601DB00020EE9 /* ScheduleFirstSection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		26C1FA3C2361DEF400408999 /* EmbeddedContactPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedContactPicker.swift; sourceTree = "<group>"; };
 		26C1FA3E2363927400408999 /* ScheduledPlayersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledPlayersView.swift; sourceTree = "<group>"; };
 		26F0F0592364E3EF00020EE9 /* WeeklyScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyScheduleView.swift; sourceTree = "<group>"; };
+		26F0F05B236601DB00020EE9 /* ScheduleFirstSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFirstSection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				260BE8B02356469F00A7A306 /* ScheduleView.swift */,
+				26F0F05B236601DB00020EE9 /* ScheduleFirstSection.swift */,
 				261A97D82360F7A40077EE11 /* ScheduledPlayersDetailView.swift */,
 				26C1FA3E2363927400408999 /* ScheduledPlayersView.swift */,
 				263F3CC1235E478400F028A4 /* VenueBlockedList.swift */,
@@ -235,6 +238,7 @@
 				26020B132358C464005246B4 /* venue.swift in Sources */,
 				26F0F05A2364E3EF00020EE9 /* WeeklyScheduleView.swift in Sources */,
 				260BE8AF2356469F00A7A306 /* SceneDelegate.swift in Sources */,
+				26F0F05C236601DB00020EE9 /* ScheduleFirstSection.swift in Sources */,
 				26C1FA3F2363927400408999 /* ScheduledPlayersView.swift in Sources */,
 				261A97D72360F34D0077EE11 /* HomeScreen.swift in Sources */,
 				26020B152358DCA8005246B4 /* VenueList.swift in Sources */,

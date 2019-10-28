@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import UIKit
 
 
 class Schedule: Codable, CustomStringConvertible, ObservableObject {
     @Published var startDate: Date = Date()       // date of first week
     @Published var endDate: Date = Date()          // date of last week inclusive
     var courtMinutes: Int? = 90      // how long is court time each week
-    var playWeeks: [PlayWeek]? = [PlayWeek]()
+    @Published var playWeeks: [PlayWeek]? = [PlayWeek]()
     @Published var blockedDays: [Date] = [Date]()    // weeks courts are closed (e.g. Thanksgiving)
     @Published var players:[Player] = [Player]()      // all of the members
     var isBuilt: Bool? = false   // is it built?
@@ -117,6 +118,15 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         }
         return numweeks
 
+    }
+    
+    //
+    //  remove the old schedule and whatever is needed prior to calling BuildSchedule
+    //
+    func prepareForBuild() {
+        self.isBuilt = false
+        self.playWeeks = nil
+ 
     }
     
     required init(from decoder: Decoder) throws {
@@ -251,15 +261,34 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         return nil
     }
     
+    func getBlockedPlayers(pw: PlayWeek) ->[ScheduledPlayer]
+    {
+        var blockedPlayers = [ScheduledPlayer]()
+        for s in self.scheduledPlayers {
+           if pw.isBlocked(s:s) {
+                blockedPlayers.append(s)
+            }
+        }
+        return (blockedPlayers)
+    }
+    
+    func getBlockedPlayersImages(pw: PlayWeek) ->[UIImage]
+    {
+        let blockedPlayers: [ScheduledPlayer] = self.getBlockedPlayers(pw: pw)
+        let blockedPlayerIDs: [UUID] = blockedPlayers.map{ $0.playerId}
+        var retimg:[UIImage] = [UIImage]()
+        
+        for bpid in blockedPlayerIDs {
+            let p = self.players.first(where: {$0.id == bpid})
+            retimg.append(p!.profilePicture!)
+        }
+        return retimg
+    }
     
     // MARK: BuildSchedule
     
     func BuildSchedule() throws {
  
-#if DEBUG
-        isBuilt = false;
-        self.playWeeks = nil
-#endif
         if isBuilt! {return}
         
         if  self.scheduledPlayers.count < Constants.minimumNumberOfPlayers {
@@ -341,8 +370,8 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         for _ in 0 ..< Constants.scrambleCount {
             let srcweek = self.playWeeks![Int.random(in: 0 ..< self.playWeeks!.count)]
             let dstweek = self.playWeeks![Int.random(in: 0 ..< self.playWeeks!.count)]
-            let srcplayer = self.scheduledPlayers[Int.random(in: 0 ..< self.players.count)]
-            let dstplayer = self.scheduledPlayers[Int.random(in: 0 ..< self.players.count)]
+            let srcplayer = self.scheduledPlayers[Int.random(in: 0 ..< self.scheduledPlayers.count)]
+            let dstplayer = self.scheduledPlayers[Int.random(in: 0 ..< self.scheduledPlayers.count)]
             
             if dstweek.isNotScheduled(s: srcplayer) &&
                 dstweek.canSchedule(s: srcplayer) &&

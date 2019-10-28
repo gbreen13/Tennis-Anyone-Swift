@@ -27,6 +27,7 @@ class Player: CustomStringConvertible, Codable, Equatable, Identifiable, Observa
     var storedContact: CNMutableContact?
     var phoneNumberField: (CNLabeledValue<CNPhoneNumber>)?
     static var colorIndex = 0
+
     
     func createProfilePicture() -> UIImage?    {
         let lblNameInitialize = UILabel()

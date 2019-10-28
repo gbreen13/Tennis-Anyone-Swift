@@ -27,17 +27,35 @@ struct WeeklyScheduleView: View {
             ForEach(schedule.playWeeks!, id:\.date) { pw in
                 HStack {
                     Text("\(pw.date, formatter: Self.taskDateFormat)")
-                    HStack(alignment: .top) {
-                       
-                    ForEach(pw.scheduledPlayers!) { sp in
-                        VStack {
-                            Image(uiImage: self.schedule.players.first(where: {$0.id == sp.playerId})!.profilePicture!).renderingMode(.original).clipShape(Circle())
-                            Text(sp.name)
-                               .font(Font.custom("Tahoma", size: 10))
-                                .foregroundColor(.blue)
-                        } .frame(width: 45.0)
-                            .padding(.trailing, -05)
-                     }
+                    VStack {
+                        HStack(alignment: .top) {
+                            ForEach(pw.scheduledPlayers!) { sp in
+                                VStack {
+                                    Image(uiImage: self.schedule.players.first(where: {$0.id == sp.playerId})!.profilePicture!).renderingMode(.original).clipShape(Circle())
+                                    Text(sp.name)
+                                       .font(Font.custom("Tahoma", size: 10))
+                                        .foregroundColor(.blue)
+                                } .frame(width: 45.0)
+                                    .padding(.trailing, -05)
+                             }
+                            Spacer()
+                        }
+                        HStack {
+                            if self.schedule.getBlockedPlayersImages(pw: pw).count > 0 {
+                                Text("Unavail:")
+                                    .font(Font.custom("Tahoma", size: 12))
+                                    //.foregroundColor(.red)
+                                    //.multilineTextAlignment(.leading)
+                                ForEach(self.schedule.getBlockedPlayersImages(pw: pw), id:\.self) { pi in
+                                        Image(uiImage:  pi)
+                                            .resizable()
+                                            .frame(width: 20.0, height: 20.0)
+                                            .clipShape(Circle())
+
+                                }
+                                Spacer()
+                            }
+                        }
                     }
                 }
             }

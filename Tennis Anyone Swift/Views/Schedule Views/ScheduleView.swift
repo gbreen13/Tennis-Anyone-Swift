@@ -26,14 +26,15 @@ extension ScheduleFormError: LocalizedError {
     }
 }
 
+
 struct ScheduleView: View {
 //    let menu = Bundle.main.decode([MenuSection].self, from: "menu.json")
     @EnvironmentObject var schedule: Schedule
 
-    @State var isDoubles = true
     @State private var showingAlert = false
     @State private var errorString = ""
     
+    @State private var showModal = false
 
 
     var body: some View {
@@ -42,55 +43,39 @@ struct ScheduleView: View {
 
             Form {
 
-                Section(header: Text("TIME AND PLACE")) {
 
-                    Toggle(isOn: $isDoubles) {
-                        if(isDoubles) {
-                            Text("Singles/").foregroundColor(Color.gray)
-                            Text("Doubles").bold()
-                        }else {
-                            Text("Singles").bold()
-                            Text("/Doubles").foregroundColor(Color.gray)
-                        }
-                    }
-                    DatePicker(
-                        selection: $schedule.startDate,
-                       // in: dateClosedRange,
-                        displayedComponents: .date,
-                        label: { Text("Start Date") }
-                    )
-                    DatePicker(
-                        selection: $schedule.endDate,
-//                        in: self.schedule.starDate ... ,
-                        displayedComponents: .date,
-                        label: { Text("End Date").foregroundColor(schedule.validDates() ? .black: .red) }
-                    )
-                    
-                   Text("# Playable Weeks:\(schedule.returnNumberOfPlayweeks())")
+//                  .padding(.horizontal)
+//               .background(Color.red.opacity(0.2))
+//                   .colorMultiply(Color.green)
 
-                    Picker(selection: $schedule.currentVenue, label: Text("Where") .foregroundColor((schedule.venues.firstIndex(where: { $0.id == self.schedule.currentVenue }) != nil) ? .black: .red)) {
-
-                        ForEach(self.schedule.venues, id: \.id) { venue in
-                            Text(venue.name).tag(venue.id)
-                        }
-                    }
- 
-                }.padding(.horizontal)
- //               .background(Color.red.opacity(0.2))
- //                   .colorMultiply(Color.green)
+                ScheduleFirstSection()
 
                 Section(header:
                     HStack {
                         Text("Closed Days")
                         Spacer()
-                         Text("Add").foregroundColor(.blue)
+                         Image(systemName: "plus.circle").foregroundColor(.blue)
                         
-                    } .frame(height:20)
+                    } .frame(height: 20.0)
                 ) {
                     BlockedList()
                 }
 
-                Section(header: Text("Scheduled Players")){
+                Section(header:
+                    HStack {
+                        Text("Scheduled Players")
+                        Spacer()
+                        Button(action: { self.showModal.toggle() }) {
+                            Image(systemName: "pencil")
+                        }
+                    }.popover(isPresented: $showModal,
+                              arrowEdge: .bottom){
+                                //print("popover")
+                                ScheduledPlayersDetailedView()
+                                    .environmentObject(self.schedule)
+                    })
+                {
+                        
                     ScheduledPlayersView()
                 }
                 Section(header: Text("Weekly Schedule")){
@@ -101,8 +86,10 @@ struct ScheduleView: View {
             .navigationBarItems(trailing:
                 Button(action: {
 
-                    do  {
+ 
 #if DEBUG
+                        /*
+                            do  {
                             let jsonEncoder = JSONEncoder()
                             let decoder = JSONDecoder()
 
@@ -112,18 +99,31 @@ struct ScheduleView: View {
                             print(jsonString)
                             let scheduleTest = try decoder.decode(Schedule.self, from: jsonString.data(using: .utf8)!)
                             print(scheduleTest as Any);
+                        */
 #endif
-                            try self.validateForm()
+                    do {
+                        try self.validateForm()
+
+                        if(self.showingAlert == false) {
+                            print("building")
+                            self.schedule.prepareForBuild()
+                            try self.schedule.BuildSchedule()
+                            let jsonEncoder = JSONEncoder()
+ 
+                            var jsonData = Data()
+                            jsonData = try jsonEncoder.encode(self.schedule)  // now reencode the data
+                            let jsonString = String(data: jsonData, encoding: .utf8)!
+                            print(jsonString)
+                            print(self.schedule as Any);
+
+                        }
                     } catch  {
                             self.showingAlert = true
-                         self.errorString = error.localizedDescription
-                    }
+                            self.errorString = error.localizedDescription
+                        }
 
-                    if(self.showingAlert == false) {
-                        print("saved")
-                    }
                     }) {
-                        Text("Save")
+                        Text("Build")
                     }
                     .alert(isPresented: $showingAlert) {
                         Alert(title: Text("Error"), message: Text(self.errorString), dismissButton: .default(Text("OK")))
