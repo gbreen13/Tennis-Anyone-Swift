@@ -16,6 +16,7 @@ struct ContactsView: View {
     @State private var showingAlert = false
     @State private var errorString = ""
     
+    @State private var showModal = false
 
 
     var body: some View {
@@ -24,10 +25,22 @@ struct ContactsView: View {
             
             Form {
                
-                 Section(header: Text("Players").foregroundColor(schedule.validNumberOfPlayers() ? .gray : .red)){
+                Section(header:
+                    HStack {
+                        Text("PLAYERS")
+                        Spacer()
+                        Button(action: { self.showModal.toggle() }) {
+                            Image("addcontactsel")//.renderingMode(.original)
+                        }
+                    }.popover(isPresented: $showModal,arrowEdge: .bottom){
+                          //print("popover")
+                          Text("Add Contacts")
+                              .environmentObject(self.schedule)
+                     })
+                {
                    PlayerList()
                 }
-                Section(header: Text("Venues")){
+                Section(header: Text("PLACES")){
                     VenueList()
                 }
             }
