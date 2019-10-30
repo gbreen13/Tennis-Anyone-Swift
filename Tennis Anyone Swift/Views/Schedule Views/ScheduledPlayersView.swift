@@ -21,7 +21,7 @@ struct ScheduledPlayersView: View {
 //                        Color(red:225/255, green: 225/255, blue: 225/255)
                     HStack(alignment: .top) {
                        
-                    ForEach(self.schedule.scheduledPlayers) { sp in
+                        ForEach(self.schedule.scheduledPlayers, id:\.id) { sp in
                         VStack {
                             Image(uiImage: self.schedule.players.first(where: {$0.id == sp.playerId})!.profilePicture!).renderingMode(.original).clipShape(Circle())
                                 //.offset(x: -18)

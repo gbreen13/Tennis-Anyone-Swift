@@ -125,8 +125,11 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
     //
     func prepareForBuild() {
         self.isBuilt = false
-        self.playWeeks = nil
- 
+        if (self.playWeeks != nil) {
+            self.playWeeks!.removeAll()
+        } else {
+            self.playWeeks = [PlayWeek]()   // wipe out the schedule
+        }
     }
     
     required init(from decoder: Decoder) throws {
@@ -297,17 +300,15 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
                 
 
        //
-       if self.playWeeks == nil {
-           self.playWeeks = [PlayWeek]()
-           var thisWeek: Date = self.startDate
-           while thisWeek < self.endDate {
-               if self.blockedDays.contains(thisWeek) == false {      // as long as the facility is open
-                   self.playWeeks!.append(PlayWeek(date:thisWeek))
-               }
-               thisWeek = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: thisWeek)!
+       self.playWeeks = [PlayWeek]()
+       var thisWeek: Date = self.startDate
+       while thisWeek < self.endDate {
+           if self.blockedDays.contains(thisWeek) == false {      // as long as the facility is open
+               self.playWeeks!.append(PlayWeek(date:thisWeek))
            }
-       }
-//
+           thisWeek = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: thisWeek)!
+           }
+ //
 //  figure out how many weeks each person gets to play this season.  This is a function of how many players there are (e.g. if four players,
 //  everyone plays every week.  If 6 players, everyone plays 4 out of 6 weeks.  We also factor in the playing percentage weight.
 //  a value of 1.0 means this is a full time player - this affects the player's cost and the nujmber of weeks they get to play.  a .5 means they
@@ -335,7 +336,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         }
         if playingslots != calculatedSlots {
             print("Actual Slots = \(playingslots) but calculated slots = \(calculatedSlots)")
-            var index =  Int.random(in: 0 ..< self.players.count)
+            var index =  Int.random(in: 0 ..< self.scheduledPlayers.count)
             while calculatedSlots < playingslots {
                 let s = self.scheduledPlayers[index]
                 s.numWeeks += 1

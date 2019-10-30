@@ -66,7 +66,7 @@ struct ScheduleView: View {
                         Text("Scheduled Players")
                         Spacer()
                         Button(action: { self.showModal.toggle() }) {
-                            Image( systemName:"pencit")
+                            Image( systemName:"pencil")
                         }
                     }.popover(isPresented: $showModal,
                               arrowEdge: .bottom){

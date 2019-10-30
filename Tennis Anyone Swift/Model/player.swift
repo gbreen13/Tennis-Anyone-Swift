@@ -69,7 +69,7 @@ class Player: CustomStringConvertible, Codable, Equatable, Identifiable, Observa
         phone: String? = "",
         firstName: String? = "",
         lastName: String? = "",
-        profilePicture: UIImage? = UIImage(named: "PlaceholderProfilePic")
+        profilePicture: UIImage? = nil
     ) {
         self.id = id!
         self.name = name
@@ -77,7 +77,8 @@ class Player: CustomStringConvertible, Codable, Equatable, Identifiable, Observa
         self.phone = phone!
         self.firstName = firstName!
         self.lastName = lastName!
-        self.profilePicture = createProfilePicture()
+        if profilePicture != nil {self.profilePicture = imageWithImage(image:profilePicture!, scaledToSize: CGSize(width:Constants.defaultIconSize,height:Constants.defaultIconSize))}
+        else { self.profilePicture = createProfilePicture()}
      }
     
     
@@ -104,7 +105,7 @@ print(self)
     
     static func == (pl1: Player, pl2: Player) -> Bool {
         return
-            pl1.id == pl2.id
+            pl1.firstName == pl2.firstName && pl1.lastName == pl2.lastName
     }
     
     func encode(to encoder: Encoder) throws {
@@ -154,5 +155,24 @@ extension Player {
       }
       return contact.copy() as! CNContact
     }
+    convenience init?(contact: CNContact) {
+      guard let email = contact.emailAddresses.first else { return nil }
+      let firstName = contact.givenName
+      let lastName = contact.familyName
+      let workEmail = email.value as String
+      var profilePicture: UIImage?
+      if let imageData = contact.imageData {
+        profilePicture = UIImage(data: imageData)
+      }
+        /*
+        if let contactPhone = contact.phoneNumbers.first {
+          phoneNumberField = contactPhone
+        }
+ */
+        let name = firstName + " " + lastName
+        self.init(id: UUID(), name: name, email: workEmail, phone: "215-555-1212", firstName: firstName, lastName: lastName, profilePicture:profilePicture)
+
+     }
+
 }
 

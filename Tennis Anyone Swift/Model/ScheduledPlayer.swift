@@ -31,7 +31,7 @@ class ScheduledPlayer: CustomStringConvertible, Codable, Equatable, Identifiable
 
             self.id = id!
             self.playerId = player.id
-            self.name = player.firstName + player.lastName
+            self.name = player.firstName + " " + player.lastName
             self.percentPlaying = percentPlaying!
             self.blockedDays = blockedDays!
     }

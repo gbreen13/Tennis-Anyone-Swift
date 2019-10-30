@@ -17,6 +17,7 @@ struct ContactsView: View {
     @State private var errorString = ""
     
     @State private var showModal = false
+    @State var selectedPlayers:[Player]?
 
 
     var body: some View {
@@ -24,26 +25,36 @@ struct ContactsView: View {
         NavigationView {
             
             Form {
-               
+               Section(header: Text("PLACES")){
+                   VenueList()
+               }
+
                 Section(header:
                     HStack {
                         Text("PLAYERS")
                         Spacer()
-                        Button(action: { self.showModal.toggle() }) {
+                        Button(action: {
+                            self.showModal.toggle()
+                        }) {
                             Image("addcontactsel")//.renderingMode(.original)
                         }
-                    }.popover(isPresented: $showModal,arrowEdge: .bottom){
-                          //print("popover")
-                          Text("Add Contacts")
-                              .environmentObject(self.schedule)
-                     })
+                    }
+                    .sheet(isPresented: self.$showModal,onDismiss: {
+                        if self.selectedPlayers != nil {
+                            print(self.selectedPlayers as Any)
+                            for player in self.selectedPlayers! {
+                                if !self.schedule.players.contains(player) {
+                                    self.schedule.players.append(player)
+                                }
+                            }
+                        }
+                    }) {
+                        EmbeddedContactPicker(selectedPlayers: self.$selectedPlayers)
+                    }                   )
                 {
                    PlayerList()
                 }
-                Section(header: Text("PLACES")){
-                    VenueList()
-                }
-            }
+            }//.background(Image("background")).aspectRatio(contentMode: .fill)
             .navigationBarTitle("Contacts")
             .navigationBarItems(trailing:
                 Button(action: {
@@ -61,7 +72,6 @@ struct ContactsView: View {
                     )
             .listStyle(GroupedListStyle())
         }
-
     }
 }
 struct ContactsView_Previews: PreviewProvider {

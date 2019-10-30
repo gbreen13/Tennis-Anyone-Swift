@@ -33,11 +33,12 @@ struct VenueDetail: View {
                 TextField("Email", text: $schedule.venues[venueIndex].email)
             }
         }
+            /*
         .navigationBarItems(trailing:
             NavigationLink(destination: EmbeddedContactPicker()) {
                     Text("Contacts")
                 }
-        )        .navigationBarTitle(Text("Venues"))
+        )*/        .navigationBarTitle(Text("Venues"))
 
     }
 }

@@ -39,11 +39,34 @@ struct PlayerList : View {
             ForEach(schedule.players ,id:\.name) { player in
                 PlayerRow(player: player)
             }.onDelete(perform: delete)
+            .onMove(perform: move)
         }
     }
     func delete(at offsets: IndexSet) {
-        schedule.players.remove(atOffsets: offsets)
+        var killThemAll = true
+        for index in offsets {
+            let p = self.schedule.players[index]
+            
+            let schindex = schedule.scheduledPlayers.firstIndex(where : {$0.playerId == p.id})
+            if schindex != nil {        // WARNING! the deleted player is currently scheduled.  Do we want to kill the schedule?
+                if schedule.isBuilt! {
+                    ActionSheet(title: Text("player is currently scheduled"), message: Text("Do you want to delete the player and rebuild the schedule?"), buttons: [
+                        .cancel(Text("No Way")), .destructive(Text("Delete"))])
+
+                }
+                if killThemAll {
+                    schedule.prepareForBuild()  // order of these two lines matter?
+                    schedule.scheduledPlayers.remove(at: schindex!)
+                }
+            }
+        }
+        if killThemAll {
+            schedule.players.remove(atOffsets: offsets)
+        }
     }
+    func move(from source: IndexSet, to destination: Int) {
+        schedule.players.move(fromOffsets: source, toOffset: destination)
+     }
 }
 
 struct PlayerList_Previews: PreviewProvider {

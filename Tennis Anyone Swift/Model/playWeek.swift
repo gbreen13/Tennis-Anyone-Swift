@@ -9,7 +9,7 @@
 
 import Foundation
 
-class PlayWeek: CustomStringConvertible, Codable {
+class PlayWeek: CustomStringConvertible, Codable, ObservableObject {
     
     enum CodingKeys: CodingKey {
         case date, scheduledPlayers
