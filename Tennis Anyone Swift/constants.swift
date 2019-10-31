@@ -13,5 +13,5 @@ struct Constants {
     static let scrambleCount = 50
     static let maxTries = 5
     static let defaultCourtMinutes = 90
-    static let defaultIconSize = 40.0
+    static let defaultIconSize = 45.0
 }

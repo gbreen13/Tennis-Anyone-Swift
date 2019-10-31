@@ -27,6 +27,9 @@ struct VenueRow : View {
                     .multilineTextAlignment(.leading)
                 Text(venue.phone)
                     .multilineTextAlignment(.leading)
+                    .font(Font.custom("Tahoma", size: 10))
+                    .foregroundColor(.gray)
+
             }
             
         }

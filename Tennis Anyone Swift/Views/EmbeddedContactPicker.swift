@@ -35,19 +35,19 @@ class EmbeddedContactPickerViewController: UIViewController, CNContactPickerDele
     }
 
     func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
-        self.dismiss(animated: false) {
+        self.dismiss(animated: true) {
             self.delegate?.embeddedContactPickerViewControllerDidCancel(self)
         }
     }
 
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
-        self.dismiss(animated: false) {
+        self.dismiss(animated: true) {
             self.delegate?.embeddedContactPickerViewController(self, didSelect: contact)
         }
     }
     //  multiple selection
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contacts: [CNContact]) {
-        self.dismiss(animated: false) {
+        self.dismiss(animated: true) {
             self.delegate?.embeddedContactPickerViewController(self, didSelect: contacts)
         }
     }
@@ -61,9 +61,11 @@ struct EmbeddedContactPicker: UIViewControllerRepresentable {
 
     final class Coordinator: NSObject, EmbeddedContactPickerViewControllerDelegate {
         @Binding var selectedPlayers: [Player]?
+        @Binding var dismissfunc:()->Void
 
-               init(selectedPlayers: Binding<[Player]?>) {
+        init(selectedPlayers: Binding<[Player]?>, dismissfunc: Binding<()->Void>) {
                    _selectedPlayers = selectedPlayers
+                    _dismissfunc = dismissfunc
                }
 
         
@@ -81,6 +83,7 @@ struct EmbeddedContactPicker: UIViewControllerRepresentable {
             print("selected")
 
             self.selectedPlayers = contacts.compactMap { Player(contact: $0) }
+            self.dismissfunc()
 
         }
 
@@ -90,9 +93,10 @@ struct EmbeddedContactPicker: UIViewControllerRepresentable {
     }
 
     @Binding var selectedPlayers:[Player]?
+    @Binding var dismissfunc:()->Void
     
     func makeCoordinator() -> Coordinator {
-        return Coordinator(selectedPlayers: $selectedPlayers)
+        return Coordinator(selectedPlayers: $selectedPlayers, dismissfunc: $dismissfunc)
     }
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<EmbeddedContactPicker>) -> EmbeddedContactPicker.UIViewControllerType {

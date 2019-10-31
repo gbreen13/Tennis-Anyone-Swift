@@ -35,9 +35,11 @@ struct ScheduleView: View {
     @State private var errorString = ""
     
     @State private var showModal = false
+    private var editMode: Bool = false
 
 
     var body: some View {
+        
 
         NavigationView {
 
@@ -48,38 +50,46 @@ struct ScheduleView: View {
 //               .background(Color.red.opacity(0.2))
 //                   .colorMultiply(Color.green)
 
-                ScheduleFirstSection()
+//                if self.schedule.isBuilt == true {editmode = false} else {editmode = true}
+                if(!self.schedule.isBuilt) {
 
-                Section(header:
-                    HStack {
-                        Text("Closed Days")
-                        Spacer()
-                         Image(systemName: "plus.circle").foregroundColor(.blue)
-                        
-                    } .frame(height: 20.0)
-                ) {
-                    BlockedList()
-                }
+                    ScheduleFirstSection()
 
-                Section(header:
-                    HStack {
-                        Text("Scheduled Players")
-                        Spacer()
-                        Button(action: { self.showModal.toggle() }) {
-                            Image( systemName:"pencil")
+                    Section(header:
+                        HStack {
+                            Text("CLOSED DAYS")
+                            Spacer()
+                            Image(systemName: "plus.circle").foregroundColor(.blue).font(.title)
                         }
-                    }.popover(isPresented: $showModal,
+                        ) {
+                            BlockedList()
+                        }
+                }
+                Section(header:
+                    HStack {
+                        Text("SCHEDULED PLAYERS")
+                        Spacer()
+                        if(!self.schedule.isBuilt) {
+                            Button(action: { self.showModal.toggle() }) {
+                                Image( systemName:"pencil")
+                                    .font(.title)
+                            }
+                        }
+                    }
+                        .popover(isPresented: $showModal,
                               arrowEdge: .bottom){
                                 //print("popover")
                                 ScheduledPlayersDetailedView()
                                     .environmentObject(self.schedule)
                     })
-                {
-                        
-                    ScheduledPlayersView()
-                }
-                Section(header: Text("Weekly Schedule")){
-                    WeeklyScheduleView()
+                    {
+                            
+                        ScheduledPlayersView()
+                    }
+                if(self.schedule.isBuilt) {
+                    Section(header: Text("WEEKLY SCHEDULE")){
+                        WeeklyScheduleView()
+                    }
                 }
             }
             .navigationBarTitle("Schedule")
@@ -101,29 +111,38 @@ struct ScheduleView: View {
                             print(scheduleTest as Any);
                         */
 #endif
-                    do {
-                        try self.validateForm()
+                    if(!self.schedule.isBuilt) {
+                        do {
+                            try self.validateForm()
 
-                        if(self.showingAlert == false) {
-                            print("building")
-                            self.schedule.prepareForBuild()
-                            try self.schedule.BuildSchedule()
-                            let jsonEncoder = JSONEncoder()
- 
-                            var jsonData = Data()
-                            jsonData = try jsonEncoder.encode(self.schedule)  // now reencode the data
-                            let jsonString = String(data: jsonData, encoding: .utf8)!
-                            print(jsonString)
-                            print(self.schedule as Any);
+                            if(self.showingAlert == false) {
+                                print("building")
+                                self.schedule.prepareForBuild()
+                                try self.schedule.BuildSchedule()
+                                let jsonEncoder = JSONEncoder()
+     
+                                var jsonData = Data()
+                                jsonData = try jsonEncoder.encode(self.schedule)  // now reencode the data
+                                let jsonString = String(data: jsonData, encoding: .utf8)!
+                                print(jsonString)
+                                print(self.schedule as Any);
 
-                        }
-                    } catch  {
-                            self.showingAlert = true
-                            self.errorString = error.localizedDescription
-                        }
+                            }
+                        } catch  {
+                                self.showingAlert = true
+                                self.errorString = error.localizedDescription
+                            }
 
+                    }
+                    else {
+                        self.schedule.prepareForBuild()
+                    }
                     }) {
-                        Text("Build")
+                        if(!self.schedule.isBuilt) {
+                            Text("Build")
+                        } else {
+                            Text("Edit")
+                        }
                     }
                     .alert(isPresented: $showingAlert) {
                         Alert(title: Text("Error"), message: Text(self.errorString), dismissButton: .default(Text("OK")))

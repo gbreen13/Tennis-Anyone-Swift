@@ -8,6 +8,11 @@
 
 import SwiftUI
 
+
+func dismiss() {
+    print("dismiss")
+}
+
 struct ContactsView: View {
 //    let menu = Bundle.main.decode([MenuSection].self, from: "menu.json")
     @EnvironmentObject var schedule: Schedule
@@ -19,6 +24,9 @@ struct ContactsView: View {
     @State private var showModal = false
     @State var selectedPlayers:[Player]?
 
+
+    
+    @State var dismissfunc = dismiss
 
     var body: some View {
 
@@ -49,8 +57,9 @@ struct ContactsView: View {
                             }
                         }
                     }) {
-                        EmbeddedContactPicker(selectedPlayers: self.$selectedPlayers)
-                    }                   )
+                        EmbeddedContactPicker(selectedPlayers: self.$selectedPlayers, dismissfunc: self.$dismissfunc)
+
+                    })
                 {
                    PlayerList()
                 }
@@ -73,7 +82,9 @@ struct ContactsView: View {
             .listStyle(GroupedListStyle())
         }
     }
+    
 }
+
 struct ContactsView_Previews: PreviewProvider {
     static var previews: some View {
         ContactsView().environmentObject(Schedule())

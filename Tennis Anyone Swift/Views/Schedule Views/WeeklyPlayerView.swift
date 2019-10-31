@@ -19,12 +19,12 @@ struct WeeklyPlayerView: View {
             ForEach(self.pw.scheduledPlayers!, id:\.id) { sp in
                 VStack {
                    Image(uiImage: self.schedule.players.first(where: {$0.id == sp.playerId})!.profilePicture!)
-                    .renderingMode(.original)
-                    .clipShape(Circle())
+                        .renderingMode(.original)
+                        .clipShape(Circle())
                    
                     Text(sp.name)
-                      .font(Font.custom("Tahoma", size: 10))
-                       .foregroundColor(.blue)
+                        .font(Font.custom("Tahoma", size: 10))
+                        .foregroundColor(.blue)
 
                     Spacer()
                     

@@ -14,8 +14,6 @@ struct PlayerRow : View {
 
     var body: some View {
         HStack {
-//            Image(uiImage: player.profilePicture!).clipShape(Circle())
-            
             Image(uiImage: player.profilePicture!).clipShape(Circle())
             
             VStack(alignment: .leading) {
@@ -23,6 +21,8 @@ struct PlayerRow : View {
                     .multilineTextAlignment(.leading)
                 Text(player.phone!)
                     .multilineTextAlignment(.leading)
+                    .font(Font.custom("Tahoma", size: 10))
+                    .foregroundColor(.gray)
             }
             
         }
@@ -42,28 +42,21 @@ struct PlayerList : View {
             .onMove(perform: move)
         }
     }
+    
     func delete(at offsets: IndexSet) {
-        var killThemAll = true
         for index in offsets {
             let p = self.schedule.players[index]
             
             let schindex = schedule.scheduledPlayers.firstIndex(where : {$0.playerId == p.id})
             if schindex != nil {        // WARNING! the deleted player is currently scheduled.  Do we want to kill the schedule?
-                if schedule.isBuilt! {
-                    ActionSheet(title: Text("player is currently scheduled"), message: Text("Do you want to delete the player and rebuild the schedule?"), buttons: [
-                        .cancel(Text("No Way")), .destructive(Text("Delete"))])
-
-                }
-                if killThemAll {
+                if schedule.isBuilt {
                     schedule.prepareForBuild()  // order of these two lines matter?
                     schedule.scheduledPlayers.remove(at: schindex!)
                 }
             }
         }
-        if killThemAll {
-            schedule.players.remove(atOffsets: offsets)
-        }
-    }
+        schedule.players.remove(atOffsets: offsets)
+     }
     func move(from source: IndexSet, to destination: Int) {
         schedule.players.move(fromOffsets: source, toOffset: destination)
      }

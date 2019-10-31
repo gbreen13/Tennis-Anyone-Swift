@@ -18,7 +18,7 @@ struct ScheduledPlayersView: View {
 //                Color.green
                 ScrollView {
                     ZStack {
-//                        Color(red:225/255, green: 225/255, blue: 225/255)
+//                       Color(red:225/255, green: 225/255, blue: 225/255)
                     HStack(alignment: .top) {
                        
                         ForEach(self.schedule.scheduledPlayers, id:\.id) { sp in

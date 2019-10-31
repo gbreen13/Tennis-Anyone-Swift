@@ -17,7 +17,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
     @Published var playWeeks: [PlayWeek]? = [PlayWeek]()
     @Published var blockedDays: [Date] = [Date]()    // weeks courts are closed (e.g. Thanksgiving)
     @Published var players:[Player] = [Player]()      // all of the members
-    var isBuilt: Bool? = false   // is it built?
+    @Published var isBuilt: Bool = false   // is it built?
     @Published var venues:[Venue] = [Venue]()    // possible locations
     @Published var currentVenue = UUID()
     @Published var isDoubles = true
@@ -292,7 +292,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
     
     func BuildSchedule() throws {
  
-        if isBuilt! {return}
+        if isBuilt {return}
         
         if  self.scheduledPlayers.count < Constants.minimumNumberOfPlayers {
             throw ScheduleError.startDateAfterEndDate("Need " + String(Constants.minimumNumberOfPlayers) + " players and there are only " + String(self.scheduledPlayers.count))
