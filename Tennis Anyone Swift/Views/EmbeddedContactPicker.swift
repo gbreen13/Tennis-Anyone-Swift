@@ -23,7 +23,7 @@ class EmbeddedContactPickerViewController: UIViewController, CNContactPickerDele
     weak var delegate: EmbeddedContactPickerViewControllerDelegate?
 
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        super.viewWillAppear(false)
         self.open(animated: animated)
     }
 
@@ -31,23 +31,23 @@ class EmbeddedContactPickerViewController: UIViewController, CNContactPickerDele
         let contactPicker = CNContactPickerViewController()
         contactPicker.delegate = self
  //        contactPicker.predicateForEnablingContact = NSPredicate(format: "emailAddresses.@count > 0")
-        self.present(contactPicker, animated: animated)
+        self.present(contactPicker, animated: false)
     }
 
     func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
-        self.dismiss(animated: true) {
+        self.dismiss(animated: false) {
             self.delegate?.embeddedContactPickerViewControllerDidCancel(self)
         }
     }
 
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
-        self.dismiss(animated: true) {
+        self.dismiss(animated: false) {
             self.delegate?.embeddedContactPickerViewController(self, didSelect: contact)
         }
     }
     //  multiple selection
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contacts: [CNContact]) {
-        self.dismiss(animated: true) {
+        self.dismiss(animated: false) {
             self.delegate?.embeddedContactPickerViewController(self, didSelect: contacts)
         }
     }
@@ -58,15 +58,20 @@ class EmbeddedContactPickerViewController: UIViewController, CNContactPickerDele
 struct EmbeddedContactPicker: UIViewControllerRepresentable {
     typealias UIViewControllerType = EmbeddedContactPickerViewController
     @EnvironmentObject var schedule: Schedule
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
 
     final class Coordinator: NSObject, EmbeddedContactPickerViewControllerDelegate {
         @Binding var selectedPlayers: [Player]?
         @Binding var dismissfunc:()->Void
+        var pm:  Binding<PresentationMode>
 
-        init(selectedPlayers: Binding<[Player]?>, dismissfunc: Binding<()->Void>) {
+        init(selectedPlayers: Binding<[Player]?>, dismissfunc: Binding<()->Void>, pm: Binding<PresentationMode>) {
                    _selectedPlayers = selectedPlayers
                     _dismissfunc = dismissfunc
-               }
+                    self.pm = pm
+            
+                }
 
         
 
@@ -84,6 +89,7 @@ struct EmbeddedContactPicker: UIViewControllerRepresentable {
 
             self.selectedPlayers = contacts.compactMap { Player(contact: $0) }
             self.dismissfunc()
+            self.pm.wrappedValue.dismiss()
 
         }
 
@@ -96,7 +102,7 @@ struct EmbeddedContactPicker: UIViewControllerRepresentable {
     @Binding var dismissfunc:()->Void
     
     func makeCoordinator() -> Coordinator {
-        return Coordinator(selectedPlayers: $selectedPlayers, dismissfunc: $dismissfunc)
+        return Coordinator(selectedPlayers: $selectedPlayers, dismissfunc: $dismissfunc, pm: self.presentationMode)
     }
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<EmbeddedContactPicker>) -> EmbeddedContactPicker.UIViewControllerType {

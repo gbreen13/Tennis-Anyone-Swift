@@ -79,9 +79,9 @@
 			isa = PBXGroup;
 			children = (
 				26C1FA402363A5AE00408999 /* Schedule Views */,
+				26C1FA3C2361DEF400408999 /* EmbeddedContactPicker.swift */,
 				26C1FA412363A5D400408999 /* Contacts View */,
 				261A97D62360F34D0077EE11 /* HomeScreen.swift */,
-				26C1FA3C2361DEF400408999 /* EmbeddedContactPicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
