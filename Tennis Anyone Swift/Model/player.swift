@@ -155,22 +155,45 @@ extension Player {
       }
       return contact.copy() as! CNContact
     }
+    
     convenience init?(contact: CNContact) {
-      guard let email = contact.emailAddresses.first else { return nil }
-      let firstName = contact.givenName
-      let lastName = contact.familyName
-      let workEmail = email.value as String
-      var profilePicture: UIImage?
-      if let imageData = contact.imageData {
-        profilePicture = UIImage(data: imageData)
-      }
+        let email = contact.emailAddresses.first
+        let firstName = contact.givenName
+        let lastName = contact.familyName
+        var phone = ""
+        for num in contact.phoneNumbers {
+            if num.label == CNLabelPhoneNumberMobile {
+                phone = ("\(num.value.stringValue)(M)")
+                break
+            }
+        }
+        
+        if phone == "" {
+            for num in contact.phoneNumbers {
+                if num.label == CNLabelPhoneNumberMobile {
+                    phone = ("\(num.value.stringValue)(P)")
+                    break
+                }
+            }
+        }
+        
+        var workEmail = ""
+        if email != nil {
+            workEmail = email!.value as String
+        }
+            
+            
+        var profilePicture: UIImage?
+        if let imageData = contact.imageData {
+            profilePicture = UIImage(data: imageData)
+        }
         /*
         if let contactPhone = contact.phoneNumbers.first {
           phoneNumberField = contactPhone
         }
  */
         let name = firstName + " " + lastName
-        self.init(id: UUID(), name: name, email: workEmail, phone: "215-555-1212", firstName: firstName, lastName: lastName, profilePicture:profilePicture)
+        self.init(id: UUID(), name: name, email: workEmail, phone: phone, firstName: firstName, lastName: lastName, profilePicture:profilePicture)
 
      }
 

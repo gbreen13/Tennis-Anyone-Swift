@@ -88,9 +88,18 @@ struct EmbeddedContactPicker: UIViewControllerRepresentable {
             print("selected")
 
             self.selectedPlayers = contacts.compactMap { Player(contact: $0) }
-            self.dismissfunc()
-            self.pm.wrappedValue.dismiss()
-
+#if DEBUG
+            print(selectedPlayers as Any)
+#endif
+            self.dismissfunc()                  //not used.  leaving for example sake for now.
+#if false
+            self.pm.wrappedValue.dismiss()      //WARNING THIS ONLY WORKS IN THE SIMULATOR ON IOS 13.2
+                                                // call ing this forces the popover to dismiss
+                                                //unfortuneately. the OnDismiss code in ContactsView isn't
+                                                // called on the iphone 13.1 device.  Turning this off forces
+                                                // the use to manually dismiss the popover by swiping down.
+                                                //  when this is done manually, the onDismiss code is called.
+#endif
         }
 
         func embeddedContactPickerViewControllerDidCancel(_ viewController: EmbeddedContactPickerViewController) {

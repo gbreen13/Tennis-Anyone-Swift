@@ -57,7 +57,8 @@ struct ContactsView: View {
                             }
                         }
                     }) {
-                        EmbeddedContactPicker(selectedPlayers: self.$selectedPlayers, dismissfunc: self.$dismissfunc)
+                        ModalView(selectedPlayers: self.$selectedPlayers)
+//                        EmbeddedContactPicker(selectedPlayers: self.$selectedPlayers, dismissfunc: self.$dismissfunc)
 
                     })
                 {
@@ -84,7 +85,17 @@ struct ContactsView: View {
     }
     
 }
+struct ModalView: View {
+//    let menu = Bundle.main.decode([MenuSection].self, from: "menu.json")
+    @EnvironmentObject var schedule: Schedule
+    @Binding var selectedPlayers: [Player]?
+    
+    @State var dismissfunc = dismiss
 
+    var body: some View {
+        EmbeddedContactPicker(selectedPlayers: self.$selectedPlayers, dismissfunc: self.$dismissfunc)
+    }
+}
 struct ContactsView_Previews: PreviewProvider {
     static var previews: some View {
         ContactsView().environmentObject(Schedule())
