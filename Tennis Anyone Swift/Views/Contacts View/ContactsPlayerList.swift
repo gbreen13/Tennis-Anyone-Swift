@@ -23,7 +23,10 @@ struct PlayerRow : View {
                     .multilineTextAlignment(.leading)
                     .font(Font.custom("Tahoma", size: 10))
                     .foregroundColor(.gray)
-            }
+                Text(player.email)
+                    .multilineTextAlignment(.leading)
+                    .font(Font.custom("Tahoma", size: 10))
+                    .foregroundColor(.gray)            }
             
         }
     }

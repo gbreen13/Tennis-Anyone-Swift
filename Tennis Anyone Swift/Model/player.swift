@@ -163,11 +163,11 @@ extension Player {
         var phone = ""
         for num in contact.phoneNumbers {
             if num.label == CNLabelPhoneNumberMobile {
-                phone = ("\(num.value.stringValue)(M)")
+                phone = ("\(num.value.stringValue)")
                 break
             }
         }
-        
+ /*
         if phone == "" {
             for num in contact.phoneNumbers {
                 if num.label == CNLabelPhoneNumberMobile {
@@ -176,7 +176,7 @@ extension Player {
                 }
             }
         }
-        
+ */
         var workEmail = ""
         if email != nil {
             workEmail = email!.value as String
