@@ -21,49 +21,49 @@ extension ScheduleFormError: LocalizedError {
             return NSLocalizedString("End date must be after start date", comment: "")
         case .NoWeeksToSchedule:
             return NSLocalizedString("Start and end dates must be at least one week apart", comment:"")
-
+            
         }
     }
 }
 
 
 struct ScheduleView: View {
-//    let menu = Bundle.main.decode([MenuSection].self, from: "menu.json")
+    //    let menu = Bundle.main.decode([MenuSection].self, from: "menu.json")
     @EnvironmentObject var schedule: Schedule
-
+    
     @State private var showingAlert = false
     @State private var errorString = ""
     
     @State private var showModal = false
     private var editMode: Bool = false
-
-
+    
+    
     var body: some View {
         
-
+        
         NavigationView {
-
+            
             Form {
-
-
-//                  .padding(.horizontal)
-//               .background(Color.red.opacity(0.2))
-//                   .colorMultiply(Color.green)
-
-//                if self.schedule.isBuilt == true {editmode = false} else {editmode = true}
+                
+                
+                //                  .padding(.horizontal)
+                //               .background(Color.red.opacity(0.2))
+                //                   .colorMultiply(Color.green)
+                
+                //                if self.schedule.isBuilt == true {editmode = false} else {editmode = true}
                 if(!self.schedule.isBuilt) {
-
+                    
                     ScheduleFirstSection()
-
+                    
                     Section(header:
                         HStack {
                             Text("CLOSED DAYS")
                             Spacer()
                             Image(systemName: "plus.circle").foregroundColor(.blue).font(.title)
                         }
-                        ) {
-                            BlockedList()
-                        }
+                    ) {
+                        BlockedList()
+                    }
                 }
                 Section(header:
                     HStack {
@@ -76,16 +76,15 @@ struct ScheduleView: View {
                             }
                         }
                     }
-                        .popover(isPresented: $showModal,
-                              arrowEdge: .bottom){
+                    .sheet(isPresented: $showModal){
                                 //print("popover")
-                                ScheduledPlayersDetailedView()
+                                ScheduledPlayersSelectionView()
                                     .environmentObject(self.schedule)
                     })
-                    {
-                            
-                        ScheduledPlayersView()
-                    }
+                {
+                    
+                    ScheduledPlayersView()
+                }
                 if(self.schedule.isBuilt) {
                     Section(header: Text("WEEKLY SCHEDULE")){
                         WeeklyScheduleView()
@@ -95,65 +94,65 @@ struct ScheduleView: View {
             .navigationBarTitle("Schedule")
             .navigationBarItems(trailing:
                 Button(action: {
-
- 
-#if DEBUG
-                        /*
-                            do  {
-                            let jsonEncoder = JSONEncoder()
-                            let decoder = JSONDecoder()
-
-                            var jsonData = Data()
-                            jsonData = try jsonEncoder.encode(self.schedule)  // now reencode the data
-                            let jsonString = String(data: jsonData, encoding: .utf8)!
-                            print(jsonString)
-                            let scheduleTest = try decoder.decode(Schedule.self, from: jsonString.data(using: .utf8)!)
-                            print(scheduleTest as Any);
-                        */
-#endif
+                    
+                    
+                    #if DEBUG
+                    /*
+                     do  {
+                     let jsonEncoder = JSONEncoder()
+                     let decoder = JSONDecoder()
+                     
+                     var jsonData = Data()
+                     jsonData = try jsonEncoder.encode(self.schedule)  // now reencode the data
+                     let jsonString = String(data: jsonData, encoding: .utf8)!
+                     print(jsonString)
+                     let scheduleTest = try decoder.decode(Schedule.self, from: jsonString.data(using: .utf8)!)
+                     print(scheduleTest as Any);
+                     */
+                    #endif
                     if(!self.schedule.isBuilt) {
                         do {
                             try self.validateForm()
-
+                            
                             if(self.showingAlert == false) {
                                 print("building")
                                 self.schedule.prepareForBuild()
                                 try self.schedule.BuildSchedule()
                                 let jsonEncoder = JSONEncoder()
-     
+                                
                                 var jsonData = Data()
                                 jsonData = try jsonEncoder.encode(self.schedule)  // now reencode the data
                                 let jsonString = String(data: jsonData, encoding: .utf8)!
                                 print(jsonString)
                                 print(self.schedule as Any);
-
+                                
                             }
                         } catch  {
-                                self.showingAlert = true
-                                self.errorString = error.localizedDescription
-                            }
-
+                            self.showingAlert = true
+                            self.errorString = error.localizedDescription
+                        }
+                        
                     }
                     else {
                         self.schedule.prepareForBuild()
                     }
-                    }) {
-                        if(!self.schedule.isBuilt) {
-                            Text("Build")
-                        } else {
-                            Text("Edit")
-                        }
+                }) {
+                    if(!self.schedule.isBuilt) {
+                        Text("Build")
+                    } else {
+                        Text("Edit")
                     }
-                    .alert(isPresented: $showingAlert) {
-                        Alert(title: Text("Error"), message: Text(self.errorString), dismissButton: .default(Text("OK")))
-                    }
-
+                }
+                .alert(isPresented: $showingAlert) {
+                    Alert(title: Text("Error"), message: Text(self.errorString), dismissButton: .default(Text("OK")))
+                }
+                
             )
-            .listStyle(GroupedListStyle())
+                .listStyle(GroupedListStyle())
         }
     }
     func validateForm() throws {
-
+        
         if (self.schedule.endDate < self.schedule.startDate) {
             throw(ScheduleFormError.EndDateTooEarly)
         }
@@ -163,13 +162,13 @@ struct ScheduleView: View {
             throw(ScheduleFormError.NoWeeksToSchedule)
         }
     }
-
+    
     var dateClosedRange: ClosedRange<Date> {
         let min = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date())!
         let max = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: Date())!
         return min...max
     }
-
+    
 }
 
 struct ScheduleView_Previews: PreviewProvider {

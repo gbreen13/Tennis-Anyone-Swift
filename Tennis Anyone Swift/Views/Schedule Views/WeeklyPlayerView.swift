@@ -37,7 +37,7 @@ struct WeeklyPlayerView: View {
                     .padding(.trailing, -05)
             }
             
-            ForEach(self.pw.scheduledPlayers!.count ..< (self.schedule.isDoubles ? 4 : 2)) {_ in
+            ForEach(self.pw.scheduledPlayers!.count ..< (self.schedule.isDoubles ? 4 : 2), id:\.self) {_ in
                 VStack {
                     Image("unassigned44b")
                  }.frame(width: 45.0)

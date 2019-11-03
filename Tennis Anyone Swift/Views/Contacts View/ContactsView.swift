@@ -39,7 +39,7 @@ struct ContactsView: View {
 
                 Section(header:
                     HStack {
-                        Text("PLAYERS")
+                        Text("POTENTIAL PLAYERS")
                         Spacer()
                         Button(action: {
                             self.showModal.toggle()
