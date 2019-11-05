@@ -14,10 +14,10 @@
             filePath = "Tennis Anyone Swift/Views/Schedule Views/ScheduledPlayersSelectionView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "ScheduledPlayersSelectionView"
+            landmarkType = "14">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -30,10 +30,10 @@
             filePath = "Tennis Anyone Swift/Views/Schedule Views/ScheduledPlayersSelectionView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "MultipleSelectionRow"
+            landmarkType = "14">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -50,6 +50,179 @@
             endingLineNumber = "42"
             landmarkName = "body"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5A6BAEBB-6797-4F25-8F2D-029F2577C21A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tennis Anyone Swift/Views/Schedule Views/ScheduledPlayersSelectionView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B002BC53-28A5-4D8F-963D-8645B8006973"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tennis Anyone Swift/Views/Schedule Views/ScheduledPlayerSelectionDetailedView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "ScheduledPlayerSelectionDetailedView"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "B002BC53-28A5-4D8F-963D-8645B8006973 - 53a7cb36dee9dcd0"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tennis_Anyone_Swift.ScheduledPlayerSelectionDetailedView.scheduledPlayer.getter : Tennis_Anyone_Swift.ScheduledPlayer"
+                  moduleName = "Tennis Anyone Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgebreen/Documents/Rabbit%20Hill%20Solutions/Projects/Tennis%20Anyone%20Swift/Tennis%20Anyone%20Swift/Views/Schedule%20Views/ScheduledPlayerSelectionDetailedView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "157">
+               </Location>
+               <Location
+                  uuid = "B002BC53-28A5-4D8F-963D-8645B8006973 - 1db9495db7af5ce4"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tennis_Anyone_Swift.ScheduledPlayerSelectionDetailedView.scheduledPlayer.setter : Tennis_Anyone_Swift.ScheduledPlayer"
+                  moduleName = "Tennis Anyone Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgebreen/Documents/Rabbit%20Hill%20Solutions/Projects/Tennis%20Anyone%20Swift/Tennis%20Anyone%20Swift/Views/Schedule%20Views/ScheduledPlayerSelectionDetailedView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "194">
+               </Location>
+               <Location
+                  uuid = "B002BC53-28A5-4D8F-963D-8645B8006973 - 76ae88696b089cda"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tennis_Anyone_Swift.ScheduledPlayerSelectionDetailedView.scheduledPlayer.modify : Tennis_Anyone_Swift.ScheduledPlayer"
+                  moduleName = "Tennis Anyone Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgebreen/Documents/Rabbit%20Hill%20Solutions/Projects/Tennis%20Anyone%20Swift/Tennis%20Anyone%20Swift/Views/Schedule%20Views/ScheduledPlayerSelectionDetailedView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "146">
+               </Location>
+               <Location
+                  uuid = "B002BC53-28A5-4D8F-963D-8645B8006973 - c4be3ef464de7ea1"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tennis_Anyone_Swift.ScheduledPlayerSelectionDetailedView.scheduledPlayer.modify : Tennis_Anyone_Swift.ScheduledPlayer with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Tennis Anyone Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgebreen/Documents/Rabbit%20Hill%20Solutions/Projects/Tennis%20Anyone%20Swift/Tennis%20Anyone%20Swift/Views/Schedule%20Views/ScheduledPlayerSelectionDetailedView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "B002BC53-28A5-4D8F-963D-8645B8006973 - a9d18e970599cee1"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tennis_Anyone_Swift.ScheduledPlayerSelectionDetailedView.$scheduledPlayer.getter : SwiftUI.Binding&lt;Tennis_Anyone_Swift.ScheduledPlayer&gt;"
+                  moduleName = "Tennis Anyone Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgebreen/Documents/Rabbit%20Hill%20Solutions/Projects/Tennis%20Anyone%20Swift/Tennis%20Anyone%20Swift/Views/Schedule%20Views/ScheduledPlayerSelectionDetailedView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "185">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "17F3919A-7877-40BB-809C-F71F700712D4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tennis Anyone Swift/Views/Schedule Views/ScheduledPlayersSelectionView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "17F3919A-7877-40BB-809C-F71F700712D4 - ee8da4377d3dc31a"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in closure #1 (Tennis_Anyone_Swift.Player) -&gt; Tennis_Anyone_Swift.MultipleSelectionRow in closure #2 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;Tennis_Anyone_Swift.Player&gt;, Foundation.UUID, Tennis_Anyone_Swift.MultipleSelectionRow&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, SwiftUI.Spacer, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;, SwiftUI.List&lt;Swift.Never, SwiftUI.ForEach&lt;Swift.Array&lt;Tennis_Anyone_Swift.Player&gt;, Foundation.UUID, Tennis_Anyone_Swift.MultipleSelectionRow&gt;&gt;, SwiftUI.Spacer)&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0 in Tennis_Anyone_Swift.ScheduledPlayersSelectionView.body.getter : some"
+                  moduleName = "Tennis Anyone Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgebreen/Documents/Rabbit%20Hill%20Solutions/Projects/Tennis%20Anyone%20Swift/Tennis%20Anyone%20Swift/Views/Schedule%20Views/ScheduledPlayersSelectionView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "986">
+               </Location>
+               <Location
+                  uuid = "17F3919A-7877-40BB-809C-F71F700712D4 - f5a0f2d049ebb93f"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 (Tennis_Anyone_Swift.ScheduledPlayer) -&gt; Swift.Bool in closure #2 () -&gt; () in closure #1 (Tennis_Anyone_Swift.Player) -&gt; Tennis_Anyone_Swift.MultipleSelectionRow in closure #2 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;Tennis_Anyone_Swift.Player&gt;, Foundation.UUID, Tennis_Anyone_Swift.MultipleSelectionRow&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, SwiftUI.Spacer, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;, SwiftUI.List&lt;Swift.Never, SwiftUI.ForEach&lt;Swift.Array&lt;Tennis_Anyone_Swift.Player&gt;, Foundation.UUID, Tennis_Anyone_Swift.MultipleSelectionRow&gt;&gt;, SwiftUI.Spacer)&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0 in Tennis_Anyone_Swift.ScheduledPlayersSelectionView.body.getter : some"
+                  moduleName = "Tennis Anyone Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/georgebreen/Documents/Rabbit%20Hill%20Solutions/Projects/Tennis%20Anyone%20Swift/Tennis%20Anyone%20Swift/Views/Schedule%20Views/ScheduledPlayersSelectionView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "96">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6606D643-4EFD-4907-BF02-509087B3EAE9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tennis Anyone Swift/Model/ScheduledPlayer.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "init(player:id:blockedDays:percentPlaying:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

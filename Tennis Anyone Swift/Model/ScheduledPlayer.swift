@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ScheduledPlayer: CustomStringConvertible, Codable, Equatable, Identifiable, ObservableObject {
+class ScheduledPlayer: CustomStringConvertible, Codable, Equatable, Identifiable, ObservableObject, NSCopying {
 
     enum CodingKeys: CodingKey {
         case id, playerId, name, blockedDays, percentPlaying, numWeeks, scheduledWeeks
@@ -24,6 +24,27 @@ class ScheduledPlayer: CustomStringConvertible, Codable, Equatable, Identifiable
     var scheduledWeeks: Int = 0
     var name:String
 
+    init(id: UUID,
+         playerId: UUID,
+         name: String,
+         percentPlaying: Double,
+         blockedDays: [Date]
+    ) {
+        self.id = id
+        self.playerId = playerId
+        self.name = name
+        self.percentPlaying = percentPlaying
+        self.blockedDays = blockedDays
+    }
+    
+    init() {
+        self.id = UUID()
+        self.playerId = UUID()
+        self.name = ""
+        self.percentPlaying = 100.0
+        self.blockedDays = [Date]()
+    }
+    
     init(player: Player,
         id: UUID? = UUID(),
         blockedDays: [Date]? = [Date](),
@@ -34,6 +55,11 @@ class ScheduledPlayer: CustomStringConvertible, Codable, Equatable, Identifiable
             self.name = player.firstName + " " + player.lastName
             self.percentPlaying = percentPlaying!
             self.blockedDays = blockedDays!
+    }
+    
+    func copy(with zone: NSZone? = nil) -> Any {
+        let copy = ScheduledPlayer(id: id, playerId: playerId, name: name, percentPlaying: percentPlaying, blockedDays: blockedDays)
+        return copy
     }
     
     required init(from decoder: Decoder) throws {

@@ -67,7 +67,7 @@ struct ScheduleView: View {
                 }
                 Section(header:
                     HStack {
-                        Text("SCHEDULED PLAYERS")
+                        Text("CONTRACT PLAYERS")
                         Spacer()
                         if(!self.schedule.isBuilt) {
                             Button(action: { self.showModal.toggle() }) {

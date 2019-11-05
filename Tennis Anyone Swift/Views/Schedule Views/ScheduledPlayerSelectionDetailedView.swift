@@ -10,40 +10,47 @@ import Foundation
 import SwiftUI
 
 struct ScheduledPlayerSelectionDetailedView: View {
-//    let menu = Bundle.main.decode([MenuSection].self, from: "menu.json")
     var player: Player
+    @Binding var scheduledPlayer: ScheduledPlayer
+    var doneAction: ()->Void
 
     @EnvironmentObject var schedule: Schedule
     @Environment(\.presentationMode) var presentationMode
 
-//    var scheduledPlayer = self.schedule.scheduledPlayers.first(where: { $0.playerId == player.id })
-
+    var playerIndex: Int {
+        self.schedule.players.firstIndex(where: { $0.id == scheduledPlayer.playerId })!
+    }
 //    @State var name: String = self.venue.name
     var body: some View {
+        NavigationView {
         VStack {
-            Button(action: {
-                 print("dismisses form")
-                 self.presentationMode.wrappedValue.dismiss()
-            })
-            {
-                 Text("Done").multilineTextAlignment(.leading).frame(height: 60)
-            }
-            .frame(alignment: .top)
-
-            Image(uiImage: player.profilePicture!).resizable().frame(width: 100, height: 100, alignment: .center)
-     /*       Form {
-            List {
-                ForEach(player.blockedDays, id: \.self) { blockedDay in
-                    DatePicker(selection: self.player.$blockedDay,
-                               //in: self.schedule.startDate ... self.schedule.endDate,
-                    displayedComponents: .date) {
-                        Text("Venue Blocked/Closed")
-                    }
+            HStack {
+                
+                Button(action: {}) {
+                    Text("Cancel")
+                        .onTapGesture(perform: {
+                            print("Cancel")
+                            self.presentationMode.wrappedValue.dismiss()
+                        })
+                    
+                }
+                
+                Spacer()
+                
+                Button(action: {}) {
+                    Text("Done")
+                        .onTapGesture( perform: {
+                            print("Done")
+                            self.doneAction()
+                            self.presentationMode.wrappedValue.dismiss()
+                        })
                 }
             }
-        }*/
-        }
 
+            Image(uiImage: self.player.profilePicture!).resizable().frame(width: 100, height: 100, alignment: .center)
+            TextField("UserName", text: $scheduledPlayer.name)
+        }.padding()
+        }
     }
 }
 

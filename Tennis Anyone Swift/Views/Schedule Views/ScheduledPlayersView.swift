@@ -16,25 +16,26 @@ struct ScheduledPlayersView: View {
         
         //            NavigationLink(destination: ScheduledPlayersDetailedView()) {
         //                Color.green
-        ScrollView {
-            ZStack {
-                //Color(red:225/255, green: 225/255, blue: 225/255)
-                HStack(alignment: .top) {
-                    
-                    ForEach(self.schedule.scheduledPlayers, id:\.id) { sp in
-                        VStack {
-                            Image(uiImage: self.schedule.players.first(where: {$0.id == sp.playerId})!.profilePicture!).renderingMode(.original).clipShape(Circle())
+
+            ScrollView {
+                ZStack {
+                    //Color(red:225/255, green: 225/255, blue: 225/255)
+                    HStack(alignment: .top) {
+                        
+                        ForEach(self.schedule.scheduledPlayers, id:\.id) { sp in
+                            VStack {
+                                Image(uiImage: self.schedule.players.first(where: {$0.id == sp.playerId})!.profilePicture!).renderingMode(.original).clipShape(Circle())
+                                //.offset(x: -18)
+                                //.padding(.trailing, -18)
+                                Text(sp.name)
+                                    .font(Font.custom("Tahoma", size: 10))
+                                    .foregroundColor(.blue)
+                            } .frame(width: 40.0)
+                                .padding(.trailing, -8.0)
                             //.offset(x: -18)
-                            //.padding(.trailing, -18)
-                            Text(sp.name)
-                                .font(Font.custom("Tahoma", size: 10))
-                                .foregroundColor(.blue)
-                        } .frame(width: 40.0)
-                            .padding(.trailing, -8.0)
-                        //.offset(x: -18)
+                        }
                     }
                 }
-            }
         }
     }
 }
