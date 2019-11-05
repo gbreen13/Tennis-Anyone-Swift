@@ -93,7 +93,7 @@ struct MultipleSelectionRow: View {
                         .onTapGesture(perform: self.action)
                 }
             }
-            Image(uiImage: self.player.profilePicture!).renderingMode(.original)
+            Image(uiImage: self.player.profilePicture!).renderingMode(.original).clipShape(Circle())
             Text(self.player.firstName + " " + self.player.lastName)
             Spacer()
             if self.isSelected {

@@ -23,7 +23,8 @@ struct ScheduledPlayerSelectionDetailedView: View {
     }
 //
     @State private var blockedDay =  Date()
-
+    @State var localBlockedDates: [Date] = [Date]()
+    @State var sliderValue: Double = 100.0
     
     var body: some View {
         NavigationView {
@@ -46,6 +47,8 @@ struct ScheduledPlayerSelectionDetailedView: View {
                         Text("Done")
                             .onTapGesture( perform: {
                                 print("Done")
+                                self.scheduledPlayer.blockedDays = self.localBlockedDates
+                                self.scheduledPlayer.percentPlaying = self.sliderValue
                                 self.onDone()
                                 self.presentationMode.wrappedValue.dismiss()
                             })
@@ -55,24 +58,30 @@ struct ScheduledPlayerSelectionDetailedView: View {
                 Spacer()
                 Form {
                     Section(header: Text(scheduledPlayer.name)){
-                        Slider(value: self.$scheduledPlayer.percentPlaying, in: 25...100, step: 5)
-                        Text("Percent booked:\(self.scheduledPlayer.percentPlaying, specifier: "%.f")%")
+                        Slider(value: $sliderValue, in: 25...100, step: 5)
+                        Text("Percent booked:\(sliderValue, specifier: "%.f")%")
                     }
                     Section(header: Text("Unavailable Days")){
                         List {
-                            ForEach(scheduledPlayer.blockedDays, id: \.self) { blockedDay in
-                                DatePicker(selection: self.$blockedDay,
+                            ForEach(self.localBlockedDates.indices) { index in
+                                DatePicker(selection: self.$localBlockedDates[index],
                                            //in: self.schedule.startDate ... self.schedule.endDate,
                                 displayedComponents: .date) {
-                                    Text("Venue Blocked/Closed")
+                                    Text("Unavailable")
                                 }
-                            }
+                            }.onDelete(perform: delete)
                         }
                     }
                     
                 }
             }
+        }.onAppear {
+            self.localBlockedDates = self.scheduledPlayer.blockedDays
+            self.sliderValue = self.scheduledPlayer.percentPlaying
         }.padding()
+    }
+    func delete(at offsets: IndexSet) {
+        localBlockedDates.remove(atOffsets: offsets)
     }
 }
 

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ScheduledPlayer: CustomStringConvertible, Codable, Equatable, Identifiable, ObservableObject, NSCopying {
+class ScheduledPlayer: CustomStringConvertible, Codable, Equatable, Identifiable, ObservableObject, NSCopying{
 
     enum CodingKeys: CodingKey {
         case id, playerId, name, blockedDays, percentPlaying, numWeeks, scheduledWeeks

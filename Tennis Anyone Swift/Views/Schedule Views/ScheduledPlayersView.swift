@@ -17,8 +17,7 @@ struct ScheduledPlayersView: View {
         //            NavigationLink(destination: ScheduledPlayersDetailedView()) {
         //                Color.green
 
-            ScrollView {
-                ZStack {
+        ScrollView (.horizontal, content: {
                     //Color(red:225/255, green: 225/255, blue: 225/255)
                     HStack(alignment: .top) {
                         
@@ -31,19 +30,20 @@ struct ScheduledPlayersView: View {
                                     .font(Font.custom("Tahoma", size: 10))
                                     .foregroundColor(.blue)
                                 Spacer()
+
                                 Text("\(sp.percentPlaying, specifier: "%.f")%")
                                    .font(Font.custom("Tahoma", size: 10))
                                     .foregroundColor(.gray)
+
                                 Text("\(sp.numWeeks) Weeks")
                                    .font(Font.custom("Tahoma", size: 10))
                                     .foregroundColor(.gray)
                             } .frame(width: 40.0)
-                                .padding(.trailing, -8.0)
+                             //   .padding(.trailing, -8.0)
                             //.offset(x: -18)
                         }
                     }
-                }
-        }
+        })
     }
 }
 
