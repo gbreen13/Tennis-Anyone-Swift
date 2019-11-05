@@ -19,7 +19,7 @@ class ScheduledPlayer: CustomStringConvertible, Codable, Equatable, Identifiable
     var playerId: UUID = UUID()  // id of the player contac information
 
     var blockedDays:[Date]
-    var percentPlaying: Double
+    @Published var percentPlaying: Double
     var numWeeks: Int = 0
     var scheduledWeeks: Int = 0
     var name:String

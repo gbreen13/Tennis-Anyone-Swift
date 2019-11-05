@@ -27,6 +27,8 @@ struct WeeklyScheduleView: View {
 
                 HStack {
                    Text("\(pw.date, formatter: Self.taskDateFormat)")
+                    .foregroundColor((pw.scheduledPlayers!.count < 4) ? .red : .black)
+                    
                    Spacer()
                     
                    VStack(alignment: .leading) {

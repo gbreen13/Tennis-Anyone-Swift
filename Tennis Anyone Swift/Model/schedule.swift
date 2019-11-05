@@ -18,6 +18,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
     @Published var blockedDays: [Date] = [Date]()    // weeks courts are closed (e.g. Thanksgiving)
     @Published var players:[Player] = [Player]()      // all of the members
     @Published var isBuilt: Bool = false   // is it built?
+    var numBadWeeks: Int = 0           // after a build, # weeks that don't have the proper numberof players
     @Published var venues:[Venue] = [Venue]()    // possible locations
     @Published var currentVenue = UUID()
     @Published var isDoubles = true
@@ -130,6 +131,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         } else {
             self.playWeeks = [PlayWeek]()   // wipe out the schedule
         }
+        self.numBadWeeks = 0
     }
     
     required init(from decoder: Decoder) throws {
@@ -383,6 +385,14 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
                     srcweek.schedulePlayer(s: dstplayer)
                     dstweek.unSchedulePlayer(s: dstplayer)
                     dstweek.schedulePlayer(s: srcplayer)
+            }
+        }
+        
+        let numplayers = (isDoubles) ? 4 : 2
+        
+        for pw in self.playWeeks! {
+            if pw.scheduledPlayers!.count < numplayers {
+                self.numBadWeeks += 1
             }
         }
         

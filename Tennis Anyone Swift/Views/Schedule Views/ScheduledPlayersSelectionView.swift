@@ -50,7 +50,8 @@ struct ScheduledPlayersSelectionView: View {
                                                         self.schedule.scheduledPlayers.append(ScheduledPlayer(player: player))
                                                     }
                                                     self.selections.append(self.schedule.scheduledPlayers.first( where: {$0.playerId == player.id})!)
-                                                }},
+                                                }
+                                            },
                                              scheduledPlayer: self.selections.first(where: {$0.playerId == player.id}))
                     }
                     
@@ -82,13 +83,13 @@ struct MultipleSelectionRow: View {
             if self.isSelected {
                 Button(action: {}) {
                     Image(systemName: "checkmark.circle")
-                         .font(.title)
+                        .font(.title)
                         .onTapGesture(perform: self.action)
                 }
             } else {
                 Button(action: {}) {
                     Image(systemName: "circle")
-                         .font(.title)
+                        .font(.title)
                         .onTapGesture(perform: self.action)
                 }
             }
@@ -98,34 +99,34 @@ struct MultipleSelectionRow: View {
             if self.isSelected {
                 VStack {
                     Text("\(self.scheduledPlayer!.blockedDays.count) Blocked Days")
-                       .font(Font.custom("Tahoma", size: 10))
+                        .font(Font.custom("Tahoma", size: 10))
                         .foregroundColor(.gray)
-                    Text(String(format:"%.2f", self.scheduledPlayer!.percentPlaying )+"% player")
-                       .font(Font.custom("Tahoma", size: 10))
+                    Text("Percent booked:\(self.scheduledPlayer!.percentPlaying, specifier: "%.f")%")
+                        .font(Font.custom("Tahoma", size: 10))
                         .foregroundColor(.gray)
-
+                    
                 }
             }
-
+            
             if self.isSelected {
                 Button(action: {
                     self.showingDetail.toggle()
                 }) {
                     Image(systemName: "chevron.right")
                 }.sheet(isPresented: $showingDetail) {
-                    ScheduledPlayerSelectionDetailedView(player: self.player, scheduledPlayer: self.$workingPlayer,
-                                 doneAction: {
-                                    self.schedule.scheduledPlayers.removeAll(where: { $0.id == self.workingPlayer.id })
-                                    self.schedule.scheduledPlayers.append(self.workingPlayer)
-                                }
-                    )
+                    ScheduledPlayerSelectionDetailedView(player: self.player, scheduledPlayer: self.$workingPlayer, onCancel: {
+                        self.workingPlayer = self.scheduledPlayer!
+                    }, onDone: {
+                        self.schedule.scheduledPlayers.removeAll(where: { $0.id == self.workingPlayer.id })
+                        self.schedule.scheduledPlayers.append(self.workingPlayer)
+                    })
                 }.onAppear {
                     self.workingPlayer = self.scheduledPlayer!
                 }
-                }
-                
+            }
+            
         }
-        }
+    }
 }
 
 

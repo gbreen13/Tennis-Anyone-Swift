@@ -86,9 +86,9 @@ struct ScheduleView: View {
                     ScheduledPlayersView()
                 }
                 if(self.schedule.isBuilt) {
-                    Section(header: Text("WEEKLY SCHEDULE")){
+                    Section(header: Text("WEEKLY SCHEDULE (\(self.schedule.playWeeks!.count) weeks)")) {
                         WeeklyScheduleView()
-                    }
+                    }.foregroundColor ((self.schedule.numBadWeeks > 0) ? .red : .black)
                 }
             }
             .navigationBarTitle("Schedule")
