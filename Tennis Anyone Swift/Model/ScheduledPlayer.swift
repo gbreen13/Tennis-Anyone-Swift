@@ -75,7 +75,7 @@ class ScheduledPlayer: CustomStringConvertible, Codable, Equatable, Identifiable
         if allDates != nil { // convert array of date strings to array of dates using formatter
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MM/dd/yy"
-            self.blockedDays = allDates!.compactMap { dateFormatter.date(from: $0) }
+            self.blockedDays = allDates!.compactMap { dateFormatter.date(from: $0)?.stripTime() }
             //           self.blockedDays!.forEach { print("\($0)") }
         }
     }

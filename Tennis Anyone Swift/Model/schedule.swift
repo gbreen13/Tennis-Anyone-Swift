@@ -9,7 +9,15 @@
 import Foundation
 import UIKit
 
+extension Date {
 
+    func stripTime() -> Date {
+        let components = Calendar.current.dateComponents([.year, .month, .day], from: self)
+        let date = Calendar.current.date(from: components)
+        return date!
+    }
+
+}
 class Schedule: Codable, CustomStringConvertible, ObservableObject {
     @Published var startDate: Date = Date()       // date of first week
     @Published var endDate: Date = Date()          // date of last week inclusive

@@ -61,9 +61,18 @@ struct ScheduledPlayerSelectionDetailedView: View {
                         Slider(value: $sliderValue, in: 25...100, step: 5)
                         Text("Percent booked:\(sliderValue, specifier: "%.f")%")
                     }
-                    Section(header: Text("Unavailable Days")){
+
+                    Section(header:
+                        HStack {
+                            Text("UNAVAILABLE DAYS")
+                            Spacer()
+                            Button(action: { self.localBlockedDates.append(Date().stripTime())}) {
+                                Image( systemName:"plus.circle")
+                                    .font(.title)
+                            }
+                    }){
                         List {
-                            ForEach(self.localBlockedDates.indices) { index in
+                            ForEach(self.localBlockedDates.indices, id:\.self) { index in
                                 DatePicker(selection: self.$localBlockedDates[index],
                                            //in: self.schedule.startDate ... self.schedule.endDate,
                                 displayedComponents: .date) {
