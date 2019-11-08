@@ -15,26 +15,9 @@ struct ScheduledPlayersSelectionView: View {
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-       
+        
         NavigationView{
             VStack {
-                HStack {
-                    Button(action: {
-                        print("cancel form")
-                        self.presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Text("Cancel").multilineTextAlignment(.leading).frame(height: 60)
-                    }.padding()
-                    Spacer()
-                    Button(action: {
-                        print("accept form")
-                        self.schedule.scheduledPlayers = self.selections
-                        self.presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Text("Done").multilineTextAlignment(.leading).frame(height: 60)
-                    }.padding()
-                }
- //               Spacer()
                 List {
                     ForEach(self.schedule.players, id:\.id) { player in
                         MultipleSelectionRow(player: player,
@@ -51,7 +34,7 @@ struct ScheduledPlayersSelectionView: View {
                                                     }
                                                     self.selections.append(self.schedule.scheduledPlayers.first( where: {$0.playerId == player.id})!)
                                                 }
-                                            },
+                        },
                                              scheduledPlayer: self.selections.first(where: {$0.playerId == player.id}))
                     }
                     
@@ -61,7 +44,23 @@ struct ScheduledPlayersSelectionView: View {
                 self.selections = self.schedule.scheduledPlayers.map{$0.copy() as! ScheduledPlayer}
                 print("onAppear")
             })
-
+                .navigationBarTitle("Contract Players")
+                .navigationBarItems(
+                    leading:
+                    Button(action: {
+                        print("cancel form")
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Text("Cancel").multilineTextAlignment(.leading).frame(height: 60)
+                    },
+                    trailing:                    Button(action: {
+                        print("accept form")
+                        self.schedule.scheduledPlayers = self.selections
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Text("Done").multilineTextAlignment(.leading).frame(height: 60)
+                    }
+            )
         }
     }
     
@@ -76,7 +75,7 @@ struct MultipleSelectionRow: View {
     @EnvironmentObject var schedule: Schedule
     @State var showingDetail = false
     @State var workingPlayer = ScheduledPlayer()
-
+    
     var body: some View {
         
         HStack {

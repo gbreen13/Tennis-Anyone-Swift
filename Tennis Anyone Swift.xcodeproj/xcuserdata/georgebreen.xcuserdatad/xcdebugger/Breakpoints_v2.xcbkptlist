@@ -7,49 +7,31 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C56A9E2B-8104-4E61-AACA-20C26763D3B9"
+            uuid = "ACD0E9B8-CAA4-4676-B391-FA550B44A01B"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tennis Anyone Swift/Views/Schedule Views/ScheduledPlayersSelectionView.swift"
+            filePath = "Tennis Anyone Swift/Views/Schedule Views/ScheduledPlayerSelectionDetailedView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
+            startingLineNumber = "107"
+            endingLineNumber = "107">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E1C87393-C09D-4144-9784-9FED50296630"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tennis Anyone Swift/Views/Schedule Views/ScheduledPlayerSelectionDetailedView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "body"
             landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "C56A9E2B-8104-4E61-AACA-20C26763D3B9 - d0da3d5b8c10fc0d"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; () in closure #8 () -&gt; Tennis_Anyone_Swift.ScheduledPlayerSelectionDetailedView in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI._ConditionalContent&lt;SwiftUI.Button&lt;&lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0&gt;, SwiftUI.Button&lt;&lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0&gt;&gt;, SwiftUI.Image, SwiftUI.Text, SwiftUI.Spacer, Swift.Optional&lt;SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, SwiftUI.Text)&gt;&gt;&gt;, Swift.Optional&lt;&lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0&gt;)&gt; in Tennis_Anyone_Swift.MultipleSelectionRow.body.getter : some"
-                  moduleName = "Tennis Anyone Swift"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/georgebreen/Documents/Rabbit%20Hill%20Solutions/Projects/Tennis%20Anyone%20Swift/Tennis%20Anyone%20Swift/Views/Schedule%20Views/ScheduledPlayersSelectionView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "120"
-                  endingLineNumber = "120"
-                  offsetFromSymbolStart = "264">
-               </Location>
-               <Location
-                  uuid = "C56A9E2B-8104-4E61-AACA-20C26763D3B9 - df5a97337afd64ea"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Tennis_Anyone_Swift.ScheduledPlayer) -&gt; Swift.Bool in closure #2 () -&gt; () in closure #8 () -&gt; Tennis_Anyone_Swift.ScheduledPlayerSelectionDetailedView in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI._ConditionalContent&lt;SwiftUI.Button&lt;&lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0&gt;, SwiftUI.Button&lt;&lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0&gt;&gt;, SwiftUI.Image, SwiftUI.Text, SwiftUI.Spacer, Swift.Optional&lt;SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, SwiftUI.Text)&gt;&gt;&gt;, Swift.Optional&lt;&lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0&gt;)&gt; in Tennis_Anyone_Swift.MultipleSelectionRow.body.getter : some"
-                  moduleName = "Tennis Anyone Swift"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/georgebreen/Documents/Rabbit%20Hill%20Solutions/Projects/Tennis%20Anyone%20Swift/Tennis%20Anyone%20Swift/Views/Schedule%20Views/ScheduledPlayersSelectionView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "120"
-                  endingLineNumber = "120"
-                  offsetFromSymbolStart = "96">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

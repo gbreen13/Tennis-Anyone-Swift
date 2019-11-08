@@ -92,7 +92,7 @@ struct EmbeddedContactPicker: UIViewControllerRepresentable {
             print(selectedPlayers as Any)
 #endif
             self.dismissfunc()                  //not used.  leaving for example sake for now.
-#if false
+#if true
             self.pm.wrappedValue.dismiss()      //WARNING THIS ONLY WORKS IN THE SIMULATOR ON IOS 13.2
                                                 // call ing this forces the popover to dismiss
                                                 //unfortuneately. the OnDismiss code in ContactsView isn't

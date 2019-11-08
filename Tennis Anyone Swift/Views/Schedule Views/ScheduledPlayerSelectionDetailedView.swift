@@ -22,39 +22,22 @@ struct ScheduledPlayerSelectionDetailedView: View {
         self.schedule.scheduledPlayers.firstIndex(where: { $0.id == scheduledPlayer.id })!
     }
 //
+    class DateItem: Identifiable {
+        var id = UUID()
+        @State var date: Date
+        required init(date:Date) {
+            _date = date
+        }
+    }
+
     @State private var blockedDay =  Date()
-    @State var localBlockedDates: [Date] = [Date]()
     @State var sliderValue: Double = 100.0
+    @State var bd: [DateItem] = [DateItem]()
     
     var body: some View {
         NavigationView {
             VStack {
-                HStack {
-                    
-                    Button(action: {}) {
-                        Text("Cancel")
-                            .onTapGesture(perform: {
-                                print("Cancel")
-                                self.onCancel()
-                                self.presentationMode.wrappedValue.dismiss()
-                            })
-                        
-                    }
-                    
-                    Spacer()
-                    
-                    Button(action: {}) {
-                        Text("Done")
-                            .onTapGesture( perform: {
-                                print("Done")
-                                self.scheduledPlayer.blockedDays = self.localBlockedDates
-                                self.scheduledPlayer.percentPlaying = self.sliderValue
-                                self.onDone()
-                                self.presentationMode.wrappedValue.dismiss()
-                            })
-                    }
-                }
-                Image(uiImage: self.player.profilePicture!).resizable().frame(width: 100, height: 100, alignment: .center)
+                Image(uiImage: self.player.profilePicture!).resizable().frame(width: 100, height: 100, alignment: .center).clipShape(Circle())
                 Spacer()
                 Form {
                     Section(header: Text(scheduledPlayer.name)){
@@ -66,31 +49,61 @@ struct ScheduledPlayerSelectionDetailedView: View {
                         HStack {
                             Text("UNAVAILABLE DAYS")
                             Spacer()
-                            Button(action: { self.localBlockedDates.append(Date().stripTime())}) {
+                            Button(action: {
+                                self.bd.append(DateItem(date:Date().stripTime())) })
+                            {
                                 Image( systemName:"plus.circle")
                                     .font(.title)
                             }
+                            
                     }){
                         List {
-                            ForEach(self.localBlockedDates.indices, id:\.self) { index in
-                                DatePicker(selection: self.$localBlockedDates[index],
-                                           //in: self.schedule.startDate ... self.schedule.endDate,
-                                displayedComponents: .date) {
-                                    Text("Unavailable")
+                            ForEach(self.bd, id:\.id) { bdate in
+                                DatePicker(selection: bdate.$date, displayedComponents: .date) {
+                                    Text("Unavailable:")
                                 }
                             }.onDelete(perform: delete)
+                            
                         }
                     }
                     
                 }
-            }
+            }.navigationBarTitle(scheduledPlayer.name + " Settings")
+            .navigationBarItems(
+              leading:
+                Button(action: {}) {
+                  Text("Cancel")
+                      .onTapGesture(perform: {
+                          print("Cancel")
+                          self.onCancel()
+                          self.presentationMode.wrappedValue.dismiss()
+                      })
+                  
+                },
+              trailing:
+                Button(action: {}) {
+                    Text("Done")
+                        .onTapGesture( perform: {
+                            print("Done")
+                            self.scheduledPlayer.blockedDays = self.bd.map {$0.date}
+                            self.scheduledPlayer.percentPlaying = self.sliderValue
+                            self.onDone()
+                            self.presentationMode.wrappedValue.dismiss()
+                        })
+                }
+            )
         }.onAppear {
-            self.localBlockedDates = self.scheduledPlayer.blockedDays
+            self.bd.removeAll()
+            for bdate in self.scheduledPlayer.blockedDays {
+                let di: DateItem = DateItem(date:bdate.stripTime())
+                self.bd.append(di)
+            }
             self.sliderValue = self.scheduledPlayer.percentPlaying
         }.padding()
     }
     func delete(at offsets: IndexSet) {
-        localBlockedDates.remove(atOffsets: offsets)
+        self.bd.remove(atOffsets: offsets)
+
     }
 }
 
