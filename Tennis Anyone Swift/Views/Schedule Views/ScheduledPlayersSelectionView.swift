@@ -14,6 +14,7 @@ struct ScheduledPlayersSelectionView: View {
     @State var selections: [ScheduledPlayer] = []
     @Environment(\.presentationMode) var presentationMode
     
+    
     var body: some View {
         
         NavigationView{
@@ -35,7 +36,8 @@ struct ScheduledPlayersSelectionView: View {
                                                     self.selections.append(self.schedule.scheduledPlayers.first( where: {$0.playerId == player.id})!)
                                                 }
                         },
-                                             scheduledPlayer: self.selections.first(where: {$0.playerId == player.id}))
+                                             scheduledPlayer: self.selections.first(where: {$0.playerId == player.id}),
+                                             schedule:self.schedule)
                     }
                     
                 }
@@ -71,10 +73,20 @@ struct MultipleSelectionRow: View {
     var isSelected: Bool
     var action: () -> Void
     var scheduledPlayer: ScheduledPlayer?
+    var schedule: Schedule
     
-    @EnvironmentObject var schedule: Schedule
     @State var showingDetail = false
     @State var workingPlayer = ScheduledPlayer()
+    @ObservedObject var rkManager: RKManager
+
+    init (player: Player, isSelected: Bool, action: @escaping ()->Void, scheduledPlayer: ScheduledPlayer?, schedule: Schedule) {
+        self.player = player
+        self.isSelected = isSelected
+        self.action = action
+        self.scheduledPlayer = scheduledPlayer
+        self.schedule = schedule
+        self.rkManager = RKManager(schedule: schedule, blockedDates:[Date]())
+    }
     
     var body: some View {
         
@@ -110,10 +122,12 @@ struct MultipleSelectionRow: View {
             if self.isSelected {
                 Button(action: {
                     self.showingDetail.toggle()
+                    self.rkManager.blockedDates = self.workingPlayer.blockedDays
                 }) {
                     Image(systemName: "chevron.right")
                 }.sheet(isPresented: $showingDetail) {
-                    ScheduledPlayerSelectionDetailedView(player: self.player, scheduledPlayer: self.$workingPlayer, onCancel: {
+ 
+                    ScheduledPlayerSelectionDetailedView(player: self.player, scheduledPlayer: self.$workingPlayer, rkManager: self.rkManager, onCancel: {
                         self.workingPlayer = self.scheduledPlayer!
                     }, onDone: {
                         self.schedule.scheduledPlayers.removeAll(where: { $0.id == self.workingPlayer.id })

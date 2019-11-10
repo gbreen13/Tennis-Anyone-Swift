@@ -12,6 +12,7 @@ import SwiftUI
 struct ScheduledPlayerSelectionDetailedView: View {
     var player: Player
     @Binding var scheduledPlayer: ScheduledPlayer
+    @ObservedObject var rkManager: RKManager
     var onCancel:()->Void
     var onDone:()->Void
 
@@ -22,17 +23,14 @@ struct ScheduledPlayerSelectionDetailedView: View {
         self.schedule.scheduledPlayers.firstIndex(where: { $0.id == scheduledPlayer.id })!
     }
 //
-    class DateItem: Identifiable {
-        var id = UUID()
-        @State var date: Date
-        required init(date:Date) {
-            _date = date
-        }
-    }
-
-    @State private var blockedDay =  Date()
     @State var sliderValue: Double = 100.0
-    @State var bd: [DateItem] = [DateItem]()
+    @State var calIsPresented = false
+    
+    static let dayDateFormat: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yy"
+        return formatter
+    }()
     
     var body: some View {
         NavigationView {
@@ -47,23 +45,22 @@ struct ScheduledPlayerSelectionDetailedView: View {
 
                     Section(header:
                         HStack {
-                            Text("UNAVAILABLE DAYS")
+                            Text("\(self.rkManager.blockedDates.count) UNAVAILABLE DAYS")
                             Spacer()
-                            Button(action: {
-                                self.bd.append(DateItem(date:Date().stripTime())) })
+                            Button(action: {self.calIsPresented.toggle()})
                             {
                                 Image( systemName:"plus.circle")
                                     .font(.title)
-                            }
+                            }.sheet(isPresented: self.$calIsPresented, content: {
+                                RKViewController(isPresented: self.$calIsPresented, rkManager: self.rkManager)})
+
+
                             
                     }){
                         List {
-                            ForEach(self.bd, id:\.id) { bdate in
-                                DatePicker(selection: bdate.$date, displayedComponents: .date) {
-                                    Text("Unavailable:")
-                                }
+                            ForEach(self.rkManager.blockedDates,id:\.self) { blocked in
+                                Text("\(blocked, formatter: Self.dayDateFormat)")
                             }.onDelete(perform: delete)
-                            
                         }
                     }
                     
@@ -85,7 +82,7 @@ struct ScheduledPlayerSelectionDetailedView: View {
                     Text("Done")
                         .onTapGesture( perform: {
                             print("Done")
-                            self.scheduledPlayer.blockedDays = self.bd.map {$0.date}
+                            self.scheduledPlayer.blockedDays = self.rkManager.blockedDates
                             self.scheduledPlayer.percentPlaying = self.sliderValue
                             self.onDone()
                             self.presentationMode.wrappedValue.dismiss()
@@ -93,16 +90,14 @@ struct ScheduledPlayerSelectionDetailedView: View {
                 }
             )
         }.onAppear {
-            self.bd.removeAll()
-            for bdate in self.scheduledPlayer.blockedDays {
-                let di: DateItem = DateItem(date:bdate.stripTime())
-                self.bd.append(di)
-            }
+            self.rkManager.blockedDates = self.scheduledPlayer.blockedDays
             self.sliderValue = self.scheduledPlayer.percentPlaying
         }.padding()
     }
     func delete(at offsets: IndexSet) {
-        self.bd.remove(atOffsets: offsets)
+        self.scheduledPlayer.blockedDays.remove(atOffsets: offsets)
+        self.rkManager.blockedDates = self.scheduledPlayer.blockedDays
+
 
     }
 }
