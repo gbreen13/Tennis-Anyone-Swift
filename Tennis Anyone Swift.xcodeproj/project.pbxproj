@@ -34,6 +34,7 @@
 		26BB594C237860DB007EDF0C /* RKMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BB5945237860DB007EDF0C /* RKMonth.swift */; };
 		26BB594D237860DB007EDF0C /* RKCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BB5946237860DB007EDF0C /* RKCell.swift */; };
 		26BB594E237860DB007EDF0C /* RKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BB5947237860DB007EDF0C /* RKViewController.swift */; };
+		26BB5950237A096D007EDF0C /* EmbeddedMailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BB594F237A096D007EDF0C /* EmbeddedMailController.swift */; };
 		26C1FA3D2361DEF400408999 /* EmbeddedContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C1FA3C2361DEF400408999 /* EmbeddedContactPicker.swift */; };
 		26C1FA3F2363927400408999 /* ScheduledPlayersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C1FA3E2363927400408999 /* ScheduledPlayersView.swift */; };
 		26EECEB9236A26A800B2AF20 /* WeeklyPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EECEB8236A26A800B2AF20 /* WeeklyPlayerView.swift */; };
@@ -72,6 +73,7 @@
 		26BB5945237860DB007EDF0C /* RKMonth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKMonth.swift; sourceTree = "<group>"; };
 		26BB5946237860DB007EDF0C /* RKCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKCell.swift; sourceTree = "<group>"; };
 		26BB5947237860DB007EDF0C /* RKViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKViewController.swift; sourceTree = "<group>"; };
+		26BB594F237A096D007EDF0C /* EmbeddedMailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedMailController.swift; sourceTree = "<group>"; };
 		26C1FA3C2361DEF400408999 /* EmbeddedContactPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedContactPicker.swift; sourceTree = "<group>"; };
 		26C1FA3E2363927400408999 /* ScheduledPlayersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledPlayersView.swift; sourceTree = "<group>"; };
 		26EECEB8236A26A800B2AF20 /* WeeklyPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyPlayerView.swift; sourceTree = "<group>"; };
@@ -95,7 +97,6 @@
 			isa = PBXGroup;
 			children = (
 				26C1FA402363A5AE00408999 /* Schedule Views */,
-				26C1FA3C2361DEF400408999 /* EmbeddedContactPicker.swift */,
 				26C1FA412363A5D400408999 /* Contacts View */,
 				261A97D62360F34D0077EE11 /* HomeScreen.swift */,
 				26BB5940237860BA007EDF0C /* Calendar */,
@@ -140,6 +141,8 @@
 				26020B112358C397005246B4 /* Model */,
 				260BE8C1235764AA00A7A306 /* constants.swift */,
 				260BE8C3235764AA00A7A306 /* jsonSchedule.swift */,
+				26C1FA3C2361DEF400408999 /* EmbeddedContactPicker.swift */,
+				26BB594F237A096D007EDF0C /* EmbeddedMailController.swift */,
 				260BE8B7235646AA00A7A306 /* LaunchScreen.storyboard */,
 				260BE8B2235646AA00A7A306 /* Assets.xcassets */,
 				260BE8BA235646AA00A7A306 /* Info.plist */,
@@ -296,6 +299,7 @@
 				260BE8B12356469F00A7A306 /* ScheduleView.swift in Sources */,
 				261A97D32360B8240077EE11 /* ContactsView.swift in Sources */,
 				26BB594B237860DB007EDF0C /* RKWeekdayHeader.swift in Sources */,
+				26BB5950237A096D007EDF0C /* EmbeddedMailController.swift in Sources */,
 				26BB594D237860DB007EDF0C /* RKCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

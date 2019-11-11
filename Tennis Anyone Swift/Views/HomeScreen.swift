@@ -19,7 +19,7 @@ struct HomeScreen: View {
                 // 3
                 .tabItem {
                     VStack {
-                        Image(systemName: "1.circle")
+                        Image("ContactsIcon").resizable().frame(width:40, height: 40)
                         Text("Contacts")
                     }
             // 4
@@ -29,7 +29,7 @@ struct HomeScreen: View {
             ScheduleView()
                 .tabItem {
                     VStack {
-                        Image(systemName: "2.circle")
+                        Image("ScheduleIcon").resizable().frame(width:40, height: 40)
                         Text("Schedule")
                     }
             }.tag(2)

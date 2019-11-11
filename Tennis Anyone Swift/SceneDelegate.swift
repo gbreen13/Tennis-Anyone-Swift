@@ -23,11 +23,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   
         let decoder = JSONDecoder()
         var schedule: Schedule?
+        var jsonSource: Data
+        
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+
+            let fileURL = dir.appendingPathComponent(Constants.jsonFileName)
+
+            do {
+                let jsonString = try String(contentsOf: fileURL, encoding: .utf8)
+                jsonSource = jsonString.data(using: .utf8)!
+             }
+                
+            catch {
+                jsonSource = jsonSchedule
+            }
+        } else {
+            jsonSource = jsonSchedule
+        }
         do {
-            schedule = try (decoder.decode(Schedule.self, from: jsonSchedule) )
+            schedule = try (decoder.decode(Schedule.self, from: jsonSource) )
             print(schedule as Any);
-          try schedule!.BuildSchedule()
+            try schedule!.BuildSchedule()
             print(schedule as Any);
+       
  /*           print("###")
             let jsonEncoder = JSONEncoder()
             var jsonData = Data()

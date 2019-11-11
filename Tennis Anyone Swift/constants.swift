@@ -14,4 +14,5 @@ struct Constants {
     static let maxTries = 5
     static let defaultCourtMinutes = 90
     static let defaultIconSize = 45.0
+    static let jsonFileName = "schedule.json"
 }

@@ -65,25 +65,32 @@ struct ContactsView: View {
                    PlayerList()
                 }
             }//.background(Image("background")).aspectRatio(contentMode: .fill)
-            .navigationBarTitle("Contacts")
-            .navigationBarItems(trailing:
-                Button(action: {
-#if DEBUG
-                    print(self.schedule)
-                    print(self.schedule.players)
-                    print(self.schedule.scheduledPlayers)
-#endif
-
+                .navigationBarTitle("Contacts")
+                .navigationBarItems(leading:
+                    Button(action: {
+                        
+                        print(self.schedule)
+                        print(self.schedule.players)
+                        print(self.schedule.scheduledPlayers)
+                        }
+                    ) {
+                            Text("Dump")
+                    },
+                    trailing: Button(action: {
+                        do {
+                            try self.schedule.saveJson()
+                        }
+                        catch {}
                     }
-
-            ) {
-                                   Text("Save")
-                               }
-                    )
-            .listStyle(GroupedListStyle())
+                        
+                    ) {
+                        Text("Save")
+                    }
+                )
+                .listStyle(GroupedListStyle())
+            }
         }
-    }
-    
+        
 }
 struct ModalView: View {
 //    let menu = Bundle.main.decode([MenuSection].self, from: "menu.json")

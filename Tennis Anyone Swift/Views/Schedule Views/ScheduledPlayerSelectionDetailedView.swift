@@ -49,7 +49,7 @@ struct ScheduledPlayerSelectionDetailedView: View {
                             Spacer()
                             Button(action: {self.calIsPresented.toggle()})
                             {
-                                Image( systemName:"plus.circle")
+                                Image( systemName:"calendar")
                                     .font(.title)
                             }.sheet(isPresented: self.$calIsPresented, content: {
                                 RKViewController(isPresented: self.$calIsPresented, rkManager: self.rkManager)})

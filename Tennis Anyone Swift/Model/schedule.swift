@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MessageUI
 
 extension Date {
 
@@ -436,5 +437,22 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         }
     }
     
+    func saveJson() throws {
+
+        let jsonEncoder = JSONEncoder()
+        var jsonData = Data()
+        jsonData = try jsonEncoder.encode(self)  // now reencode the data
+        let jsonString = String(data: jsonData, encoding: .utf8)!
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+
+            let fileURL = dir.appendingPathComponent(Constants.jsonFileName)
+
+            //writing
+
+            try jsonString.write(to: fileURL, atomically: false, encoding: .utf8)
+        }
+
+    }
+ 
 }
 

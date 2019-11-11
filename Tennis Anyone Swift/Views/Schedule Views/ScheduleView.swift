@@ -8,6 +8,7 @@
 
 import Combine
 import SwiftUI
+import MessageUI
 
 enum ScheduleFormError: Error {
     case EndDateTooEarly
@@ -36,7 +37,8 @@ struct ScheduleView: View {
     
     @State private var showModal = false
     private var editMode: Bool = false
-    
+    @State var result: Result<MFMailComposeResult, Error>? = nil
+     @State var isShowingMailView = false
     
     var body: some View {
         
@@ -88,11 +90,21 @@ struct ScheduleView: View {
                 if(self.schedule.isBuilt) {
                     Section(header: Text("WEEKLY SCHEDULE (\(self.schedule.playWeeks!.count) weeks)")) {
                         WeeklyScheduleView()
-                    }.foregroundColor ((self.schedule.numBadWeeks > 0) ? .red : .black)
+                    }.foregroundColor ((self.schedule.numBadWeeks > 0) ? .red : .gray)
                 }
             }
             .navigationBarTitle("Schedule")
-            .navigationBarItems(trailing:
+            .navigationBarItems(
+                                leading: Button(action: {
+                    self.isShowingMailView.toggle()
+                }) {
+                    Image(systemName: "square.and.arrow.up.on.square")
+                }
+              .disabled(!MFMailComposeViewController.canSendMail() || !self.schedule.isBuilt)
+                .sheet(isPresented: $isShowingMailView) {
+                    MailView(result: self.$result).environmentObject(self.schedule)
+                },
+                trailing:
                 Button(action: {
                     
                     
@@ -146,7 +158,6 @@ struct ScheduleView: View {
                 .alert(isPresented: $showingAlert) {
                     Alert(title: Text("Error"), message: Text(self.errorString), dismissButton: .default(Text("OK")))
                 }
-                
             )
                 .listStyle(GroupedListStyle())
         }
