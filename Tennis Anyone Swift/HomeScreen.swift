@@ -10,16 +10,17 @@ import SwiftUI
 
 struct HomeScreen: View {
     @EnvironmentObject var schedule: Schedule
+    @State var selection = 1
     var body: some View {
         // 1
 
-        TabView {
+        TabView(selection: $selection) {
             // 2
           ContactsView()
                 // 3
                 .tabItem {
                     VStack {
-                        Image("ContactsIcon").resizable().frame(width:40, height: 40)
+                        selection == 1 ? Image("ContactsIcon_On").resizable().frame(width:40, height: 40) : Image("ContactsIcon_Off").resizable().frame(width:40, height: 40)
                         Text("Contacts")
                     }
             // 4
@@ -29,7 +30,7 @@ struct HomeScreen: View {
             ScheduleView()
                 .tabItem {
                     VStack {
-                        Image("ScheduleIcon").resizable().frame(width:40, height: 40)
+                        selection == 2 ? Image("ScheduleIcon_On").resizable().frame(width:40, height: 40) : Image("ScheduleIcon_Off").resizable().frame(width:40, height: 40)
                         Text("Schedule")
                     }
             }.tag(2)

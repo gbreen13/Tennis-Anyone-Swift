@@ -23,10 +23,10 @@ class RKManager : ObservableObject {
     
     var colors = RKColorSettings()
   
-    init(schedule: Schedule, blockedDates: [Date]) {
-        self.minimumDate = schedule.startDate
-        self.maximumDate = schedule.endDate
-        self.disabledDates = schedule.blockedDays
+    init(startDate: Date, endDate: Date, closedDates: [Date], blockedDates: [Date]) {
+        self.minimumDate = startDate
+        self.maximumDate = endDate
+        self.disabledDates = closedDates
         self.blockedDates = blockedDates            // this is the array of player's blocked days.
     }
     

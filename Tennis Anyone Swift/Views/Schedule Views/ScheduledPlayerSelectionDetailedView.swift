@@ -26,6 +26,7 @@ struct ScheduledPlayerSelectionDetailedView: View {
     @State var sliderValue: Double = 100.0
     @State var calIsPresented = false
     
+    
     static let dayDateFormat: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yy"

@@ -39,7 +39,16 @@ struct ScheduleView: View {
     private var editMode: Bool = false
     @State var result: Result<MFMailComposeResult, Error>? = nil
      @State var isShowingMailView = false
-    
+    @ObservedObject var rkManager = RKManager(startDate: Date(), endDate: Date(), closedDates: [Date](), blockedDates: [Date]())
+    @State var calIsPresented = false
+
+    static let dayDateFormat: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yy"
+        return formatter
+    }()
+
+ 
     var body: some View {
         
         
@@ -61,10 +70,19 @@ struct ScheduleView: View {
                         HStack {
                             Text("CLOSED DAYS")
                             Spacer()
-                            Image(systemName: "plus.circle").foregroundColor(.blue).font(.title)
+                            Button(action: {self.calIsPresented.toggle()})
+                            {
+                                Image( systemName:"calendar")
+                                    .font(.title)
+                            }.sheet(isPresented: self.$calIsPresented, content: {
+                                RKViewController(isPresented: self.$calIsPresented, rkManager: self.rkManager)})
                         }
                     ) {
-                        BlockedList()
+                                                List {
+                            ForEach(self.rkManager.blockedDates,id:\.self) { blocked in
+                                Text("\(blocked, formatter: Self.dayDateFormat)")
+                            }.onDelete(perform: delete)
+                        }
                     }
                 }
                 Section(header:
@@ -160,8 +178,19 @@ struct ScheduleView: View {
                 }
             )
                 .listStyle(GroupedListStyle())
+        }  .onAppear {
+             self.rkManager.minimumDate = self.schedule.startDate
+             self.rkManager.maximumDate = self.schedule.endDate
+             self.rkManager.blockedDates = self.schedule.blockedDays
+            print(self.rkManager.blockedDates)
         }
+
     }
+    func delete(at offsets: IndexSet) {
+        self.schedule.blockedDays.remove(atOffsets: offsets)
+        self.rkManager.blockedDates = self.schedule.blockedDays
+    }
+
     func validateForm() throws {
         
         if (self.schedule.endDate < self.schedule.startDate) {

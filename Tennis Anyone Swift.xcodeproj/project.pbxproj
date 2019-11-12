@@ -26,7 +26,6 @@
 		261A97D52360C4160077EE11 /* ScheduledPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261A97D42360C4160077EE11 /* ScheduledPlayer.swift */; };
 		261A97D72360F34D0077EE11 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261A97D62360F34D0077EE11 /* HomeScreen.swift */; };
 		261A97D92360F7A40077EE11 /* ScheduledPlayersSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261A97D82360F7A40077EE11 /* ScheduledPlayersSelectionView.swift */; };
-		263F3CC2235E478400F028A4 /* VenueBlockedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263F3CC1235E478400F028A4 /* VenueBlockedList.swift */; };
 		26BB5948237860DB007EDF0C /* RKColorSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BB5941237860DB007EDF0C /* RKColorSettings.swift */; };
 		26BB5949237860DB007EDF0C /* RKDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BB5942237860DB007EDF0C /* RKDate.swift */; };
 		26BB594A237860DB007EDF0C /* RKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BB5943237860DB007EDF0C /* RKManager.swift */; };
@@ -65,7 +64,6 @@
 		261A97D42360C4160077EE11 /* ScheduledPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledPlayer.swift; sourceTree = "<group>"; };
 		261A97D62360F34D0077EE11 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		261A97D82360F7A40077EE11 /* ScheduledPlayersSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledPlayersSelectionView.swift; sourceTree = "<group>"; };
-		263F3CC1235E478400F028A4 /* VenueBlockedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueBlockedList.swift; sourceTree = "<group>"; };
 		26BB5941237860DB007EDF0C /* RKColorSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKColorSettings.swift; sourceTree = "<group>"; };
 		26BB5942237860DB007EDF0C /* RKDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKDate.swift; sourceTree = "<group>"; };
 		26BB5943237860DB007EDF0C /* RKManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKManager.swift; sourceTree = "<group>"; };
@@ -98,7 +96,6 @@
 			children = (
 				26C1FA402363A5AE00408999 /* Schedule Views */,
 				26C1FA412363A5D400408999 /* Contacts View */,
-				261A97D62360F34D0077EE11 /* HomeScreen.swift */,
 				26BB5940237860BA007EDF0C /* Calendar */,
 			);
 			path = Views;
@@ -137,6 +134,7 @@
 			children = (
 				260BE8AC2356469F00A7A306 /* AppDelegate.swift */,
 				260BE8AE2356469F00A7A306 /* SceneDelegate.swift */,
+				261A97D62360F34D0077EE11 /* HomeScreen.swift */,
 				26020B102358C365005246B4 /* Views */,
 				26020B112358C397005246B4 /* Model */,
 				260BE8C1235764AA00A7A306 /* constants.swift */,
@@ -181,7 +179,6 @@
 				261A97D82360F7A40077EE11 /* ScheduledPlayersSelectionView.swift */,
 				26EFE736236F4B98006361B1 /* ScheduledPlayerSelectionDetailedView.swift */,
 				26C1FA3E2363927400408999 /* ScheduledPlayersView.swift */,
-				263F3CC1235E478400F028A4 /* VenueBlockedList.swift */,
 				26F0F0592364E3EF00020EE9 /* WeeklyScheduleView.swift */,
 				26EECEB8236A26A800B2AF20 /* WeeklyPlayerView.swift */,
 			);
@@ -272,7 +269,6 @@
 			files = (
 				260BE8AD2356469F00A7A306 /* AppDelegate.swift in Sources */,
 				26BB594E237860DB007EDF0C /* RKViewController.swift in Sources */,
-				263F3CC2235E478400F028A4 /* VenueBlockedList.swift in Sources */,
 				26C1FA3D2361DEF400408999 /* EmbeddedContactPicker.swift in Sources */,
 				26BB5949237860DB007EDF0C /* RKDate.swift in Sources */,
 				26020B132358C464005246B4 /* venue.swift in Sources */,

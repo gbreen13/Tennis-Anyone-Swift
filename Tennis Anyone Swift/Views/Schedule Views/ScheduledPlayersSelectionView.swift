@@ -85,7 +85,7 @@ struct MultipleSelectionRow: View {
         self.action = action
         self.scheduledPlayer = scheduledPlayer
         self.schedule = schedule
-        self.rkManager = RKManager(schedule: schedule, blockedDates:[Date]())
+        self.rkManager = RKManager(startDate: schedule.startDate, endDate: schedule.endDate, closedDates: schedule.blockedDays, blockedDates: [Date]())
     }
     
     var body: some View {
