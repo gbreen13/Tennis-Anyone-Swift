@@ -32,6 +32,8 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
     @Published var currentVenue = UUID()
     @Published var isDoubles = true
     @Published var scheduledPlayers: [ScheduledPlayer] = [ScheduledPlayer]()  // which players are scheduled for this contract time
+    @Published var  rkManager = RKManager(startDate: Date(), endDate: Date(), closedDates: [Date](), blockedDates: [Date]())
+
     
     enum CodingKeys: CodingKey {
         case startDate, endDate, courtMinutes, playWeeks, blockedDays, isBuilt, players, venues, currentVenue, isDoubles, scheduledPlayers
@@ -188,6 +190,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
             self.blockedDays = allDates!.compactMap { dateFormatter.date(from: $0) }
         }
 
+        self.rkManager.setParams(startDate: self.startDate, endDate: self.endDate, blockedDates: self.blockedDays)
 
 
     }

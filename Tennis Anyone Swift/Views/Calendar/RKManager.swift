@@ -30,6 +30,12 @@ class RKManager : ObservableObject {
         self.blockedDates = blockedDates            // this is the array of player's blocked days.
     }
     
+    func setParams(startDate: Date, endDate: Date, blockedDates: [Date]) {
+        self.minimumDate = startDate
+        self.maximumDate = endDate
+        self.blockedDates = blockedDates
+    }
+    
     func blockedDatesContains(date: Date) -> Bool {
         if let _ = self.blockedDates.first(where: { calendar.isDate($0, inSameDayAs: date) }) {
             return true

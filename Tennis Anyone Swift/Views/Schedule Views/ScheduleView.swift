@@ -38,17 +38,16 @@ struct ScheduleView: View {
     @State private var showModal = false
     private var editMode: Bool = false
     @State var result: Result<MFMailComposeResult, Error>? = nil
-     @State var isShowingMailView = false
-    @ObservedObject var rkManager = RKManager(startDate: Date(), endDate: Date(), closedDates: [Date](), blockedDates: [Date]())
+    @State var isShowingMailView = false
     @State var calIsPresented = false
-
+    
     static let dayDateFormat: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yy"
         return formatter
     }()
-
- 
+    
+    
     var body: some View {
         
         
@@ -74,12 +73,15 @@ struct ScheduleView: View {
                             {
                                 Image( systemName:"calendar")
                                     .font(.title)
-                            }.sheet(isPresented: self.$calIsPresented, content: {
-                                RKViewController(isPresented: self.$calIsPresented, rkManager: self.rkManager)})
+                            }.sheet(isPresented: self.$calIsPresented,
+                                    onDismiss:{self.schedule.blockedDays = self.schedule.rkManager.blockedDates.sorted()},
+                                        content: {
+                                RKViewController(isPresented: self.$calIsPresented, rkManager: self.schedule.rkManager)}
+                             )
                         }
                     ) {
-                                                List {
-                            ForEach(self.rkManager.blockedDates,id:\.self) { blocked in
+                        List {
+                            ForEach(self.schedule.blockedDays,id:\.self) { blocked in
                                 Text("\(blocked, formatter: Self.dayDateFormat)")
                             }.onDelete(perform: delete)
                         }
@@ -97,9 +99,9 @@ struct ScheduleView: View {
                         }
                     }
                     .sheet(isPresented: $showModal){
-                                //print("popover")
-                                ScheduledPlayersSelectionView()
-                                    .environmentObject(self.schedule)
+                        //print("popover")
+                        ScheduledPlayersSelectionView()
+                            .environmentObject(self.schedule)
                     })
                 {
                     
@@ -112,34 +114,18 @@ struct ScheduleView: View {
                 }
             }
             .navigationBarTitle("Schedule")
+                
             .navigationBarItems(
-                                leading: Button(action: {
+                leading: Button(action: {
                     self.isShowingMailView.toggle()
                 }) {
                     Image(systemName: "square.and.arrow.up.on.square")
                 }
-              .disabled(!MFMailComposeViewController.canSendMail() || !self.schedule.isBuilt)
+                .disabled(!MFMailComposeViewController.canSendMail() || !self.schedule.isBuilt)
                 .sheet(isPresented: $isShowingMailView) {
                     MailView(result: self.$result).environmentObject(self.schedule)
                 },
-                trailing:
-                Button(action: {
-                    
-                    
-                    #if DEBUG
-                    /*
-                     do  {
-                     let jsonEncoder = JSONEncoder()
-                     let decoder = JSONDecoder()
-                     
-                     var jsonData = Data()
-                     jsonData = try jsonEncoder.encode(self.schedule)  // now reencode the data
-                     let jsonString = String(data: jsonData, encoding: .utf8)!
-                     print(jsonString)
-                     let scheduleTest = try decoder.decode(Schedule.self, from: jsonString.data(using: .utf8)!)
-                     print(scheduleTest as Any);
-                     */
-                    #endif
+                trailing: Button(action: {
                     if(!self.schedule.isBuilt) {
                         do {
                             try self.validateForm()
@@ -176,21 +162,21 @@ struct ScheduleView: View {
                 .alert(isPresented: $showingAlert) {
                     Alert(title: Text("Error"), message: Text(self.errorString), dismissButton: .default(Text("OK")))
                 }
-            )
-                .listStyle(GroupedListStyle())
-        }  .onAppear {
-             self.rkManager.minimumDate = self.schedule.startDate
-             self.rkManager.maximumDate = self.schedule.endDate
-             self.rkManager.blockedDates = self.schedule.blockedDays
-            print(self.rkManager.blockedDates)
+            ) .listStyle(GroupedListStyle())
         }
-
+        .onAppear {
+            self.schedule.rkManager.setParams(startDate: self.schedule.startDate, endDate: self.schedule.endDate, blockedDates: self.schedule.blockedDays)
+        }
+        
+        
     }
+    
+    
     func delete(at offsets: IndexSet) {
         self.schedule.blockedDays.remove(atOffsets: offsets)
-        self.rkManager.blockedDates = self.schedule.blockedDays
+        self.schedule.rkManager.blockedDates = self.schedule.blockedDays
     }
-
+    
     func validateForm() throws {
         
         if (self.schedule.endDate < self.schedule.startDate) {
