@@ -57,9 +57,9 @@ struct MailView: UIViewControllerRepresentable {
             recipients.append(player.email)
         }
         vc.setToRecipients(recipients)
-        vc.setSubject("New Contract Schedule")
-        let message = schedule.description
-        vc.setMessageBody(message, isHTML: false)
+        vc.setSubject("Ignore this Email if you get it")
+        let message = schedule.html
+        vc.setMessageBody(message, isHTML: true)
         return vc
     }
 

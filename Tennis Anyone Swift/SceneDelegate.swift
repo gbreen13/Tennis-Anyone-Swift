@@ -45,6 +45,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             print(schedule as Any);
             try schedule!.BuildSchedule()
             print(schedule as Any);
+            print(schedule!.html)
        
  /*           print("###")
             let jsonEncoder = JSONEncoder()

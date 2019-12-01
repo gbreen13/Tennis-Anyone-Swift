@@ -22,6 +22,7 @@ extension Date {
 class Schedule: Codable, CustomStringConvertible, ObservableObject {
     @Published var startDate: Date = Date()       // date of first week
     @Published var endDate: Date = Date()          // date of last week inclusive
+    @Published var buildDate: Date = Date()
     var courtMinutes: Int? = 90      // how long is court time each week
     @Published var playWeeks: [PlayWeek]? = [PlayWeek]()
     @Published var blockedDays: [Date] = [Date]()    // weeks courts are closed (e.g. Thanksgiving)
@@ -36,7 +37,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
 
     
     enum CodingKeys: CodingKey {
-        case startDate, endDate, courtMinutes, playWeeks, blockedDays, isBuilt, players, venues, currentVenue, isDoubles, scheduledPlayers
+        case startDate, endDate, buildDate, courtMinutes, playWeeks, blockedDays, isBuilt, players, venues, currentVenue, isDoubles, scheduledPlayers
     }
     
 //  MARK: String
@@ -77,6 +78,122 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
             s += "\n"
         }
         return s
+    }
+    
+    var html: String {
+        var s: String = """
+        <!doctype html>
+        <html>
+        <head>
+        <title>Schedule</title>
+        </head>
+        <style>
+        .error {
+            color: .red
+        }
+        .normal {
+            color: .gray
+        }
+        </style>
+        <body>
+        <h1>Contract Schedule</h1>
+        """
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
+
+        s += "<h2>Schedule built:\(dateFormatter.string(from: self.buildDate))</h2>"
+
+        dateFormatter.timeStyle = .none
+        s += "\(self.venues.first(where: {$0.id == self.currentVenue})?.html ?? "Unknown")<br/>"
+        s += "Play time:<br/>"
+        s += "First Date: \(dateFormatter.string(from:self.startDate))<br/>"
+        s += "Last Date: \(dateFormatter.string(from:self.endDate))<br/>"
+        s += "Total Playing Weeks: \(self.playWeeks!.count)<br/>"
+
+        
+//
+//  Players
+//
+        s +=
+        """
+        <h1>Players</h1>
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Desired % playing time</th>
+                <th>Number of Weeks</th>
+            </tr>
+        """
+        
+        for sp in scheduledPlayers {
+            let p = players.first(where:{$0.id == sp.playerId})
+            let phoneStr = p?.phone
+            let nameStr = p?.name
+            s += "<tr><td>\(nameStr ?? "")</td><td>\(phoneStr ?? "")</td><td>\(p!.email)</td><td>\(sp.percentPlaying)</td><td>\(sp.numWeeks)</td></tr>"
+        }
+        s += "</table>"
+
+        
+
+//
+//  Weekly Schedule
+//
+        s += """
+        <h1>Weekly Schedule</h1>
+        <table border="1">
+            <tr>
+                <th>Date</th>
+                <th>Players</th>
+            </tr>
+        """
+        
+
+        var thisWeek: Date = self.startDate
+        while thisWeek < self.endDate {
+            if self.blockedDays.contains(thisWeek) == false {      // as long as the facility is open
+                let pw = self.playWeeks?.first(where: {$0.date == thisWeek})
+                if( pw != nil) {
+                    s += "<tr"
+                    if pw?.scheduledPlayers!.count != ((self.isDoubles) ? 4: 2 ){
+                        s += " bgcolor = \"#ffa0a0\""
+                    }
+                    s += "><td>\(dateFormatter.string(from: thisWeek))</td><td>"
+                    for scheduledPlayer in pw!.scheduledPlayers! {
+                        s += scheduledPlayer.name
+                        s += ", "
+                    }
+                    var unavailStr = "(Unavailable:"
+                    var hasUnavail = false
+                    for scheduledPlayer in scheduledPlayers {
+                         if pw!.isBlocked(s: scheduledPlayer) {
+                             unavailStr += "\(scheduledPlayer.name), "
+                            hasUnavail = true
+                         }
+                    }
+                    if hasUnavail {
+                        s += unavailStr + ")"
+                    }
+                }
+            } else {
+                s += "<tr bgcolor = \"#a0a0a0\"><td>\(dateFormatter.string(from: thisWeek))</td><td>Closed</span>"
+            }
+            s += "</td></tr>"
+            thisWeek = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: thisWeek)!
+        }
+
+        s += "</table>"
+        
+        s += """
+            </body>
+            </html>
+        """
+        
+        return s
+        
     }
     
     enum ScheduleError: Error {
@@ -168,7 +285,8 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         
         if self.endDate < self.startDate {throw ScheduleError.startDateAfterEndDate("End Date before Start Date")}
         
-        
+        self.buildDate = try (container.decodeIfPresent(Date.self, forKey: .buildDate) ?? Date())
+
         self.courtMinutes = try (container.decodeIfPresent(Int.self, forKey: .courtMinutes) ?? Constants.defaultCourtMinutes)
         self.playWeeks = try (container.decodeIfPresent([PlayWeek].self, forKey: .playWeeks) ?? nil)
         self.players = try (container.decodeIfPresent([Player].self, forKey: .players) ?? nil)!
@@ -409,6 +527,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         }
         
         self.isBuilt = true
+        self.buildDate = Date() // now
     }
     
   // MARK: decode
@@ -419,6 +538,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         dateFormatter.dateFormat = "MM/dd/yy"
         try container.encode(dateFormatter.string(from: self.startDate), forKey: .startDate)
         try container.encode(dateFormatter.string(from: self.endDate), forKey: .endDate)
+        try container.encode(buildDate, forKey: .buildDate)
         try container.encode(courtMinutes, forKey: .courtMinutes)
         try container.encode(isBuilt, forKey: .isBuilt)
         try container.encode(isDoubles, forKey: .isDoubles)

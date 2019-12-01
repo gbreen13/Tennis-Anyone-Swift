@@ -36,6 +36,7 @@
 		26BB5950237A096D007EDF0C /* EmbeddedMailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BB594F237A096D007EDF0C /* EmbeddedMailController.swift */; };
 		26C1FA3D2361DEF400408999 /* EmbeddedContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C1FA3C2361DEF400408999 /* EmbeddedContactPicker.swift */; };
 		26C1FA3F2363927400408999 /* ScheduledPlayersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C1FA3E2363927400408999 /* ScheduledPlayersView.swift */; };
+		26C4ACA52392C6DD00BE6C56 /* sampleSchedule.html in Resources */ = {isa = PBXBuildFile; fileRef = 26C4ACA42392C6DD00BE6C56 /* sampleSchedule.html */; };
 		26EECEB9236A26A800B2AF20 /* WeeklyPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EECEB8236A26A800B2AF20 /* WeeklyPlayerView.swift */; };
 		26EFE737236F4B98006361B1 /* ScheduledPlayerSelectionDetailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EFE736236F4B98006361B1 /* ScheduledPlayerSelectionDetailedView.swift */; };
 		26F0F05A2364E3EF00020EE9 /* WeeklyScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F0F0592364E3EF00020EE9 /* WeeklyScheduleView.swift */; };
@@ -74,6 +75,7 @@
 		26BB594F237A096D007EDF0C /* EmbeddedMailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedMailController.swift; sourceTree = "<group>"; };
 		26C1FA3C2361DEF400408999 /* EmbeddedContactPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedContactPicker.swift; sourceTree = "<group>"; };
 		26C1FA3E2363927400408999 /* ScheduledPlayersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledPlayersView.swift; sourceTree = "<group>"; };
+		26C4ACA42392C6DD00BE6C56 /* sampleSchedule.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = sampleSchedule.html; sourceTree = "<group>"; };
 		26EECEB8236A26A800B2AF20 /* WeeklyPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyPlayerView.swift; sourceTree = "<group>"; };
 		26EFE736236F4B98006361B1 /* ScheduledPlayerSelectionDetailedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledPlayerSelectionDetailedView.swift; sourceTree = "<group>"; };
 		26F0F0592364E3EF00020EE9 /* WeeklyScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyScheduleView.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				26020B122358C464005246B4 /* venue.swift */,
 				260BE8C4235764AA00A7A306 /* playWeek.swift */,
 				260BE8C0235764AA00A7A306 /* schedule.swift */,
+				26C4ACA42392C6DD00BE6C56 /* sampleSchedule.html */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				260BE8B9235646AA00A7A306 /* LaunchScreen.storyboard in Resources */,
+				26C4ACA52392C6DD00BE6C56 /* sampleSchedule.html in Resources */,
 				260BE8B6235646AA00A7A306 /* Preview Assets.xcassets in Resources */,
 				260BE8B3235646AA00A7A306 /* Assets.xcassets in Resources */,
 			);

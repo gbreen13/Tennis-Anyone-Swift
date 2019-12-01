@@ -54,6 +54,9 @@ class Venue: CustomStringConvertible, Codable, Equatable, Identifiable, Observab
     var description: String {
         return "Venue: \(self.name), phone: \(self.phone). email: \(self.email)"
     }
+    var html: String {
+        return "Venue: \(self.name), phone: \(self.phone). email: \(self.email)<br/>"
+    }
     #if DEBUG
         static let example = Venue(id: UUID(), name: "Tennis Place",  phone: "215-555-1212")
     #endif

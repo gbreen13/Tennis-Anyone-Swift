@@ -55,12 +55,6 @@ struct ScheduleView: View {
             
             Form {
                 
-                
-                //                  .padding(.horizontal)
-                //               .background(Color.red.opacity(0.2))
-                //                   .colorMultiply(Color.green)
-                
-                //                if self.schedule.isBuilt == true {editmode = false} else {editmode = true}
                 if(!self.schedule.isBuilt) {
                     
                     ScheduleFirstSection()
@@ -74,7 +68,7 @@ struct ScheduleView: View {
                                 Image( systemName:"calendar")
                                     .font(.title)
                             }.sheet(isPresented: self.$calIsPresented,
-                                    onDismiss:{self.schedule.blockedDays = self.schedule.rkManager.blockedDates.sorted()},
+                                    onDismiss:{self.schedule.blockedDays = self.schedule.rkManager.blockedDates},
                                         content: {
                                 RKViewController(isPresented: self.$calIsPresented, rkManager: self.schedule.rkManager)}
                              )
@@ -131,7 +125,6 @@ struct ScheduleView: View {
                             try self.validateForm()
                             
                             if(self.showingAlert == false) {
-                                print("building")
                                 self.schedule.prepareForBuild()
                                 try self.schedule.BuildSchedule()
                                 let jsonEncoder = JSONEncoder()
@@ -139,9 +132,10 @@ struct ScheduleView: View {
                                 var jsonData = Data()
                                 jsonData = try jsonEncoder.encode(self.schedule)  // now reencode the data
                                 let jsonString = String(data: jsonData, encoding: .utf8)!
+                                #if DEBUG
                                 print(jsonString)
                                 print(self.schedule as Any);
-                                
+                                #endif
                             }
                         } catch  {
                             self.showingAlert = true
