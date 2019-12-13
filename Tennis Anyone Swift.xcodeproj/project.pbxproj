@@ -108,10 +108,10 @@
 			children = (
 				260BE8C2235764AA00A7A306 /* player.swift */,
 				261A97D42360C4160077EE11 /* ScheduledPlayer.swift */,
+				26C4ACA42392C6DD00BE6C56 /* sampleSchedule.html */,
 				26020B122358C464005246B4 /* venue.swift */,
 				260BE8C4235764AA00A7A306 /* playWeek.swift */,
 				260BE8C0235764AA00A7A306 /* schedule.swift */,
-				26C4ACA42392C6DD00BE6C56 /* sampleSchedule.html */,
 			);
 			path = Model;
 			sourceTree = "<group>";

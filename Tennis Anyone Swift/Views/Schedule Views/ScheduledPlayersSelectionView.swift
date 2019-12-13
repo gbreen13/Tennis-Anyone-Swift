@@ -93,14 +93,16 @@ struct MultipleSelectionRow: View {
         HStack {
             if self.isSelected {
                 Button(action: {}) {
-                    Image(systemName: "checkmark.circle")
+                    Image(systemName: "checkmark.circle.fill")
                         .font(.title)
+                        .foregroundColor(.blue)
                         .onTapGesture(perform: self.action)
                 }
             } else {
                 Button(action: {}) {
                     Image(systemName: "circle")
                         .font(.title)
+                        .foregroundColor(.gray)
                         .onTapGesture(perform: self.action)
                 }
             }
@@ -108,12 +110,12 @@ struct MultipleSelectionRow: View {
             Text(self.player.firstName + " " + self.player.lastName)
             Spacer()
             if self.isSelected {
-                VStack {
-                    Text("\(self.scheduledPlayer!.blockedDays.count) Blocked Days")
-                        .font(Font.custom("Tahoma", size: 10))
+                VStack(alignment: HorizontalAlignment.trailing) {
+                    Text(" Blocked Days: \(self.scheduledPlayer!.blockedDays.count)")
+                        .font(Font.custom("Tahoma", size: 13))
                         .foregroundColor(.gray)
                     Text("Percent booked:\(self.scheduledPlayer!.percentPlaying, specifier: "%.f")%")
-                        .font(Font.custom("Tahoma", size: 10))
+                        .font(Font.custom("Tahoma", size: 13))
                         .foregroundColor(.gray)
                     
                 }

@@ -11,6 +11,15 @@ import Foundation
 import UIKit
 import Contacts
 
+extension UIColor {
+    convenience init(red: Int, green:Int, blue: Int) {
+        self.init(red: CGFloat(red)/255.0, green: CGFloat(green)/255.0, blue: CGFloat(blue)/255.0, alpha: 1.0)
+    }
+    convenience init( rgb: Int) {
+        self.init(red: (rgb >> 16) & 0xff, green: (rgb >> 8) & 0xff, blue: (rgb & 0xff))
+    }
+}
+
 class Player: CustomStringConvertible, Codable, Equatable, Identifiable, ObservableObject {
     
     enum CodingKeys: CodingKey {
@@ -31,9 +40,8 @@ class Player: CustomStringConvertible, Codable, Equatable, Identifiable, Observa
     
     func createProfilePicture() -> UIImage?    {
         let lblNameInitialize = UILabel()
-        let alphabetColors = [UIColor.blue, UIColor.brown, UIColor.cyan, UIColor.darkGray, UIColor.green, UIColor.magenta, UIColor.purple, UIColor.orange, UIColor.red]
-
-
+        let flatColors = [0x55efc4, 0x74b9ff, 0xdfe6e9, 0x00cec9, 0x6c5ce7, 0xffeaa7, 0xff7675, 0x636e72,0xe17055, 0xe84393,
+                          0x81ecec,0xa29bfe,0xfab1a0, 0xfd79a8]
         lblNameInitialize.frame.size = CGSize(width: Constants.defaultIconSize, height: Constants.defaultIconSize)
         lblNameInitialize.textColor = UIColor.white
         var s = ""
@@ -47,8 +55,8 @@ class Player: CustomStringConvertible, Codable, Equatable, Identifiable, Observa
         if s == "" { s = "?"}
         lblNameInitialize.text = s
         lblNameInitialize.textAlignment = NSTextAlignment.center
-        lblNameInitialize.backgroundColor = alphabetColors[Player.self.colorIndex]
-        Player.self.colorIndex = (Player.self.colorIndex+1) % alphabetColors.count
+        lblNameInitialize.backgroundColor = UIColor(rgb:flatColors[Player.self.colorIndex])
+        Player.self.colorIndex = (Player.self.colorIndex+1) % flatColors.count
         lblNameInitialize.layer.cornerRadius = 50.0
 
         UIGraphicsBeginImageContext(lblNameInitialize.frame.size)
