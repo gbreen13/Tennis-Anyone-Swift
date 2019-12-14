@@ -47,7 +47,13 @@ struct ScheduleView: View {
         return formatter
     }()
     
-    
+    static let buildDateFormat: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+        return formatter
+    }()
+
     var body: some View {
         
         
@@ -55,6 +61,10 @@ struct ScheduleView: View {
             
             Form {
                 
+                if(self.schedule.isBuilt) {
+
+                    Text("Schedule Build Date: \(self.schedule.buildDate, formatter: Self.buildDateFormat)")
+                }
                 if(!self.schedule.isBuilt) {
                     
                     ScheduleFirstSection()
@@ -98,8 +108,26 @@ struct ScheduleView: View {
                             .environmentObject(self.schedule)
                     })
                 {
-                    
-                    ScheduledPlayersView()
+                    if(self.schedule.players.count < (self.schedule.isDoubles ? 4 : 2)) {
+                        ContactsPlayersPrompt()
+                    } else {
+                        if(!self.schedule.isBuilt) {
+                            HStack {
+                                Image(systemName:"pencil")
+                                    .foregroundColor(Color.white)
+                                    .font(.title)
+                                Spacer()
+                                Text("Select to add and configure players to this contract")
+                                    .font(.title)
+                                    .multilineTextAlignment(.leading)
+                                    .foregroundColor(Color.white)
+                            }
+                            .background(Color(Constants.blueBackgroundColor))
+                                //        .padding(.vertical)
+                                .listRowInsets(EdgeInsets())
+                        }
+                        ScheduledPlayersView()
+                    }
                 }
                 if(self.schedule.isBuilt) {
                     Section(header: Text("WEEKLY SCHEDULE (\(self.schedule.playWeeks!.count) weeks)")) {
@@ -189,6 +217,23 @@ struct ScheduleView: View {
         return min...max
     }
     
+}
+
+struct ContactsPlayersPrompt: View {
+    var body: some View {
+        HStack {
+            Spacer()
+            Text("Not enough tennis players in your contacts screen.  Please add more")
+                .font(.title)
+                .multilineTextAlignment(.leading)
+                .foregroundColor(Color.white)
+        }
+        .background(Color(Constants.blueBackgroundColor))
+//        .padding(.vertical)
+        .listRowInsets(EdgeInsets())
+        
+        
+    }
 }
 
 struct ScheduleView_Previews: PreviewProvider {

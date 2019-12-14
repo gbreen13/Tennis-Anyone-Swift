@@ -58,13 +58,18 @@ struct ContactsView: View {
                         }
                     }) {
                         ModalView(selectedPlayers: self.$selectedPlayers)
-//                        EmbeddedContactPicker(selectedPlayers: self.$selectedPlayers, dismissfunc: self.$dismissfunc)
-
+                        //                        EmbeddedContactPicker(selectedPlayers: self.$selectedPlayers, dismissfunc: self.$dismissfunc)
+                        
                     })
                 {
-                   PlayerList()
+                    if (self.schedule.players.count == 0) {
+                        ContactsPrompt()
+                    } else {
+                        PlayerList()
+                    }
                 }
-            }//.background(Image("background")).aspectRatio(contentMode: .fill)
+            }
+                //.background(Image("background")).aspectRatio(contentMode: .fill)
                 .navigationBarTitle("Contacts")
                 .navigationBarItems(leading:
                     Button(action: {
@@ -92,6 +97,25 @@ struct ContactsView: View {
         }
         
 }
+
+struct ContactsPrompt: View {
+    var body: some View {
+        HStack {
+            Image("addcontactsel").renderingMode(.original)
+            Spacer()
+            Text("Press to add tennis players from contacts.  Swipe to delete.")
+                .font(.title)
+                .multilineTextAlignment(.leading)
+                .foregroundColor(Color.white)
+        }
+        .background(Color(Constants.blueBackgroundColor))
+//        .padding(.vertical)
+        .listRowInsets(EdgeInsets())
+        
+        
+    }
+}
+
 struct ModalView: View {
 //    let menu = Bundle.main.decode([MenuSection].self, from: "menu.json")
     @EnvironmentObject var schedule: Schedule
