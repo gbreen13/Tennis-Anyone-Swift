@@ -32,6 +32,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
     @Published var venues:[Venue] = [Venue]()    // possible locations
     @Published var currentVenue = UUID()
     @Published var isDoubles = true
+    @Published var errorString = ""
     @Published var scheduledPlayers: [ScheduledPlayer] = [ScheduledPlayer]()  // which players are scheduled for this contract time
     @Published var  rkManager = RKManager(startDate: Date(), endDate: Date(), closedDates: [Date](), blockedDates: [Date]())
 
@@ -226,13 +227,42 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         return (self.players.count >= (self.isDoubles ? 4 : 2))
     }
     
+    func validNumberOfScheduledPlayers()->Bool {
+        return (self.scheduledPlayers.count >= (self.isDoubles ? 4 : 2))
+    }
+    
     func validDates()->Bool {
-        return(self.endDate >= self.startDate)
+        return self.endDate >= self.startDate
     }
     func validSchedule()->Bool {
         return self.validDates() && self.validNumberOfPlayers()
         
     }
+    func validateForm()  {
+        
+        self.errorString = ""
+
+        if (!self.validDates()) {
+            self.errorString = "Correct the start and end dates"
+            return
+        }
+        let diffInDays = Calendar.current.dateComponents([.day], from: self.startDate, to: self.endDate).day!
+        
+        if (diffInDays < 7) {
+            self.errorString = "Set the end date to be at least a week after the start date"
+            return
+        }
+        
+        if (!self.validNumberOfScheduledPlayers()) {
+            self.errorString = "Add more players to this contract schedule below"
+        }
+        
+        if (!self.validNumberOfPlayers()) {
+            self.errorString = "Add more tennis players to contacts screen"
+        }
+        
+    }
+
     func returnNumberOfPlayweeks()->Int {
         var numweeks = 0
         if(self.validDates() == false) {

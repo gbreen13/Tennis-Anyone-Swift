@@ -58,6 +58,7 @@ struct ScheduledPlayersSelectionView: View {
                     trailing:                    Button(action: {
                         print("accept form")
                         self.schedule.scheduledPlayers = self.selections
+                        self.schedule.validateForm()
                         self.presentationMode.wrappedValue.dismiss()
                     }) {
                         Text("Done").multilineTextAlignment(.leading).frame(height: 60)

@@ -26,4 +26,5 @@ struct Constants {
     static let defaultIconSize = 45.0
     static let jsonFileName = "schedule.json"
     static let blueBackgroundColor = UIColor(rgb: 0x4288C5)
+    static let redBackgroundColor = UIColor(rgb: 0xea8685)
 }

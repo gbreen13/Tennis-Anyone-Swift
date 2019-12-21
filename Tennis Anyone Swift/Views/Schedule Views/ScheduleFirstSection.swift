@@ -10,7 +10,27 @@ import SwiftUI
 
 struct ScheduleFirstSection : View {
 
-@EnvironmentObject var schedule: Schedule
+    @EnvironmentObject var schedule: Schedule
+    
+    @State private var endDate: Date = Date()
+
+    private var endDateProxy:Binding<Date> {
+        Binding<Date>(get: {self.schedule.endDate }, set: {
+            self.endDate = $0
+            self.schedule.endDate = $0
+            self.schedule.validateForm()
+        })
+    }
+
+    @State private var startDate: Date = Date()
+
+    private var startDateProxy:Binding<Date> {
+        Binding<Date>(get: {self.schedule.startDate }, set: {
+            self.startDate = $0
+            self.schedule.startDate = $0
+            self.schedule.validateForm()
+        })
+    }
 
     var body: some View {
         
@@ -29,7 +49,6 @@ struct ScheduleFirstSection : View {
                 }
                 
                 Toggle(isOn: $schedule.isDoubles)
- //                   .frame(alignment: .center)
                     {
                         EmptyView()
                     }
@@ -48,13 +67,13 @@ struct ScheduleFirstSection : View {
             }
             
             DatePicker(
-                selection: $schedule.startDate,
+                selection: startDateProxy,
                // in: dateClosedRange,
                 displayedComponents: .date,
                 label: { Text("Start Date") }
             )
             DatePicker(
-                selection: $schedule.endDate,
+                selection: endDateProxy,
     //                        in: self.schedule.starDate ... ,
                 displayedComponents: .date,
                 label: { Text("End Date").foregroundColor(schedule.validDates() ? .black: .red) }

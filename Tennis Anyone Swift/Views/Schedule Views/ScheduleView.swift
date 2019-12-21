@@ -33,13 +33,12 @@ struct ScheduleView: View {
     @EnvironmentObject var schedule: Schedule
     
     @State private var showingAlert = false
-    @State private var errorString = ""
-    
     @State private var showModal = false
     private var editMode: Bool = false
     @State var result: Result<MFMailComposeResult, Error>? = nil
     @State var isShowingMailView = false
     @State var calIsPresented = false
+    private var errorString: String = ""
     
     static let dayDateFormat: DateFormatter = {
         let formatter = DateFormatter()
@@ -66,7 +65,24 @@ struct ScheduleView: View {
                     Text("Schedule Build Date: \(self.schedule.buildDate, formatter: Self.buildDateFormat)")
                 }
                 if(!self.schedule.isBuilt) {
-                    
+                    if self.schedule.errorString  != "" {
+                        
+                        HStack {
+                             Spacer()
+                            Image(systemName: "exclamationmark.triangle")
+                                .font(.title)
+                                .foregroundColor(Color.white)
+                            Spacer()
+                            Text(self.schedule.errorString)
+                                .font(.title)
+                                .multilineTextAlignment(.leading)
+                                .foregroundColor(Color.white)
+                        }
+                            .background(Color(Constants.redBackgroundColor))
+                            .listRowInsets(EdgeInsets())
+                        
+                    }
+
                     ScheduleFirstSection()
                     
                     Section(header:
@@ -103,31 +119,13 @@ struct ScheduleView: View {
                         }
                     }
                     .sheet(isPresented: $showModal){
-                        //print("popover")
                         ScheduledPlayersSelectionView()
                             .environmentObject(self.schedule)
                     })
                 {
-                    if(self.schedule.players.count < (self.schedule.isDoubles ? 4 : 2)) {
-                        ContactsPlayersPrompt()
-                    } else {
-                        if(!self.schedule.isBuilt) {
-                            HStack {
-                                Image(systemName:"pencil")
-                                    .foregroundColor(Color.white)
-                                    .font(.title)
-                                Spacer()
-                                Text("Select to add and configure players to this contract")
-                                    .font(.title)
-                                    .multilineTextAlignment(.leading)
-                                    .foregroundColor(Color.white)
-                            }
-                            .background(Color(Constants.blueBackgroundColor))
-                                //        .padding(.vertical)
-                                .listRowInsets(EdgeInsets())
-                        }
-                        ScheduledPlayersView()
-                    }
+
+                    ScheduledPlayersView()
+                    
                 }
                 if(self.schedule.isBuilt) {
                     Section(header: Text("WEEKLY SCHEDULE (\(self.schedule.playWeeks!.count) weeks)")) {
@@ -150,8 +148,7 @@ struct ScheduleView: View {
                 trailing: Button(action: {
                     if(!self.schedule.isBuilt) {
                         do {
-                            try self.validateForm()
-                            
+                            self.schedule.validateForm()
                             if(self.showingAlert == false) {
                                 self.schedule.prepareForBuild()
                                 try self.schedule.BuildSchedule()
@@ -167,7 +164,7 @@ struct ScheduleView: View {
                             }
                         } catch  {
                             self.showingAlert = true
-                            self.errorString = error.localizedDescription
+ //                           self.errorString = error.localizedDescription
                         }
                         
                     }
@@ -188,6 +185,7 @@ struct ScheduleView: View {
         }
         .onAppear {
             self.schedule.rkManager.setParams(startDate: self.schedule.startDate, endDate: self.schedule.endDate, blockedDates: self.schedule.blockedDays)
+            self.schedule.validateForm()
         }
         
         
@@ -199,18 +197,6 @@ struct ScheduleView: View {
         self.schedule.rkManager.blockedDates = self.schedule.blockedDays
     }
     
-    func validateForm() throws {
-        
-        if (self.schedule.endDate < self.schedule.startDate) {
-            throw(ScheduleFormError.EndDateTooEarly)
-        }
-        let diffInDays = Calendar.current.dateComponents([.day], from: self.schedule.startDate, to: self.schedule.endDate).day!
-        
-        if (diffInDays < 7) {
-            throw(ScheduleFormError.NoWeeksToSchedule)
-        }
-    }
-    
     var dateClosedRange: ClosedRange<Date> {
         let min = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date())!
         let max = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: Date())!
@@ -219,22 +205,7 @@ struct ScheduleView: View {
     
 }
 
-struct ContactsPlayersPrompt: View {
-    var body: some View {
-        HStack {
-            Spacer()
-            Text("Not enough tennis players in your contacts screen.  Please add more")
-                .font(.title)
-                .multilineTextAlignment(.leading)
-                .foregroundColor(Color.white)
-        }
-        .background(Color(Constants.blueBackgroundColor))
-//        .padding(.vertical)
-        .listRowInsets(EdgeInsets())
-        
-        
-    }
-}
+
 
 struct ScheduleView_Previews: PreviewProvider {
     static var previews: some View {
