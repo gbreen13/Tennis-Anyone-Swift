@@ -11,22 +11,22 @@ import SwiftUI
 struct ScheduleFirstSection : View {
 
     @EnvironmentObject var schedule: Schedule
-    
-    @State private var endDate: Date = Date()
 
+/*
+     Because we need to validate the dates and put up an error message if they don't jibe, we need to have
+     proceedural code when the dates change to go back and trigger a redraw of the Schedule screen.
+     onTapGesture doesn't seem to work with DatePickers, so the next best thing
+     is to create a binding proxy with set and get code that manipulates the model and checks the
+     */
     private var endDateProxy:Binding<Date> {
         Binding<Date>(get: {self.schedule.endDate }, set: {
-            self.endDate = $0
             self.schedule.endDate = $0
             self.schedule.validateForm()
         })
     }
 
-    @State private var startDate: Date = Date()
-
     private var startDateProxy:Binding<Date> {
         Binding<Date>(get: {self.schedule.startDate }, set: {
-            self.startDate = $0
             self.schedule.startDate = $0
             self.schedule.validateForm()
         })
@@ -68,15 +68,13 @@ struct ScheduleFirstSection : View {
             
             DatePicker(
                 selection: startDateProxy,
-               // in: dateClosedRange,
                 displayedComponents: .date,
-                label: { Text("Start Date") }
+                label: { Text("Contract start date") }
             )
             DatePicker(
                 selection: endDateProxy,
-    //                        in: self.schedule.starDate ... ,
                 displayedComponents: .date,
-                label: { Text("End Date").foregroundColor(schedule.validDates() ? .black: .red) }
+                label: { Text("Contract end date").foregroundColor(schedule.validDates() ? .black: .red) }
             )
             
            Text("# Playable Weeks:\(schedule.returnNumberOfPlayweeks())")

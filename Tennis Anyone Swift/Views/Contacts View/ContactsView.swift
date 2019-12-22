@@ -22,6 +22,7 @@ struct ContactsView: View {
     @State private var errorString = ""
     
     @State private var showModal = false
+    @State private var showVenueModal = false
     @State var selectedPlayers:[Player]?
 
 
@@ -33,10 +34,26 @@ struct ContactsView: View {
         NavigationView {
             
             Form {
-               Section(header: Text("PLACES")){
-                   VenueList()
-               }
-
+                Section(header:
+                    HStack {
+                        Text("COURTS")
+                        Spacer()
+                        Button(action: {
+                            self.showVenueModal.toggle()
+                            self.schedule.venues.append(Venue())
+                        }) {
+                            Image(systemName: "plus.circle")
+                                .font(.title)
+                        }
+                    }
+                ) {
+                    if (self.schedule.venues.count == 0) {
+                        VenuePrompt()
+                    } else {
+                        VenueList()
+                    }
+                }
+                
                 Section(header:
                     HStack {
                         Text("POTENTIAL PLAYERS")
@@ -58,7 +75,6 @@ struct ContactsView: View {
                         }
                     }) {
                         ModalView(selectedPlayers: self.$selectedPlayers)
-                        //                        EmbeddedContactPicker(selectedPlayers: self.$selectedPlayers, dismissfunc: self.$dismissfunc)
                         
                     })
                 {
@@ -69,38 +85,38 @@ struct ContactsView: View {
                     }
                 }
             }
-                //.background(Image("background")).aspectRatio(contentMode: .fill)
-                .navigationBarTitle("Contacts")
+            .navigationBarTitle("Contacts")
                 .navigationBarItems(leading:
                     Button(action: {
                         
                         print(self.schedule)
                         print(self.schedule.players)
                         print(self.schedule.scheduledPlayers)
-                        }
+                    }
                     ) {
-                            Text("Dump")
+                        Text("Dump")
                     },
-                    trailing: Button(action: {
-                        do {
-                            try self.schedule.saveJson()
-                        }
-                        catch {}
+                                    trailing: Button(action: {
+                                        do {
+                                            try self.schedule.saveJson()
+                                        }
+                                        catch {}
+                                    }
+                                        
+                                    ) {
+                                        Text("Save")
                     }
-                        
-                    ) {
-                        Text("Save")
-                    }
-                )
+            )
                 .listStyle(GroupedListStyle())
-            }
         }
-        
+    }
+    
 }
 
 struct ContactsPrompt: View {
     var body: some View {
         HStack {
+            Spacer()
             Image("addcontactsel").renderingMode(.original)
             Spacer()
             Text("Press to add tennis players from contacts.  Swipe to delete.")
@@ -109,7 +125,25 @@ struct ContactsPrompt: View {
                 .foregroundColor(Color.white)
         }
         .background(Color(Constants.blueBackgroundColor))
-//        .padding(.vertical)
+        .listRowInsets(EdgeInsets())
+        
+        
+    }
+}
+struct VenuePrompt: View {
+    var body: some View {
+        HStack {
+            Spacer()
+            Image(systemName: "plus.circle")
+                .foregroundColor(Color.white)
+                .font(.title)
+            Spacer()
+            Text("Press to add a tennis club ")
+                .font(.title)
+                .multilineTextAlignment(.leading)
+                .foregroundColor(Color.white)
+        }
+        .background(Color(Constants.blueBackgroundColor))
         .listRowInsets(EdgeInsets())
         
         

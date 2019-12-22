@@ -11,17 +11,10 @@ struct VenueRow : View {
     var venue: Venue
     
     @EnvironmentObject var schedule: Schedule
-    /*
-    var venueIndex: Int {
-        schedule.venues.firstIndex(where: { $0.id == venue.id })!
-    }
- */
+
     var body: some View {
         
         HStack {
-//            Image(item.thumbnailImage)   .clipShape(Circle())
-
- 
             VStack(alignment: .leading) {
                 Text(venue.name)
                     .multilineTextAlignment(.leading)
