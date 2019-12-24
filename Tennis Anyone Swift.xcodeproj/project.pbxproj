@@ -11,6 +11,7 @@
 		26020B152358DCA8005246B4 /* VenueList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26020B142358DCA8005246B4 /* VenueList.swift */; };
 		26020B172358E074005246B4 /* VenueDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26020B162358E074005246B4 /* VenueDetail.swift */; };
 		260AF32023B1065700A2EF73 /* ContactPlayerDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260AF31F23B1065700A2EF73 /* ContactPlayerDetail.swift */; };
+		260AF32223B2723B00A2EF73 /* Prompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260AF32123B2723B00A2EF73 /* Prompt.swift */; };
 		260BE8AD2356469F00A7A306 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BE8AC2356469F00A7A306 /* AppDelegate.swift */; };
 		260BE8AF2356469F00A7A306 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BE8AE2356469F00A7A306 /* SceneDelegate.swift */; };
 		260BE8B12356469F00A7A306 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BE8B02356469F00A7A306 /* ScheduleView.swift */; };
@@ -49,6 +50,7 @@
 		26020B142358DCA8005246B4 /* VenueList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueList.swift; sourceTree = "<group>"; };
 		26020B162358E074005246B4 /* VenueDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueDetail.swift; sourceTree = "<group>"; };
 		260AF31F23B1065700A2EF73 /* ContactPlayerDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPlayerDetail.swift; sourceTree = "<group>"; };
+		260AF32123B2723B00A2EF73 /* Prompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Prompt.swift; path = "Tennis Anyone Swift/Views/Prompt.swift"; sourceTree = SOURCE_ROOT; };
 		260BE8A92356469F00A7A306 /* Tennis Anyone Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tennis Anyone Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		260BE8AC2356469F00A7A306 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		260BE8AE2356469F00A7A306 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 		26020B102358C365005246B4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				260AF32123B2723B00A2EF73 /* Prompt.swift */,
 				26C1FA402363A5AE00408999 /* Schedule Views */,
 				26C1FA412363A5D400408999 /* Contacts View */,
 				26BB5940237860BA007EDF0C /* Calendar */,
@@ -283,6 +286,7 @@
 				26BB5948237860DB007EDF0C /* RKColorSettings.swift in Sources */,
 				26EECEB9236A26A800B2AF20 /* WeeklyPlayerView.swift in Sources */,
 				260BE8AF2356469F00A7A306 /* SceneDelegate.swift in Sources */,
+				260AF32223B2723B00A2EF73 /* Prompt.swift in Sources */,
 				26F0F05C236601DB00020EE9 /* ScheduleFirstSection.swift in Sources */,
 				26C1FA3F2363927400408999 /* ScheduledPlayersView.swift in Sources */,
 				261A97D72360F34D0077EE11 /* HomeScreen.swift in Sources */,

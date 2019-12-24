@@ -27,4 +27,4 @@ struct Constants {
     static let jsonFileName = "schedule.json"
     static let blueBackgroundColor = UIColor(rgb: 0x4288C5)
     static let redBackgroundColor = UIColor(rgb: 0xea8685)
-}
+    static let yellowBackgroundColor = UIColor(rgb: 0xf4d03f)}

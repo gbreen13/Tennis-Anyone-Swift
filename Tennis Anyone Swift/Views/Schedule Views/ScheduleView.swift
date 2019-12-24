@@ -66,21 +66,7 @@ struct ScheduleView: View {
                 }
                 if(!self.schedule.isBuilt) {
                     if self.schedule.errorString  != "" {
-                        
-                        HStack {
-                             Spacer()
-                            Image(systemName: "exclamationmark.triangle")
-                                .font(.title)
-                                .foregroundColor(Color.white)
-                            Spacer()
-                            Text(self.schedule.errorString)
-                                .font(.title)
-                                .multilineTextAlignment(.leading)
-                                .foregroundColor(Color.white)
-                        }
-                            .background(Color(Constants.redBackgroundColor))
-                            .listRowInsets(EdgeInsets())
-                        
+                        ErrorPrompt(errorString: self.schedule.errorString)
                     }
 
                     ScheduleFirstSection()
