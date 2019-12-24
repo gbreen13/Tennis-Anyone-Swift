@@ -35,10 +35,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
              }
                 
             catch {
-                jsonSource = jsonSchedule
+                jsonSource = "{}".data(using: .utf8)!
             }
         } else {
-            jsonSource = jsonSchedule
+            jsonSource = "{}".data(using: .utf8)!
         }
         do {
             schedule = try (decoder.decode(Schedule.self, from: jsonSource) )

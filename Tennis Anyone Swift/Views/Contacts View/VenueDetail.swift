@@ -13,7 +13,6 @@ import os
 
 
 struct VenueDetail: View {
-//    let menu = Bundle.main.decode([MenuSection].self, from: "menu.json")
     var venue: Venue
 
     @EnvironmentObject var schedule: Schedule
@@ -22,7 +21,6 @@ struct VenueDetail: View {
         schedule.venues.firstIndex(where: { $0.id == venue.id })!
     }
 
-//    @State var name: String = self.venue.name
     var body: some View {
 
         NavigationView {
@@ -33,12 +31,7 @@ struct VenueDetail: View {
                 TextField("Email", text: $schedule.venues[venueIndex].email)
             }
         }
-            /*
-        .navigationBarItems(trailing:
-            NavigationLink(destination: EmbeddedContactPicker()) {
-                    Text("Contacts")
-                }
-        )*/        .navigationBarTitle(Text("Venues"))
+        .navigationBarTitle(Text("Courts"))
 
     }
 }

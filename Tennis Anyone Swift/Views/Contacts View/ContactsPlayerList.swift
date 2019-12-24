@@ -17,16 +17,18 @@ struct PlayerRow : View {
             Image(uiImage: player.profilePicture!).clipShape(Circle())
             
             VStack(alignment: .leading) {
-                Text(player.name!)
+                Text(player.name)
                     .multilineTextAlignment(.leading)
-                Text(player.phone!)
+                Text(player.phone)
                     .multilineTextAlignment(.leading)
                     .font(Font.custom("Tahoma", size: 10))
                     .foregroundColor(.gray)
                 Text(player.email)
                     .multilineTextAlignment(.leading)
                     .font(Font.custom("Tahoma", size: 10))
-                    .foregroundColor(.gray)            }
+                    .foregroundColor(.gray)
+                
+            }
             
         }
     }
@@ -35,14 +37,18 @@ struct PlayerRow : View {
 
 struct PlayerList : View {
     @EnvironmentObject var schedule: Schedule
+    @State var needsRefresh = true
 
     var body: some View {
-
+        
         List {      //id:\.id causes a fuckup for some reason
-            ForEach(schedule.players ,id:\.name) { player in
-                PlayerRow(player: player)
+            ForEach(schedule.players ,id:\.id) { player in
+                NavigationLink(destination: ContactPlayerDetail(player: player)) {
+                    PlayerRow(player: player)
+                }
             }.onDelete(perform: delete)
-            .onMove(perform: move)
+                .onMove(perform: move)
+            
         }
     }
     

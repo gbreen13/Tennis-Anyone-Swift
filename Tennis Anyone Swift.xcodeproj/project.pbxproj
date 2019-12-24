@@ -10,6 +10,7 @@
 		26020B132358C464005246B4 /* venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26020B122358C464005246B4 /* venue.swift */; };
 		26020B152358DCA8005246B4 /* VenueList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26020B142358DCA8005246B4 /* VenueList.swift */; };
 		26020B172358E074005246B4 /* VenueDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26020B162358E074005246B4 /* VenueDetail.swift */; };
+		260AF32023B1065700A2EF73 /* ContactPlayerDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260AF31F23B1065700A2EF73 /* ContactPlayerDetail.swift */; };
 		260BE8AD2356469F00A7A306 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BE8AC2356469F00A7A306 /* AppDelegate.swift */; };
 		260BE8AF2356469F00A7A306 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BE8AE2356469F00A7A306 /* SceneDelegate.swift */; };
 		260BE8B12356469F00A7A306 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BE8B02356469F00A7A306 /* ScheduleView.swift */; };
@@ -47,6 +48,7 @@
 		26020B122358C464005246B4 /* venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = venue.swift; sourceTree = "<group>"; };
 		26020B142358DCA8005246B4 /* VenueList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueList.swift; sourceTree = "<group>"; };
 		26020B162358E074005246B4 /* VenueDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueDetail.swift; sourceTree = "<group>"; };
+		260AF31F23B1065700A2EF73 /* ContactPlayerDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPlayerDetail.swift; sourceTree = "<group>"; };
 		260BE8A92356469F00A7A306 /* Tennis Anyone Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tennis Anyone Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		260BE8AC2356469F00A7A306 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		260BE8AE2356469F00A7A306 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			children = (
 				261A97D22360B8240077EE11 /* ContactsView.swift */,
 				260BE8CA2357ABA500A7A306 /* ContactsPlayerList.swift */,
+				260AF31F23B1065700A2EF73 /* ContactPlayerDetail.swift */,
 				26020B142358DCA8005246B4 /* VenueList.swift */,
 				26020B162358E074005246B4 /* VenueDetail.swift */,
 			);
@@ -288,6 +291,7 @@
 				260BE8C5235764AA00A7A306 /* schedule.swift in Sources */,
 				260BE8C9235764AA00A7A306 /* playWeek.swift in Sources */,
 				26BB594A237860DB007EDF0C /* RKManager.swift in Sources */,
+				260AF32023B1065700A2EF73 /* ContactPlayerDetail.swift in Sources */,
 				260BE8C6235764AA00A7A306 /* constants.swift in Sources */,
 				26EFE737236F4B98006361B1 /* ScheduledPlayerSelectionDetailedView.swift in Sources */,
 				260BE8C8235764AA00A7A306 /* jsonSchedule.swift in Sources */,

@@ -31,6 +31,12 @@ struct ScheduleFirstSection : View {
             self.schedule.validateForm()
         })
     }
+    private var currentVenueProxy:Binding<UUID> {
+        Binding<UUID>(get: {self.schedule.currentVenue }, set: {
+            self.schedule.currentVenue = $0
+            self.schedule.validateForm()
+        })
+    }
 
     var body: some View {
         
@@ -79,7 +85,7 @@ struct ScheduleFirstSection : View {
             
            Text("# Playable Weeks:\(schedule.returnNumberOfPlayweeks())")
 
-            Picker(selection: $schedule.currentVenue, label: Text("Where") .foregroundColor((schedule.venues.firstIndex(where: { $0.id == self.schedule.currentVenue }) != nil) ? .black: .red)) {
+            Picker(selection: currentVenueProxy, label: Text("Where") .foregroundColor((schedule.venues.firstIndex(where: { $0.id == self.schedule.currentVenue }) != nil) ? .black: .red)) {
 
                 ForEach(self.schedule.venues, id: \.id) { venue in
                     Text(venue.name).tag(venue.id)

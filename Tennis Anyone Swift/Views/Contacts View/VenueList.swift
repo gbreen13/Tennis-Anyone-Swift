@@ -32,7 +32,6 @@ struct VenueRow : View {
 
 struct VenueList : View {
     @EnvironmentObject var schedule: Schedule
-    @State private var showDeleteActionSheet = false
 
     var body: some View {
         List {

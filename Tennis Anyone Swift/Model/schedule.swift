@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import MessageUI
+import Combine
+import SwiftUI
 
 extension Date {
 
@@ -35,7 +37,6 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
     @Published var errorString = ""
     @Published var scheduledPlayers: [ScheduledPlayer] = [ScheduledPlayer]()  // which players are scheduled for this contract time
     @Published var  rkManager = RKManager(startDate: Date(), endDate: Date(), closedDates: [Date](), blockedDates: [Date]())
-
     
     enum CodingKeys: CodingKey {
         case startDate, endDate, buildDate, courtMinutes, playWeeks, blockedDays, isBuilt, players, venues, currentVenue, isDoubles, scheduledPlayers
@@ -260,7 +261,13 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         if (!self.validNumberOfPlayers()) {
             self.errorString = "Add more tennis players to contacts screen"
         }
-        
+        if(self.venues.firstIndex(where: { $0.id == self.currentVenue }) == nil) {
+            self.errorString = "Select a court location"
+        }
+        if(self.venues.count <= 0) {
+            self.errorString = "Add at least one tennis court to the contacts screen"
+        }
+
     }
 
     func returnNumberOfPlayweeks()->Int {
@@ -301,7 +308,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
             dateFormatter.dateFormat = "MM/dd/yy"
             self.startDate = dateFormatter.date(from: when!)!
         } else {
-            throw ScheduleError.noStartDate("No Start Date")
+            self.startDate = Date()
         }
         
         when = try (container.decodeIfPresent(String.self, forKey: .endDate) ?? nil)
@@ -310,19 +317,18 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
             dateFormatter.dateFormat = "MM/dd/yy"
             self.endDate = dateFormatter.date(from: when!)!
         } else {
-            throw ScheduleError.noEndDate("No End Date")
+            endDate = Date()
         }
-        
-        if self.endDate < self.startDate {throw ScheduleError.startDateAfterEndDate("End Date before Start Date")}
         
         self.buildDate = try (container.decodeIfPresent(Date.self, forKey: .buildDate) ?? Date())
 
         self.courtMinutes = try (container.decodeIfPresent(Int.self, forKey: .courtMinutes) ?? Constants.defaultCourtMinutes)
         self.playWeeks = try (container.decodeIfPresent([PlayWeek].self, forKey: .playWeeks) ?? nil)
-        self.players = try (container.decodeIfPresent([Player].self, forKey: .players) ?? nil)!
+        self.players = try (container.decodeIfPresent([Player].self, forKey: .players) ?? [Player]())
+        
         self.scheduledPlayers = try (container.decodeIfPresent([ScheduledPlayer].self, forKey: .scheduledPlayers) ?? [ScheduledPlayer]())
-        self.venues = try (container.decodeIfPresent([Venue].self, forKey: .venues) ?? nil)!
-        self.currentVenue = try (container.decodeIfPresent(UUID.self, forKey: .currentVenue) ?? self.venues[0].id)!
+        self.venues = try (container.decodeIfPresent([Venue].self, forKey: .venues) ?? [Venue]())!
+        self.currentVenue = try (container.decodeIfPresent(UUID.self, forKey: .currentVenue) ?? UUID())
         self.isBuilt = try (container.decodeIfPresent(Bool.self, forKey: .isBuilt) ?? false)
         self.isDoubles = try (container.decodeIfPresent(Bool.self, forKey: .isDoubles) ?? true)
         let allDates: [String]? = try container.decodeIfPresent([String].self, forKey: .blockedDays) ?? nil

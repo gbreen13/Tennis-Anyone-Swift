@@ -9,6 +9,7 @@
 
 let jsonSchedule = """
   {
+
       "venues": [{
           "email": "radnor.com",
           "id": "D68FE878-67FD-43DB-89D4-B614BBF2B116",

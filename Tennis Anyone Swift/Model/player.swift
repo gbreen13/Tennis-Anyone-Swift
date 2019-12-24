@@ -10,6 +10,8 @@
 import Foundation
 import UIKit
 import Contacts
+import Combine
+import SwiftUI
 
 
 
@@ -21,10 +23,11 @@ class Player: CustomStringConvertible, Codable, Equatable, Identifiable, Observa
     
     var id: UUID
     @Published var email: String
-    @Published var phone: String?
-    @Published var name: String?
-    var firstName: String
-    var lastName: String
+    @Published var phone: String
+    @Published var name: String
+    @Published var firstName: String
+    @Published var lastName: String
+
     var profilePicture: UIImage?
     var storedContact: CNMutableContact?
     var phoneNumberField: (CNLabeledValue<CNPhoneNumber>)?
@@ -65,7 +68,7 @@ class Player: CustomStringConvertible, Codable, Equatable, Identifiable, Observa
      }
     
     init(id: UUID? = UUID(),
-     name: String? = nil,
+     name: String? = "",
      email: String? = "",
         phone: String? = "",
         firstName: String? = "",
@@ -73,7 +76,7 @@ class Player: CustomStringConvertible, Codable, Equatable, Identifiable, Observa
         profilePicture: UIImage? = nil
     ) {
         self.id = id!
-        self.name = name
+        self.name = name!
         self.email = email!
         self.phone = phone!
         self.firstName = firstName!
@@ -126,7 +129,7 @@ print(self)
     }
     
     var description: String {
-        return "id:\(self.id)\n\(self.firstName) \(self.lastName), \(self.email), \(self.phone!)"
+        return "id:\(self.id)\n\(self.firstName) \(self.lastName), \(self.email), \(self.phone)"
     }
     
     func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{

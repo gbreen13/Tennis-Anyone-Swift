@@ -22,7 +22,7 @@ struct ScheduledPlayerSelectionDetailedView: View {
     var playerIndex: Int {
         self.schedule.scheduledPlayers.firstIndex(where: { $0.id == scheduledPlayer.id })!
     }
-//
+
     @State var sliderValue: Double = 100.0
     @State var calIsPresented = false
     
@@ -40,7 +40,7 @@ struct ScheduledPlayerSelectionDetailedView: View {
                 Spacer()
                 Form {
                     Section(header: Text(scheduledPlayer.name)){
-                        Slider(value: $sliderValue, in: 25...100, step: 5)
+                        Slider(value: $sliderValue, in: 10...100, step: 5)
                         Text("Percent booked:\(sliderValue, specifier: "%.f")%")
                     }
 
@@ -83,7 +83,7 @@ struct ScheduledPlayerSelectionDetailedView: View {
                     Text("Done")
                         .onTapGesture( perform: {
                             print("Done")
-                            self.scheduledPlayer.blockedDays = self.rkManager.blockedDates
+                            self.scheduledPlayer.blockedDays = self.rkManager.blockedDates.sorted()
                             self.scheduledPlayer.percentPlaying = self.sliderValue
                             self.onDone()
                             self.presentationMode.wrappedValue.dismiss()
@@ -96,10 +96,7 @@ struct ScheduledPlayerSelectionDetailedView: View {
         }.padding()
     }
     func delete(at offsets: IndexSet) {
-        self.scheduledPlayer.blockedDays.remove(atOffsets: offsets)
-        self.rkManager.blockedDates = self.scheduledPlayer.blockedDays
-
-
+        self.rkManager.blockedDates.remove(atOffsets: offsets)
     }
 }
 

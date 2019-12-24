@@ -62,7 +62,7 @@ struct ScheduleView: View {
                 
                 if(self.schedule.isBuilt) {
 
-                    Text("Schedule Build Date: \(self.schedule.buildDate, formatter: Self.buildDateFormat)")
+                    Text("Schedule Generation Date: \(self.schedule.buildDate, formatter: Self.buildDateFormat)")
                 }
                 if(!self.schedule.isBuilt) {
                     if self.schedule.errorString  != "" {
@@ -164,7 +164,6 @@ struct ScheduleView: View {
                             }
                         } catch  {
                             self.showingAlert = true
- //                           self.errorString = error.localizedDescription
                         }
                         
                     }
@@ -173,7 +172,7 @@ struct ScheduleView: View {
                     }
                 }) {
                     if(!self.schedule.isBuilt) {
-                        Text("Build")
+                        Text("Generate")
                     } else {
                         Text("Edit")
                     }
