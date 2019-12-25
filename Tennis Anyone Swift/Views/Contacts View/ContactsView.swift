@@ -86,7 +86,8 @@ struct ContactsView: View {
                 }
             }
             .navigationBarTitle("Contacts")
-                .navigationBarItems(leading:
+//#if DEBUG
+            .navigationBarItems(trailing:
                     Button(action: {
                         
                         print(self.schedule)
@@ -95,18 +96,9 @@ struct ContactsView: View {
                     }
                     ) {
                         Text("Dump")
-                    },
-                                    trailing: Button(action: {
-                                        do {
-                                            try self.schedule.saveJson()
-                                        }
-                                        catch {}
-                                    }
-                                        
-                                    ) {
-                                        Text("Save")
                     }
             )
+//#endif
                 .listStyle(GroupedListStyle())
         }
     }

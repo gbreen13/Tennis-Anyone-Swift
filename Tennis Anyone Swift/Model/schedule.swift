@@ -30,6 +30,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
     @Published var blockedDays: [Date] = [Date]()    // weeks courts are closed (e.g. Thanksgiving)
     @Published var players:[Player] = [Player]()      // all of the members
     @Published var isBuilt: Bool = false   // is it built?
+    @Published var isSaved: Bool = false
     var numBadWeeks: Int = 0           // after a build, # weeks that don't have the proper numberof players
     @Published var venues:[Venue] = [Venue]()    // possible locations
     @Published var currentVenue = UUID()
@@ -297,6 +298,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
             self.playWeeks = [PlayWeek]()   // wipe out the schedule
         }
         self.numBadWeeks = 0
+        self.isSaved = false
     }
     
     required init(from decoder: Decoder) throws {
@@ -345,7 +347,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         }
 
         self.rkManager.setParams(startDate: self.startDate, endDate: self.endDate, blockedDates: self.blockedDays)
-
+        self.isSaved = true     // unti it is edited
 
     }
 //  MARK: Find Slot
@@ -609,6 +611,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
             //writing
 
             try jsonString.write(to: fileURL, atomically: false, encoding: .utf8)
+            self.isSaved = true
         }
 
     }

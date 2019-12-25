@@ -20,11 +20,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         // Create the SwiftUI view that provides the window contents.
-  
+ 
         let decoder = JSONDecoder()
+         var jsonSource: Data
+
         var schedule: Schedule?
-        var jsonSource: Data
-        
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
 
             let fileURL = dir.appendingPathComponent(Constants.jsonFileName)
@@ -42,12 +42,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         do {
             schedule = try (decoder.decode(Schedule.self, from: jsonSource) )
+/*
             print(schedule as Any);
             try schedule!.BuildSchedule()
             print(schedule as Any);
             print(schedule!.html)
        
- /*           print("###")
+           print("###")
             let jsonEncoder = JSONEncoder()
             var jsonData = Data()
             jsonData = try jsonEncoder.encode(schedule)  // now reencode the data
@@ -55,14 +56,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             print(jsonString)
             schedule = try decoder.decode(Schedule.self, from: jsonString.data(using: .utf8)!)
             print(schedule as Any);
-*/
 
+*/
         }
         catch {
-            print(error)
+            print("error")
         }
         
-
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
            let window = UIWindow(windowScene: windowScene)
