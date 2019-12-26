@@ -10,23 +10,6 @@ import Combine
 import SwiftUI
 import MessageUI
 
-enum ScheduleFormError: Error {
-    case EndDateTooEarly
-    case NoWeeksToSchedule
-}
-
-extension ScheduleFormError: LocalizedError {
-    var errorDescription: String? {
-        switch self {
-        case .EndDateTooEarly:
-            return NSLocalizedString("End date must be after start date", comment: "")
-        case .NoWeeksToSchedule:
-            return NSLocalizedString("Start and end dates must be at least one week apart", comment:"")
-            
-        }
-    }
-}
-
 struct MyButtonStyle: ButtonStyle {
     var color: Color = .green
     
@@ -79,26 +62,26 @@ struct ScheduleView: View {
     }()
 
     var body: some View {
-                
+        
         NavigationView {
             
             Form {
                 
                 if(self.schedule.isBuilt) {     // in Schedule Display mode
-
+                    
                     Button(action:  {self.generateSchedule()})
                     {
                         Text("Generate Schedule")
-                    }.buttonStyle(MyButtonStyle(color: .blue))
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+                    }
+                    .buttonStyle(MyButtonStyle(color: .blue))
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
 
-                    .frame(alignment: .center)
                     
                     Text("Schedule Generation Date: \(self.schedule.buildDate, formatter: Self.buildDateFormat)")
                     if(!self.schedule.isSaved) {
                         WarningPrompt(errorString: "Schedule needs to be saved before it can be emailed out")
                     }
-
+                    
                     Section(header: Text("CONTRACT PLAYERS"))
                     {
                         ScheduledPlayersView()
@@ -115,11 +98,12 @@ struct ScheduleView: View {
                         Button(action:  {self.generateSchedule()})
                         {
                             Text("Generate Schedule")
-                        }.buttonStyle(MyButtonStyle(color: .blue))
-                               .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-
+                        }
+                        .buttonStyle(MyButtonStyle(color: .blue))
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+                        
                     }
-
+                    
                     ScheduleFirstSection()
                     
                     Section(header:
@@ -167,43 +151,43 @@ struct ScheduleView: View {
                 }
             }
             .navigationBarTitle("Schedule")
-//
-//  If in Edit mode, There are no options on the screen
-//  If the schedule is built then the options are to save if the file hasn't been saved.  If the file has been saved,
+                //
+                //  If in Edit mode, There are no options on the screen
+                //  If the schedule is built then the options are to save if the file hasn't been saved.  If the file has been saved,
                 
-            .navigationBarItems(
-                leading: Button(action: {
-                    if(self.schedule.isBuilt && !self.schedule.isSaved) {   // save
-                        do {
-                            try self.schedule.saveJson()
-                            self.schedule.isSaved = true
+                .navigationBarItems(
+                    leading: Button(action: {
+                        if(self.schedule.isBuilt && !self.schedule.isSaved) {   // save
+                            do {
+                                try self.schedule.saveJson()
+                                self.schedule.isSaved = true
+                            }
+                            catch {}
+                        } else  {                                               // email
+                            self.isShowingMailView.toggle()
+                            
                         }
-                        catch {}
-                    } else  {                                               // email
-                        self.isShowingMailView.toggle()
-                        
+                    }) {
+                        if(self.schedule.isBuilt && !self.schedule.isSaved) {
+                            Text("Save")
+                        } else {
+                            Image(systemName: "square.and.arrow.up.on.square")
+                        }
+                    } // disable the button if it is an email button AND can't email
+                        .disabled(!MFMailComposeViewController.canSendMail() && !(self.schedule.isBuilt && !self.schedule.isSaved))
+                        .sheet(isPresented: $isShowingMailView) {
+                            MailView(result: self.$result).environmentObject(self.schedule)
+                    },
+                    trailing: Button(action: {
+                        // put in edit mode
+                        self.schedule.isBuilt = false;
                     }
-                }) {
-                    if(self.schedule.isBuilt && !self.schedule.isSaved) {
-                        Text("Save")
-                    } else {
-                        Image(systemName: "square.and.arrow.up.on.square")
+                    ) {
+                        Text("Edit")
                     }
-                } // disable the button if it is an email button AND can't email
-                .disabled(!MFMailComposeViewController.canSendMail() && !(self.schedule.isBuilt && !self.schedule.isSaved))
-                .sheet(isPresented: $isShowingMailView) {
-                    MailView(result: self.$result).environmentObject(self.schedule)
-                },
-                trailing: Button(action: {
-                    // put in edit mode
-                    self.schedule.isBuilt = false;
-                }
-                ) {
-                    Text("Edit")
-                }
-                .alert(isPresented: $showingAlert) {
-                    Alert(title: Text("Error"), message: Text(self.errorString), dismissButton: .default(Text("OK")))
-                }
+                    .alert(isPresented: $showingAlert) {
+                        Alert(title: Text("Error"), message: Text(self.errorString), dismissButton: .default(Text("OK")))
+                    }
             ) .listStyle(GroupedListStyle())
         }
         .onAppear {
@@ -237,7 +221,7 @@ struct ScheduleView: View {
         }
         
     }
-
+    
     
     func delete(at offsets: IndexSet) {
         self.schedule.blockedDays.remove(atOffsets: offsets)

@@ -12,6 +12,8 @@ import SwiftUI
 struct PlayerRow : View {
     var player: Player
 
+    @EnvironmentObject var schedule: Schedule
+
     var body: some View {
         HStack {
             Image(uiImage: player.profilePicture!).clipShape(Circle())

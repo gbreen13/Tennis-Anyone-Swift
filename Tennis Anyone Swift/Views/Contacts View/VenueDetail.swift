@@ -18,16 +18,19 @@ struct VenueDetail: View {
     
     private var venueNameProxy:Binding<String> {
         Binding<String>(get: {self.venue.name}, set: {
+            self.schedule.objectWillChange.send()       // force the schedule to change to refresh the paretn screen
             self.venue.name = $0
         })
     }
     private var venuePhoneProxy:Binding<String> {
         Binding<String>(get: {self.venue.phone}, set: {
+            self.schedule.objectWillChange.send()       // force the schedule to change to refresh the paretn screen
             self.venue.phone = $0
         })
     }
     private var venueEmailProxy:Binding<String> {
         Binding<String>(get: {self.venue.email}, set: {
+            self.schedule.objectWillChange.send()       // force the schedule to change to refresh the paretn screen
             self.venue.email = $0
         })
     }

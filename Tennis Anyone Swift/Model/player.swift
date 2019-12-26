@@ -22,11 +22,11 @@ class Player: CustomStringConvertible, Codable, Equatable, Identifiable, Observa
     }
     
     var id: UUID
-    @Published var email: String
-    @Published var phone: String
-    @Published var name: String
-    @Published var firstName: String
-    @Published var lastName: String
+    @Published var email: String = ""
+    @Published var phone: String = ""
+    @Published var name: String = ""
+    @Published var firstName: String = ""
+    @Published var lastName: String = ""
 
     var profilePicture: UIImage?
     var storedContact: CNMutableContact?
