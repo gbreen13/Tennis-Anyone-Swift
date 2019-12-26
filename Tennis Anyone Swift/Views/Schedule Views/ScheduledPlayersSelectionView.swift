@@ -59,6 +59,7 @@ struct ScheduledPlayersSelectionView: View {
                         print("accept form")
                         self.schedule.scheduledPlayers = self.selections
                         self.schedule.validateForm()
+                        self.schedule.objectWillChange.send()       // force the schedule to change to refresh the paretn screen
                         self.presentationMode.wrappedValue.dismiss()
                     }) {
                         Text("Done").multilineTextAlignment(.leading).frame(height: 60)
