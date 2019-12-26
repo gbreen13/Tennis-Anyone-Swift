@@ -28,21 +28,20 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
     var courtMinutes: Int? = 90      // how long is court time each week
     @Published var playWeeks: [PlayWeek]? = [PlayWeek]()
     @Published var blockedDays: [Date] = [Date]()    // weeks courts are closed (e.g. Thanksgiving)
-    var playerObjectWillChange = PassthroughSubject<Void, Never>()
-    @Published var players:[Player] = [Player]() {
-        willSet {
-            self.playerObjectWillChange.send()
-        }
-    }     // all of the members
     @Published var isBuilt: Bool = false   // is it built?
     @Published var isSaved: Bool = false
-    var numBadWeeks: Int = 0           // after a build, # weeks that don't have the proper numberof players
     var objectWillChange = PassthroughSubject<Void, Never>()
+    @Published var players:[Player] = [Player]() {
+        willSet {
+            self.objectWillChange.send()            //  used so changes to the detailed screen will cause parent screen to redraw.
+        }
+    }     // all of the members
     @Published var venues:[Venue] = [Venue]() {
         willSet {
             self.objectWillChange.send()
         }
     }
+    var numBadWeeks: Int = 0           // after a build, # weeks that don't have the proper numberof players
    // possible locations
     @Published var currentVenue = UUID()
     @Published var isDoubles = true

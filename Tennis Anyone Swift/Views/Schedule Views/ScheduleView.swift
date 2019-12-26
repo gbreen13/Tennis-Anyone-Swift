@@ -161,6 +161,8 @@ struct ScheduleView: View {
                             do {
                                 try self.schedule.saveJson()
                                 self.schedule.isSaved = true
+                                self.schedule.objectWillChange.send()       // force the schedule to change to refresh the paretn screen
+
                             }
                             catch {}
                         } else  {                                               // email
@@ -181,6 +183,8 @@ struct ScheduleView: View {
                     trailing: Button(action: {
                         // put in edit mode
                         self.schedule.isBuilt = false;
+                        self.schedule.objectWillChange.send()       // force the schedule to change to refresh the paretn screen
+
                     }
                     ) {
                         Text("Edit")
@@ -211,6 +215,8 @@ struct ScheduleView: View {
                 let jsonString = String(data: jsonData, encoding: .utf8)!
                 self.schedule.isBuilt = true
                 self.schedule.isSaved = false
+                self.schedule.objectWillChange.send()       // force the schedule to change to refresh the paretn screen
+
                 #if DEBUG
                 print(jsonString)
                 print(self.schedule as Any);
@@ -226,6 +232,7 @@ struct ScheduleView: View {
     func delete(at offsets: IndexSet) {
         self.schedule.blockedDays.remove(atOffsets: offsets)
         self.schedule.rkManager.blockedDates = self.schedule.blockedDays
+        self.schedule.objectWillChange.send()       // force the schedule to change to refresh the paretn screen
     }
     
     var dateClosedRange: ClosedRange<Date> {

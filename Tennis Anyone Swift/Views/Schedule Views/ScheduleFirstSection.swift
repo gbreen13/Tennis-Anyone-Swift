@@ -22,6 +22,8 @@ struct ScheduleFirstSection : View {
         Binding<Date>(get: {self.schedule.endDate }, set: {
             self.schedule.endDate = $0
             self.schedule.validateForm()
+            self.schedule.objectWillChange.send()       // force the schedule to change to refresh the paretn screen
+
         })
     }
 
@@ -29,12 +31,16 @@ struct ScheduleFirstSection : View {
         Binding<Date>(get: {self.schedule.startDate }, set: {
             self.schedule.startDate = $0
             self.schedule.validateForm()
+            self.schedule.objectWillChange.send()       // force the schedule to change to refresh the paretn screen
+
         })
     }
     private var currentVenueProxy:Binding<UUID> {
         Binding<UUID>(get: {self.schedule.currentVenue }, set: {
             self.schedule.currentVenue = $0
             self.schedule.validateForm()
+            self.schedule.objectWillChange.send()       // force the schedule to change to refresh the paretn screen
+
         })
     }
 
