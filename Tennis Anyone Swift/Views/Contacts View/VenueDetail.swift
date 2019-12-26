@@ -11,14 +11,25 @@ import Contacts
 import SwiftUI
 import os
 
-
 struct VenueDetail: View {
     var venue: Venue
 
     @EnvironmentObject var schedule: Schedule
     
-    var venueIndex: Int {
-        schedule.venues.firstIndex(where: { $0.id == venue.id })!
+    private var venueNameProxy:Binding<String> {
+        Binding<String>(get: {self.venue.name}, set: {
+            self.venue.name = $0
+        })
+    }
+    private var venuePhoneProxy:Binding<String> {
+        Binding<String>(get: {self.venue.phone}, set: {
+            self.venue.phone = $0
+        })
+    }
+    private var venueEmailProxy:Binding<String> {
+        Binding<String>(get: {self.venue.email}, set: {
+            self.venue.email = $0
+        })
     }
 
     var body: some View {
@@ -26,9 +37,9 @@ struct VenueDetail: View {
         NavigationView {
             
             Form {
-                TextField("Venue name", text: $schedule.venues[venueIndex].name)
-                TextField("Phone Number", text: $schedule.venues[venueIndex].phone)
-                TextField("Email", text: $schedule.venues[venueIndex].email)
+                TextField("Venue name", text: venueNameProxy)
+                TextField("Phone Number", text: venuePhoneProxy)
+                TextField("Email", text: venueEmailProxy)
             }
         }
         .navigationBarTitle(Text("Courts"))

@@ -130,7 +130,7 @@ struct VenuePrompt: View {
                 .foregroundColor(Color.white)
                 .font(.title)
             Spacer()
-            Text("Press to add a tennis club ")
+            Text("Press to add a slot for a tennis club, then select to fill in the details.  swipe to delete. ")
                 .font(.title)
                 .multilineTextAlignment(.leading)
                 .foregroundColor(Color.white)

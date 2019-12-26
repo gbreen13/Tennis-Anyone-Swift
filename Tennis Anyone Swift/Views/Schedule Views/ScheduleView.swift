@@ -27,6 +27,31 @@ extension ScheduleFormError: LocalizedError {
     }
 }
 
+struct MyButtonStyle: ButtonStyle {
+    var color: Color = .green
+    
+    public func makeBody(configuration: MyButtonStyle.Configuration) -> some View {
+        MyButton(configuration: configuration, color: color)
+    }
+    
+    struct MyButton: View {
+        let configuration: MyButtonStyle.Configuration
+        let color: Color
+        
+        var body: some View {
+            
+            return configuration.label
+                .foregroundColor(.white)
+                .padding(15)
+                .background(RoundedRectangle(cornerRadius: 5).fill(color))
+                .compositingGroup()
+                .shadow(color: .black, radius: 3)
+                .opacity(configuration.isPressed ? 0.5 : 1.0)
+                .scaleEffect(configuration.isPressed ? 0.8 : 1.0)
+        }
+    }
+
+}
 
 struct ScheduleView: View {
     //    let menu = Bundle.main.decode([MenuSection].self, from: "menu.json")
@@ -63,8 +88,9 @@ struct ScheduleView: View {
 
                     Button(action:  {self.generateSchedule()})
                     {
-                        Text("Generate")
-                    }
+                        Text("Generate Schedule")
+                    }.buttonStyle(MyButtonStyle(color: .blue))
+                    .frame(alignment: .center)
                     
                     Text("Schedule Generation Date: \(self.schedule.buildDate, formatter: Self.buildDateFormat)")
                     if(!self.schedule.isSaved) {
@@ -86,8 +112,9 @@ struct ScheduleView: View {
                     } else {
                         Button(action:  {self.generateSchedule()})
                         {
-                            Text("Generate")
-                        }
+                            Text("Generate Schedule")
+                        }.buttonStyle(MyButtonStyle(color: .blue))
+                            .frame(alignment: .center)
                     }
 
                     ScheduleFirstSection()

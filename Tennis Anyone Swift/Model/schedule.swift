@@ -268,6 +268,14 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         if(self.venues.count <= 0) {
             self.errorString = "Add at least one tennis court to the contacts screen"
         }
+        if (self.validDates()) {
+            rkManager.minimumDate = self.startDate
+            rkManager.maximumDate = self.endDate
+        }
+        else {
+            rkManager.minimumDate = Date()
+            rkManager.maximumDate = Date()
+        }
 
     }
 

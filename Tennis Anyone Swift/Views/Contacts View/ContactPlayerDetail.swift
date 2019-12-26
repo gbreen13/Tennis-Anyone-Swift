@@ -12,11 +12,11 @@ struct ContactPlayerDetail: View {
     var player: Player
   
     @EnvironmentObject var schedule: Schedule
-    
+/*
     var playerIndex: Int {
-        schedule.players.firstIndex(where: { $0.id == player.id })!
+        schedule.players.firstIndex(where: { $0.id == player.id })!     // crashes during deletes
     }
-
+*/
     private var playerFirstNameProxy:Binding<String> {
         Binding<String>(get: {self.player.firstName}, set: {
             self.player.firstName = $0
@@ -52,7 +52,7 @@ struct ContactPlayerDetail: View {
                          Form {
                 TextField("First Name", text: playerFirstNameProxy)
                 TextField("Last Name", text: playerLastNameProxy)
-                TextField("Phone #", text: $schedule.players[playerIndex].phone)
+                TextField("Phone #", text: playerPhoneProxy)
                 TextField("Email", text: playerEmailProxy)
 
             }
