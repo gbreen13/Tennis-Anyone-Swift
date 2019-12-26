@@ -90,6 +90,8 @@ struct ScheduleView: View {
                     {
                         Text("Generate Schedule")
                     }.buttonStyle(MyButtonStyle(color: .blue))
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+
                     .frame(alignment: .center)
                     
                     Text("Schedule Generation Date: \(self.schedule.buildDate, formatter: Self.buildDateFormat)")
@@ -114,7 +116,8 @@ struct ScheduleView: View {
                         {
                             Text("Generate Schedule")
                         }.buttonStyle(MyButtonStyle(color: .blue))
-                            .frame(alignment: .center)
+                               .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+
                     }
 
                     ScheduleFirstSection()
