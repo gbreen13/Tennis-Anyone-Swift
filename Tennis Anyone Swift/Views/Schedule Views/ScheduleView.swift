@@ -145,7 +145,9 @@ struct ScheduleView: View {
                         })
                     {
                         
-                        ScheduledPlayersView()
+                        if(self.schedule.scheduledPlayers.count > 0) {
+                            ScheduledPlayersView()
+                        }
                         
                     }
                 }
@@ -192,6 +194,10 @@ struct ScheduleView: View {
                     .alert(isPresented: $showingAlert) {
                         Alert(title: Text("Error"), message: Text(self.errorString), dismissButton: .default(Text("OK")))
                     }
+                    .disabled(!self.schedule.isBuilt)
+                        
+                        
+
             ) .listStyle(GroupedListStyle())
         }
         .onAppear {
