@@ -107,38 +107,12 @@ struct ContactsView: View {
 
 struct ContactsPrompt: View {
     var body: some View {
-        HStack {
-            Spacer()
-            Image("addcontactsel").renderingMode(.original)
-            Spacer()
-            Text("Press to add tennis players from contacts.  Swipe to delete.")
-                .font(.title)
-                .multilineTextAlignment(.leading)
-                .foregroundColor(Color.white)
-        }
-        .background(Color(Constants.blueBackgroundColor))
-        .listRowInsets(EdgeInsets())
-        
-        
+        GentlePrompt(errorString: "Press to add tennis players from contacts.  Swipe to delete.",promptImage: "addcontactsel")
     }
 }
 struct VenuePrompt: View {
     var body: some View {
-        HStack {
-            Spacer()
-            Image(systemName: "plus.circle")
-                .foregroundColor(Color.white)
-                .font(.title)
-            Spacer()
-            Text("Press to add a slot for a tennis club, then select to fill in the details.  swipe to delete. ")
-                .font(.title)
-                .multilineTextAlignment(.leading)
-                .foregroundColor(Color.white)
-        }
-        .background(Color(Constants.blueBackgroundColor))
-        .listRowInsets(EdgeInsets())
-        
-        
+            GentlePrompt(errorString: "Press to add a slot for a tennis club, then select to fill in the details.  swipe to delete",promptImage: "plus.circle")
     }
 }
 

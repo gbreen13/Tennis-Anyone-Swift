@@ -23,10 +23,13 @@ struct Prompt: View {
             Spacer()
             Text(promptText)
                 .font(.title)
-                .multilineTextAlignment(.leading)
+                .multilineTextAlignment(.trailing)
                 .foregroundColor(Color.white)
                 .shadow(radius: 2.0)
+                .frame(alignment: . trailing)
+            Spacer()
         }
+        .frame(alignment: .leading)
         .background(promptColor)
         .listRowInsets(EdgeInsets())
         

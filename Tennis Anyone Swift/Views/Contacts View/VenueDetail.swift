@@ -40,8 +40,8 @@ struct VenueDetail: View {
         NavigationView {
             
             Form {
-                TextField("Venue name", text: venueNameProxy)
-                TextField("Phone Number", text: venuePhoneProxy)
+                TextField("Name of courts", text: venueNameProxy)
+                TextField("Phone number", text: venuePhoneProxy)
                 TextField("Email", text: venueEmailProxy)
             }
         }
