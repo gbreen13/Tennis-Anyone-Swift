@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+
 struct ScheduleFirstSection : View {
 
     @EnvironmentObject var schedule: Schedule
@@ -43,8 +44,20 @@ struct ScheduleFirstSection : View {
 
         })
     }
+    
+    private var isDoubProxy:Binding<Bool>{
+        Binding<Bool>(get: { self.schedule.isDoubles }, set: {
+            self.schedule.isDoubles = $0
+            self.schedule.prepareForBuild()             // blow away any play weeks.
+//            self.schedule.validateForm()
+//            self.schedule.objectWillChange.send()
+        })
+    }
+
 
     var body: some View {
+        
+ 
         
         Section(header: Text("TIME AND PLACE")) {
 
@@ -60,7 +73,7 @@ struct ScheduleFirstSection : View {
                     .bold()
                 }
                 
-                Toggle(isOn: $schedule.isDoubles)
+                Toggle(isOn: self.isDoubProxy)
                     {
                         EmptyView()
                     }

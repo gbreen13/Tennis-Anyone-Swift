@@ -121,10 +121,15 @@ struct ScheduleView: View {
                             )
                         }
                     ) {
-                        List {
-                            ForEach(self.schedule.blockedDays,id:\.self) { blocked in
-                                Text("\(blocked, formatter: Self.dayDateFormat)")
-                            }.onDelete(perform: delete)
+                        if(self.schedule.blockedDays.count > 0){
+                            List {
+                                ForEach(self.schedule.blockedDays,id:\.self) { blocked in
+                                    Text("\(blocked, formatter: Self.dayDateFormat)")
+                                }.onDelete(perform: delete)
+                            }
+                        } else {
+                            GentlePrompt(errorString: "Press the calendar to add days the courts are closed.  Swipe to delete.",promptImage: "calendar")
+
                         }
                     }
                     
@@ -147,6 +152,9 @@ struct ScheduleView: View {
                         
                         if(self.schedule.scheduledPlayers.count > 0) {
                             ScheduledPlayersView()
+                        } else {
+                            GentlePrompt(errorString: "Press the pencil to add or edit players for this contract.  Swipe to delete.",promptImage: "pencil")
+
                         }
                         
                     }
@@ -203,7 +211,8 @@ struct ScheduleView: View {
         .onAppear {
             self.schedule.rkManager.setParams(startDate: self.schedule.startDate, endDate: self.schedule.endDate, blockedDates: self.schedule.blockedDays)
             self.schedule.validateForm()
-        }
+            self.schedule.objectWillChange.send()       // force the schedule to change to refresh the paretn screen
+}
         
         
     }

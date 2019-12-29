@@ -51,7 +51,7 @@
 		26020B162358E074005246B4 /* VenueDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueDetail.swift; sourceTree = "<group>"; };
 		260AF31F23B1065700A2EF73 /* ContactPlayerDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPlayerDetail.swift; sourceTree = "<group>"; };
 		260AF32123B2723B00A2EF73 /* Prompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Prompt.swift; path = "Tennis Anyone Swift/Views/Prompt.swift"; sourceTree = SOURCE_ROOT; };
-		260BE8A92356469F00A7A306 /* Tennis Anyone Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tennis Anyone Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		260BE8A92356469F00A7A306 /* Tennis Scheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tennis Scheduler.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		260BE8AC2356469F00A7A306 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		260BE8AE2356469F00A7A306 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		260BE8B02356469F00A7A306 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
@@ -132,7 +132,7 @@
 		260BE8AA2356469F00A7A306 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				260BE8A92356469F00A7A306 /* Tennis Anyone Swift.app */,
+				260BE8A92356469F00A7A306 /* Tennis Scheduler.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -222,7 +222,7 @@
 			);
 			name = "Tennis Anyone Swift";
 			productName = "Tennis Anyone Swift";
-			productReference = 260BE8A92356469F00A7A306 /* Tennis Anyone Swift.app */;
+			productReference = 260BE8A92356469F00A7A306 /* Tennis Scheduler.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -454,7 +454,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rabbithillsolutions.Tennis-Anyone-Swift";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Tennis Scheduler";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -474,7 +474,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rabbithillsolutions.Tennis-Anyone-Swift";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Tennis Scheduler";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

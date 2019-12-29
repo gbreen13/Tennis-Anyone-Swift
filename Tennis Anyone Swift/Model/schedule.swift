@@ -71,7 +71,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
 
         if playWeeks != nil {
             for pw in playWeeks! {
-                if pw.scheduledPlayers!.count < Constants.minimumNumberOfPlayers {
+                if pw.scheduledPlayers!.count < self.neededPlayers() {
                     s += "🥵"
                 } else {
                     s += "  "
@@ -171,7 +171,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
                 let pw = self.playWeeks?.first(where: {$0.date == thisWeek})
                 if( pw != nil) {
                     s += "<tr"
-                    if pw?.scheduledPlayers!.count != ((self.isDoubles) ? 4: 2 ){
+                    if pw?.scheduledPlayers!.count != self.neededPlayers(){
                         s += " bgcolor = \"#ffa0a0\""
                     }
                     s += "><td>\(dateFormatter.string(from: thisWeek))</td><td>"
@@ -290,6 +290,9 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
 
     }
 
+    func neededPlayers()->Int {
+        return ((isDoubles ? 4 : 2))
+    }
     func returnNumberOfPlayweeks()->Int {
         var numweeks = 0
         if(self.validDates() == false) {
@@ -394,9 +397,9 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
             
             maxloop -= 1
             let pw = self.playWeeks![index]
-            if pw.scheduledPlayers!.count < Constants.minimumNumberOfPlayers &&
+            if pw.scheduledPlayers!.count < self.neededPlayers() &&
             pw.isNotScheduled(s: s) &&
-            pw.canSchedule(s: s) {
+                pw.canSchedule(s: s, minPlayers: self.neededPlayers()) {
                 return pw
             }
             index = (index + 1) % self.playWeeks!.count
@@ -439,7 +442,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
                 
                 let dstWeek = self.playWeeks![index]
 
-                if dstWeek.canSchedule(s: swapPlayer) { // there is room and swapPlayer is not scheduled.
+                if dstWeek.canSchedule(s: swapPlayer, minPlayers: self.neededPlayers()) { // there is room and swapPlayer is not scheduled.
                         sourceWeek.unSchedulePlayer(s: swapPlayer)
                         dstWeek.schedulePlayer(s: swapPlayer)
                         return findSlot(s: s)  // ok, we should have successfully moved a player and created a slot for p.
@@ -483,8 +486,8 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
  
         if isBuilt {return}
         
-        if  self.scheduledPlayers.count < Constants.minimumNumberOfPlayers {
-            throw ScheduleError.startDateAfterEndDate("Need " + String(Constants.minimumNumberOfPlayers) + " players and there are only " + String(self.scheduledPlayers.count))
+        if  self.scheduledPlayers.count < self.neededPlayers() {
+            throw ScheduleError.startDateAfterEndDate("Need " + String(self.neededPlayers()) + " players and there are only " + String(self.scheduledPlayers.count))
         }
                 
 
@@ -507,7 +510,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
         for s in self.scheduledPlayers {
             totalweight += s.percentPlaying
         }
-        let unweightedWeeksPlying: Double = Double(Constants.minimumNumberOfPlayers * self.playWeeks!.count)
+        let unweightedWeeksPlying: Double = Double(self.neededPlayers() * self.playWeeks!.count)
         for s in self.scheduledPlayers {
             let weightedBias:Double = (s.percentPlaying * unweightedWeeksPlying) / totalweight
             s.numWeeks = Int(weightedBias.rounded())
@@ -517,7 +520,7 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
 //  of playing slots available.
 //
 
-        let playingslots = Constants.minimumNumberOfPlayers * self.playWeeks!.count
+        let playingslots = self.neededPlayers() * self.playWeeks!.count
         var calculatedSlots = 0
         
         for s in self.scheduledPlayers {
@@ -564,9 +567,9 @@ class Schedule: Codable, CustomStringConvertible, ObservableObject {
             let dstplayer = self.scheduledPlayers[Int.random(in: 0 ..< self.scheduledPlayers.count)]
             
             if dstweek.isNotScheduled(s: srcplayer) &&
-                dstweek.canSchedule(s: srcplayer) &&
+                dstweek.canSchedule(s: srcplayer, minPlayers: self.neededPlayers()) &&
                 srcweek.isNotScheduled(s: dstplayer) &&
-                srcweek.canSchedule(s: dstplayer) {
+                srcweek.canSchedule(s: dstplayer, minPlayers: self.neededPlayers()) {
                 
                     srcweek.unSchedulePlayer(s: srcplayer)
                     srcweek.schedulePlayer(s: dstplayer)

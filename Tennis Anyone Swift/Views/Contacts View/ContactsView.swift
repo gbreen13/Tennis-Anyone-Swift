@@ -41,6 +41,7 @@ struct ContactsView: View {
                         Button(action: {
                             self.showVenueModal.toggle()
                             self.schedule.venues.append(Venue())
+                            self.schedule.objectWillChange.send()
                         }) {
                             Image(systemName: "plus.circle")
                                 .font(.title)
@@ -73,6 +74,7 @@ struct ContactsView: View {
                                 }
                             }
                         }
+                        self.schedule.objectWillChange.send()       // force the
                     }) {
                         ModalView(selectedPlayers: self.$selectedPlayers)
                         

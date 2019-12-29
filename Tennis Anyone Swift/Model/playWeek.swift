@@ -63,9 +63,9 @@ class PlayWeek: CustomStringConvertible, Codable, ObservableObject {
 //
 //	canSchedule says the week is not blocked and there is room to schedule
 //
-	func canSchedule(s: ScheduledPlayer) ->Bool {
+    func canSchedule(s: ScheduledPlayer, minPlayers: Int) ->Bool {
 // test for blocked days
-		return (self.scheduledPlayers!.count < Constants.minimumNumberOfPlayers && self.couldSchedule(s:s))
+		return (self.scheduledPlayers!.count < minPlayers && self.couldSchedule(s:s))
 	}
 	
     var description: String {

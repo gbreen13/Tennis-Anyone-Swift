@@ -62,6 +62,8 @@ struct PlayerList : View {
             if schindex != nil {        // WARNING! the deleted player is currently scheduled.  Do we want to kill the schedule?
                 if schedule.isBuilt {
                     schedule.prepareForBuild()  // order of these two lines matter?
+                    schedule.objectWillChange.send()       // force the
+                    
                 }
                 schedule.scheduledPlayers.remove(at: schindex!) //regardless, delete him from the scheduled list.
             }
