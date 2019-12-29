@@ -49,7 +49,7 @@ struct ScheduleFirstSection : View {
         Binding<Bool>(get: { self.schedule.isDoubles }, set: {
             self.schedule.isDoubles = $0
             self.schedule.prepareForBuild()             // blow away any play weeks.
-//            self.schedule.validateForm()
+            self.schedule.validateForm()
 //            self.schedule.objectWillChange.send()
         })
     }

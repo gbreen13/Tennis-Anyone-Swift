@@ -95,6 +95,7 @@ struct ContactsView: View {
                         print(self.schedule)
                         print(self.schedule.players)
                         print(self.schedule.scheduledPlayers)
+                        print(self.schedule.html)
                     }
                     ) {
                         Text("Dump")
