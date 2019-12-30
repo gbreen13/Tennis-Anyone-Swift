@@ -49,9 +49,12 @@ struct VenueDetail: View {
 
     }
 }
+
+#if DEBUG
 struct VenueDetail_Previews: PreviewProvider {
     @EnvironmentObject var schedule: Schedule
     static var previews: some View {
         VenueDetail(venue: Venue.example)
     }
 }
+#endif

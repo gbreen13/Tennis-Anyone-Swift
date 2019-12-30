@@ -49,6 +49,7 @@ struct VenueList : View {
     }
 }
 
+#if DEBUG
 struct VenueList_Previews: PreviewProvider {
     @EnvironmentObject var schedule: Schedule
     static var previews: some View {
@@ -58,4 +59,4 @@ struct VenueList_Previews: PreviewProvider {
         }
     }
 }
-
+#endif

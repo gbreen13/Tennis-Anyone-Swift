@@ -75,6 +75,7 @@ struct PlayerList : View {
      }
 }
 
+#if DEBUG
 struct PlayerList_Previews: PreviewProvider {
     @EnvironmentObject var schedule: Schedule
     static var previews: some View {
@@ -84,3 +85,4 @@ struct PlayerList_Previews: PreviewProvider {
         }
     }
 }
+#endif

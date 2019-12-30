@@ -88,10 +88,8 @@ struct ContactsView: View {
                 }
             }
             .navigationBarTitle("Contacts")
-//#if DEBUG
             .navigationBarItems(trailing:
                     Button(action: {
-                        
                         print(self.schedule)
                         print(self.schedule.players)
                         print(self.schedule.scheduledPlayers)
@@ -100,9 +98,7 @@ struct ContactsView: View {
                     ) {
                         Text("Dump")
                     }
-            )
-//#endif
-                .listStyle(GroupedListStyle())
+            ).listStyle(GroupedListStyle())
         }
     }
     
@@ -130,8 +126,10 @@ struct ModalView: View {
         EmbeddedContactPicker(selectedPlayers: self.$selectedPlayers, dismissfunc: self.$dismissfunc)
     }
 }
+#if DEBUG
 struct ContactsView_Previews: PreviewProvider {
     static var previews: some View {
         ContactsView().environmentObject(Schedule())
     }
 }
+#endif

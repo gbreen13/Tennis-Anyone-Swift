@@ -208,9 +208,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		260BE8A82356469F00A7A306 /* Tennis Anyone Swift */ = {
+		260BE8A82356469F00A7A306 /* Tennis Scheduler */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 260BE8BD235646AB00A7A306 /* Build configuration list for PBXNativeTarget "Tennis Anyone Swift" */;
+			buildConfigurationList = 260BE8BD235646AB00A7A306 /* Build configuration list for PBXNativeTarget "Tennis Scheduler" */;
 			buildPhases = (
 				260BE8A52356469F00A7A306 /* Sources */,
 				260BE8A62356469F00A7A306 /* Frameworks */,
@@ -220,7 +220,7 @@
 			);
 			dependencies = (
 			);
-			name = "Tennis Anyone Swift";
+			name = "Tennis Scheduler";
 			productName = "Tennis Anyone Swift";
 			productReference = 260BE8A92356469F00A7A306 /* Tennis Scheduler.app */;
 			productType = "com.apple.product-type.application";
@@ -240,7 +240,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 260BE8A42356469F00A7A306 /* Build configuration list for PBXProject "Tennis Anyone Swift" */;
+			buildConfigurationList = 260BE8A42356469F00A7A306 /* Build configuration list for PBXProject "Tennis Scheduler" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -253,7 +253,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				260BE8A82356469F00A7A306 /* Tennis Anyone Swift */,
+				260BE8A82356469F00A7A306 /* Tennis Scheduler */,
 			);
 		};
 /* End PBXProject section */
@@ -453,7 +453,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rabbithillsolutions.Tennis-Anyone-Swift";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rabbithillsolutions.TennisScheduler;
 				PRODUCT_NAME = "Tennis Scheduler";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -473,7 +473,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rabbithillsolutions.Tennis-Anyone-Swift";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rabbithillsolutions.TennisScheduler;
 				PRODUCT_NAME = "Tennis Scheduler";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -483,7 +483,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		260BE8A42356469F00A7A306 /* Build configuration list for PBXProject "Tennis Anyone Swift" */ = {
+		260BE8A42356469F00A7A306 /* Build configuration list for PBXProject "Tennis Scheduler" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				260BE8BB235646AA00A7A306 /* Debug */,
@@ -492,7 +492,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		260BE8BD235646AB00A7A306 /* Build configuration list for PBXNativeTarget "Tennis Anyone Swift" */ = {
+		260BE8BD235646AB00A7A306 /* Build configuration list for PBXNativeTarget "Tennis Scheduler" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				260BE8BE235646AB00A7A306 /* Debug */,
